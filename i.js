@@ -165,7 +165,7 @@ var iJS = {
                 clearInterval( this.loaderID ); 
                 this.imgIndex=0; 
                 this.loaderID = 0 ;
-                this.changeIMGLoader
+                this.changeIMGLoader() ;
             }
 
         }
