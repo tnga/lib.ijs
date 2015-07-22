@@ -74,8 +74,8 @@ var iJS = {
 	 *"imgDir" représente le chemin du répertoire contenant les images à animer
 	 *"imgLength" représente le nombre d'image à animer
 	 *"imgGlobalName" représente le nom global des images à animer. En effet les images à animer 
-	 doivent être de la forme 'imglaod0.png', 'imglaod1.png', ... où 'imgload' est ici le nom globlal
-	*"imgFormat" est le format des images à animer. Par défaut (ou s'il n'est pas renseigner) c'est 'png'.
+	  doivent être de la forme 'imglaod0.png', 'imglaod1.png', ... où 'imgload' est ici le nom globlal
+	 *"imgFormat" est le format des images à animer. Par défaut (ou s'il n'est pas renseigner) c'est 'png'.
 	*/
     mi_loader: function (imgContainer, imgDir, imgLength, imgGlobalName, imgFormat) {
 
@@ -92,19 +92,20 @@ var iJS = {
             if (iJS.isHTMLImageElement(document.getElementById(imgContainer)))
                 this.imgContainer = document.getElementById(imgContainer);
             else if (iJS.isHTMLImageElement(imgContainer))
-            this.imgContainer = imgContainer;
+                this.imgContainer = imgContainer;
 
         this.imgIndex = 0; //représente le numéro de l'image à afficher
         this.imgPath = ""; //représente le chemin vers l'image à afficher
-        this.loaderID = 0; //puisque clearInterval pourra être utilisées
+        this.loaderID = 0; //pour contenir le numéro d’identification des événements programés via des fonctions telle que "setTimeout()"
 
-        /*la fonction ci-dessous permet de changer ou remplacer l'image affichée par la suivante.
-         *le paramètre "loader" n'est nécessaire lorsque la fonction est passer en paramètre à une autre. 
-         *en effet il fera le plus souvent référence à l'objet lui même (au "this").
-         *sauf que cela ne marche plus pour une utilisation dans une fonction externe à l'objet
+        /* La fonction ci-dessous permet de changer ou remplacer l'image affichée par la suivante.
+         * Le paramètre "loader" n'est nécessaire lorsque la fonction est passer en paramètre à une autre. 
+         * En effet il fera le plus souvent référence à l'objet lui même (au "this").
+         * Sauf que cela ne marche plus pour une utilisation dans une fonction appelée de manière externe à l'objet
          *puis que, en prenant l'exemple de "setInterval" rattachée à l'objet "window" 
          *le "this" fera référence à l'objet "window" et non à l'objet voulu.
-         *en ce moment là faudra faire setIinterval( obj.changeIMGLoader, time, obj).
+         *en ce moment là faudra faire setIinterval( obj.changeIMGLoader, time, obj ); au lieu de setIinterval( obj.changeIMGLoader, time ); 
+         *car la déclaration est externe à l’objet "obj" de type "iJS.mi_loager".
          */
         this.changeIMGLoader = function (loader) {
 
@@ -143,7 +144,11 @@ var iJS = {
 
         /*permet de stopper l'animation; soit immédiatement, soit après un un certain temps défini ici par "time"*/
         this.stopLoading = function (time) {
-
+            
+            /* @TODO: supprimer le paramètre "loader" et remplacer la variable associée par "this"
+             *dans le bloc d’instruction contenu dans la fonction "setTimeout", 
+             *de ce fait enlever le "this" comme paramètre à cette fonction.
+            */
             if (iJS.isNumber(time)) {
                 setTimeout(function (loader) {
                     if (loader instanceof iJS.mi_loader) {
