@@ -1,5 +1,5 @@
-The LGPL License version 3
-==========================
+The LGPL version 3
+------------------
 
                    GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
