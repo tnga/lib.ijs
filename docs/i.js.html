@@ -26,12 +26,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/* Le namespace "iJS"(pour "inside JS") initié ici est une mini bibliothèque pour le développement en JavaScript des projets associés. 
+            <pre class="prettyprint source linenums"><code>/* "iJS"(pour "inside JS") initié ici est une mini bibliothèque pour le développement en JavaScript des projets associés. 
  * En effet s'il est une chose que JQuery ne fais pas c'est le respect de la syntaxe JavaScript; ce qui constitue un problème lorsque après avoir appris le JavaScript, 
  *il ne suffit plus seulement de connaître les fonctionnalités qu'apporte JQuery (ce qui se doit normalement d'être suffisant) mais aussi sa syntaxe à elle.
  * "iJS" tout comme "Dojo" s'oriente avant tout dans le respect de la syntaxe; sauf que seules sont récrites les fonctionnalités JS trop verbeux ou difficile d'utilisation.
  *___________________________________________________________________________________________________________________________________________________________________________
  */
+
+//"use strict";
+
+//manage possible conflict in iJS namespace definition.
+if ( typeof iJS !== "undefined" ) {
+    
+    console.warn("Seem like `iJS` namespace is use for another purpose. Taking risk of an overwrite ...") ;
+    window.iJS = iJS = {} ;
+    console.warn("Forcing iJS namespace initialization ... done.") ;
+    
+} else {
+    
+    window.iJS = {} ;
+}
 
 /**   
  * This name space provide some functionalities that facilitate JavaScript development of the associated projects.
@@ -45,7 +59,13 @@
  * @namespace iJS
  */
 
-var iJS = {
+iJS = {
+    
+    /**
+     *@property {string} version Inform about the version of library that is use.
+     */
+    version: "0.0_15.07",
+    
     /**
      * Let you know if a value or a variable is type of Number or not.
      * @function isNumber
@@ -122,10 +142,46 @@ var iJS = {
 
         return ((typeof arg).toLowerCase() === "object");
     },
+    
+    /**
+     * Let you know if a value or a variable is valid or not.
+     * ie: if an object is `null` or `undefined`.
+     * @function isSet
+     * @param   {all} arg object to evaluate
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isSet: function (arg) {
+        
+        return ( (arg !== undefined) &amp;&amp; (arg != null) ) ; 
+    },
+    
+    /**
+     * Let you know if a variable is defined or not.
+     * ie: if an object is not `undefined`.
+     * @function isDefined
+     * @param   {all} arg object to evaluate
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isDefined: function (arg) {
+      
+        return (arg !== undefined) ;
+    },
+    
+    /**
+     * Let you know if a variable is undefined or not.
+     * ie: if an object is not defined.
+     * @function isUndefined
+     * @param   {all} arg object to evaluate
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isUndefined: function (arg) {
+      
+        return (arg === undefined) ;
+    },
 
     /**
-     *Easily create compatible Ajax XMLHttpResquest object, depending of web browsers support.
-     *@function newHTTPRequest
+     * Easily create compatible Ajax XMLHttpResquest object, depending of web browsers support.
+     * @function newHTTPRequest
      * @returns {XMLHttpRequest} new instance of `XMLHttpRequest` class.
      */
     newHTTPRequest: function () {
@@ -275,13 +331,13 @@ var iJS = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Jul 27 2015 08:39:30 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Thu Jul 30 2015 12:10:30 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>

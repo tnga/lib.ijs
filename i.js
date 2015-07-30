@@ -1,9 +1,23 @@
-/* Le namespace "iJS"(pour "inside JS") initié ici est une mini bibliothèque pour le développement en JavaScript des projets associés. 
+/* "iJS"(pour "inside JS") initié ici est une mini bibliothèque pour le développement en JavaScript des projets associés. 
  * En effet s'il est une chose que JQuery ne fais pas c'est le respect de la syntaxe JavaScript; ce qui constitue un problème lorsque après avoir appris le JavaScript, 
  *il ne suffit plus seulement de connaître les fonctionnalités qu'apporte JQuery (ce qui se doit normalement d'être suffisant) mais aussi sa syntaxe à elle.
  * "iJS" tout comme "Dojo" s'oriente avant tout dans le respect de la syntaxe; sauf que seules sont récrites les fonctionnalités JS trop verbeux ou difficile d'utilisation.
  *___________________________________________________________________________________________________________________________________________________________________________
  */
+
+//"use strict";
+
+//manage possible conflict in iJS namespace definition.
+if ( typeof iJS !== "undefined" ) {
+    
+    console.warn("Seem like `iJS` namespace is use for another purpose. Taking risk of an overwrite ...") ;
+    window.iJS = iJS = {} ;
+    console.warn("Forcing iJS namespace initialization ... done.") ;
+    
+} else {
+    
+    window.iJS = {} ;
+}
 
 /**   
  * This name space provide some functionalities that facilitate JavaScript development of the associated projects.
@@ -17,7 +31,13 @@
  * @namespace iJS
  */
 
-var iJS = {
+iJS = {
+    
+    /**
+     *@property {string} version Inform about the version of library that is use.
+     */
+    version: "0.0_15.07",
+    
     /**
      * Let you know if a value or a variable is type of Number or not.
      * @function isNumber
@@ -94,10 +114,46 @@ var iJS = {
 
         return ((typeof arg).toLowerCase() === "object");
     },
+    
+    /**
+     * Let you know if a value or a variable is valid or not.
+     * ie: if an object is `null` or `undefined`.
+     * @function isSet
+     * @param   {all} arg object to evaluate
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isSet: function (arg) {
+        
+        return ( (arg !== undefined) && (arg != null) ) ; 
+    },
+    
+    /**
+     * Let you know if a variable is defined or not.
+     * ie: if an object is not `undefined`.
+     * @function isDefined
+     * @param   {all} arg object to evaluate
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isDefined: function (arg) {
+      
+        return (arg !== undefined) ;
+    },
+    
+    /**
+     * Let you know if a variable is undefined or not.
+     * ie: if an object is not defined.
+     * @function isUndefined
+     * @param   {all} arg object to evaluate
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isUndefined: function (arg) {
+      
+        return (arg === undefined) ;
+    },
 
     /**
-     *Easily create compatible Ajax XMLHttpResquest object, depending of web browsers support.
-     *@function newHTTPRequest
+     * Easily create compatible Ajax XMLHttpResquest object, depending of web browsers support.
+     * @function newHTTPRequest
      * @returns {XMLHttpRequest} new instance of `XMLHttpRequest` class.
      */
     newHTTPRequest: function () {
