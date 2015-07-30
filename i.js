@@ -26,7 +26,7 @@ if ( typeof iJS !== "undefined" ) {
  * 
  * @license LGPL v3.0
  * @author  [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
- * @version 0.0_(15.07) 
+ * @version 0.0_15.07 
  * 
  * @namespace iJS
  */
