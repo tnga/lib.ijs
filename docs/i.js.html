@@ -27,12 +27,19 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/* "iJS"(pour "inside JS") initié ici est une mini bibliothèque pour le développement en JavaScript des projets associés. 
- * En effet s'il est une chose que JQuery ne fais pas c'est le respect de la syntaxe JavaScript; ce qui constitue un problème lorsque après avoir appris le JavaScript, 
- *il ne suffit plus seulement de connaître les fonctionnalités qu'apporte JQuery (ce qui se doit normalement d'être suffisant) mais aussi sa syntaxe à elle.
- * "iJS" tout comme "Dojo" s'oriente avant tout dans le respect de la syntaxe; sauf que seules sont récrites les fonctionnalités JS trop verbeux ou difficile d'utilisation.
- *___________________________________________________________________________________________________________________________________________________________________________
+ * Le but n’est pas de refaire ce que des grandes bibliothèques telles que **Jquery**, **mootools**, AngularJS** et autres font assez bien, mais de fournir 
+ *soit des fonctionnalités en plus ou soit une meilleur approche pour une certaine facilité.
+ * Cette bibliothèque se veut être leger, indépendante et fonctionnelle. Elle peut donc être utilisable dans n’importe quel projet développé en JavaScript.
+ *__________________________________________________________________________________________________________________________________________________________
  */
-
+/*
+ * This library is firstly build with UMI web’s projects and for pure JavaScript development.
+ * However it can be use for any JavaScript projects.
+ * 
+ * @license LGPL v3.0
+ * @author  [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
+ * @version 0.0_15.07 
+*/
 //"use strict";
 
 //manage possible conflict in iJS namespace definition.
@@ -49,12 +56,6 @@ if ( typeof iJS !== "undefined" ) {
 
 /**   
  * This name space provide some functionalities that facilitate JavaScript development of the associated projects.
- * It’s firstly build with UMI web’s projects and for pure JavaScript development.
- * However it can be use for any JavaScript projects.
- * 
- * @license LGPL v3.0
- * @author  [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
- * @version 0.0_(15.07) 
  * 
  * @namespace iJS
  */
@@ -208,7 +209,7 @@ iJS = {
                 }
             }
         }else {
-            console.warn ("Can’t init Ajax functionalities. Maybe it’s your navigator version?");
+            console.error("iJS:'newHTTPRequest': Can’t init Ajax functionalities. Maybe it’s your browser version?");
         }
         
         return xhr;
@@ -321,7 +322,1129 @@ iJS = {
         }
     }
 
-}</code></pre>
+};
+
+
+/*===========================================================================
+ * Pure Javascript implementation of Uniforum message translation.
+ * Use this [2008 - Javascript Gettext](https://sourceforge.net/projects/jsgettext.berlios/?source=navbar)
+ * Thank to [Joshua I. Miller](mailto:unrtst@cpan.org) for that great work.
+ *===========================================================================
+
+-   The following methods are kept in:
+
+  textdomain  (domain)
+  gettext     (msgid)
+  dgettext    (domainname, msgid)
+  dcgettext   (domainname, msgid, LC_MESSAGES)
+  ngettext    (msgid, msgid_plural, count)
+  dngettext   (domainname, msgid, msgid_plural, count)
+  dcngettext  (domainname, msgid, msgid_plural, count, LC_MESSAGES)
+  pgettext    (msgctxt, msgid)
+  dpgettext   (domainname, msgctxt, msgid)
+  dcpgettext  (domainname, msgctxt, msgid, LC_MESSAGES)
+  npgettext   (msgctxt, msgid, msgid_plural, count)
+  dnpgettext  (domainname, msgctxt, msgid, msgid_plural, count)
+  dcnpgettext (domainname, msgctxt, msgid, msgid_plural, count, LC_MESSAGES)
+  strargs     (string, args_array)
+  
+-   The following methods are removed
+
+    get_lang_refs (link)
+    isValidOject  ()
+    isArray       (Object)
+    
+-   The following methods are completely rewrote
+
+    new Gettext   ()
+    try_load_lang ()
+    
+-   The following methods are added
+
+    setlocale       ()
+    bindtextdomaine ()
+    
+-   Some other modifications are done for changes and updates
+
+The implementation of this library have been made to be more convenient with GNU Gettext references.
+In addition, no only "po" or "mo" files can be use to content the messages data, but also "json" files or objects.
+
+This has been tested on the following browsers. It may work on others, but these are all those to which I have access.
+    FF1.5, FF2, FF3, IE6, IE7, Opera9, Opera10, Safari3.1, Chrome
+    *FF = Firefox
+    *IE = Internet Explorer
+    
+SEE ALSO
+--------
+po2json (included),
+docs/index.html,
+test/
+Locale::gettext_pp(3pm), POSIX(3pm), gettext(1), gettext(3)
+
+*/
+
+/**
+ * Javascript implemenation of GNU Gettext API.
+ * @class
+ * @constructs Gettext
+ * @returns {Gettext}
+ * @example
+ * //create new instance
+ * var igt = new Gettext() ;
+ * //set the locale in which the messages have to be translate.
+ * igt.setlocale("fr_FR.utf8") ; // local can also be *fr_FR* or *fr*.
+ * //also add or register a domain where to get the messages data
+ * igt.bindtextdomain("mydomain", "./path_to_locale", "po") ; //"po" can also be "json" or by default "mo".
+ * //Always do this after a `setlocale` or a `bindtextdomain` call.
+ * igt.try_load_lang() ; //will load and parse messages data from the setting catalog.
+ * //Then print your messages
+ * alert( igt.gettext("Hello world!") ) ;
+ * 
+ * //Like with GNU gettext, your domain path have to be
+ * // path_to_locale/LC_MESSAGES/fr_FR.utf8/mydomain.po
+ * // if "fr_FR.utf8" is not found, "fr_FR" or "fr" will be use for replacement.
+ * //This is just an overview. See tutoriels for more.
+ */
+Gettext = function () {
+    
+    this.domain = 'messages';
+    this.domain_registry = [] ; // will content all the indicated domain and associated paths
+    // locale_data will be populated when will `try_load_lang`
+    this.locale_data = undefined;
+    this.locale_format = null; // will indicate how the locale name is formatted
+    this.locale = null;
+
+    return this;
+}
+
+/**
+ * Set the locale in which the messages have to be translate.
+ * @memberof Gettext
+ * @param {String} locale egg: "en", "en_US.utf8", "en_GB" ...
+ */
+Gettext.prototype.setlocale = function (locale) {
+    
+    if (iJS.isString( locale )) {
+        
+        if (/^.._..\./.test( locale )) {
+            this.locale_format = 2 ; //egg: *en_US.utf8*
+            
+        } else if (/^.._..$/.test( locale )) {
+            this.locale_format = 1 ; //egg: *en_US*
+            
+        } else if (/^..$/.test( locale )) {
+            this.locale_format = 0 ; //egg: *en*
+            
+        } else {
+            this.locale_format = -1 ; //egg: *french*
+            console.warn("iJS-gettext:'setlocale': It seem like locale: *"+locale+"* do not conform to the **i18n standard format**.") ;
+        }
+        
+        this.locale = locale ;
+        //alert(this.locale)
+    } else {
+        throw new Error("iJS-gettext:'setlocale': Invalid argument: *"+locale+"* have to be a `string`.") ;
+    }
+};
+
+/**
+ * Add or register a domain where to get the messages data
+ * @memberof Gettext
+ * @param {string} domain     The Gettext domain, not www.whatev.com. If the .po file was "myapp.po", this would be "myapp".
+ * @param {string} localePath Path to the locale directory where to find the domain. &lt;BR/>
+ *                            &lt;U>egg:&lt;/U> "./locale" in which we can have ".locale/LC_MESSAGES/fr_FR.utf8/domain.po". &lt;BR/>
+ *                            If omitted, it will mean that domain will be considered in a json Object or file.
+ *                            See tutorials for more explanation.
+ * @param {string} dtype      Type of domain file. Supported files are "po", "json" and "mo"(support is planned).
+ *                            If omitted, the default value will be "mo".
+ */
+Gettext.prototype.bindtextdomain = function (domain, localePath, dtype) {
+    
+    var new_domain, new_locale_path, new_dtype ;
+    
+    if (iJS.isString( domain )) {
+        new_domain = domain ;
+        
+    } else {
+        throw new Error("iJS-gettext:'bindtextdomain': a *domaine* have to be defined as argument.") ;
+    }
+    
+    if (iJS.isString( dtype )){
+        
+        if ( dtype == "mo" || dtype == "po" || dtype == "json" ) {
+            new_dtype = dtype ;
+            
+        } else {
+            throw new Error("iJS-gettext:'bindtextdomain': type: *"+dtype+"* is not supported. Use *mo*, *po* or *json* files.") ;
+        }
+    } else {
+        new_dtype = "mo" ;
+    };
+    
+    if (iJS.isString( localePath ) ) {
+        new_locale_path = localePath ;
+        
+    } else {
+        new_locale_path = "" ;
+    }
+
+        
+    if ( !iJS.isArray( this.domain_registry ) ) this.domain_registry = [];
+    
+    if (!this.domain_registry.length) {    //first initialization
+        this.domain_registry.push( {value: new_domain, path: new_locale_path, type: new_dtype} ) ;
+        
+    } else {    //attempt to add new domain or reset if it’s already added. 
+        
+        var isNewDomaine = true ;
+        
+        for (var d in this.domain_registry) {
+            
+            if (this.domain_registry[d].value == new_domain) {
+                
+                console.warn("iJS-gettext:'bindtextdomain': domaine: *"+new_domain+"* is already added and will just be reset") ;
+                this.domain_registry[d].path = new_locale_path ;
+                this.domain_registry[d].type = new_dtype ;
+                isNewDomaine = false ;
+                break;
+            }
+        }
+        
+        if (isNewDomaine) this.domain_registry.push( {value: new_domain, path: new_locale_path, type: new_dtype} ) ;
+    }
+};
+
+/**
+ * Use for some concatenation: see for example `Gettext.prototype.parse_po`.
+ * @private
+ * @memberof Gettext
+ */
+Gettext.context_glue = "\004" ;
+/**
+ * json structure of all registered domain with corresponding messages data.
+ * It depend of setting locale which define the catalogue that will be load.
+ * It will also content messages data that are parsed from developer’s defined json'd portable object. 
+ * @private
+ * @memberof Gettext
+ */
+Gettext._locale_data = {} ;
+
+/**
+ * Load and parse all the messages data from domain in the domain registry.
+ * Data are load depending of the setting catalogue or developer’s defined json$d portable object.
+ * Parsed data are save in a internal json structure, to make them easily accessible, depending of the current domain.
+ * This method have to be always call after a `setlocale` and `bindtextdomain` call.
+ * @memberof Gettext
+ */
+Gettext.prototype.try_load_lang = function () {
+    
+    if (iJS.isSet( this.domain_registry ) &amp;&amp; iJS.isSet( this.locale) ) {
+        
+        //firstly clean the locale data, assuming that it will content new parsed data.
+        Gettext._locale_data = {} ;
+        
+        // NOTE: there will be a delay here, as this is async.
+        // So, any i18n calls made right after page load may not
+        // get translated.
+        // XXX: we may want to see if we can "fix" this behavior
+        var domain = null ,
+            link   = null ;
+        for (var d in this.domain_registry) {
+            
+            domain = this.domain_registry[d] ;
+            //When get *link.href* it return the absolute path, event if it initially define with *relative path*.
+            //That why is more convenient to define *link* as `HTMLlinkElement` than as `string`.
+            link = document.createElement("link") ; 
+            if (domain.type == 'json') {
+                
+                link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".json" ;
+                if (! this.try_load_lang_json(link.href) ) {
+                    
+                    switch (this.locale_format) {
+                            
+                        case 2: //locale name format is something like *en_US.utf8*. will try to use *en_US* or *en* format
+                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('.')[0]+"* format...") ;
+                            link.href = domain.path+"/"+this.locale.split('.')[0]+"/LC_MESSAGES/"+domain.value+".json" ;
+                            
+                            if (! this.try_load_lang_json( link.href )) {
+                                
+                                console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale.split('.')[0]+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
+                                link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".json" ;
+                                
+                                if (! this.try_load_lang_json( link.href )) {
+                                    
+                                    link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".json";
+                                    console.warn("iJS-gettext:'try_load_lang_json': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                                }
+                            }
+                            break;
+                        case 1://locale name format is something like *en_US*. will try to use *en* format
+                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
+                            link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".json" ;
+                            
+                            if (! this.try_load_lang_json( link.href )) {
+
+                                link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".json";
+                                console.error("iJS-gettext:'try_load_lang_json': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                            }
+                            break;
+                            
+                        default:
+                            console.error("iJS-gettext:'try_load_lang_json': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                            break;
+                    }
+                }
+            } else if (domain.type == 'po') {
+                
+                link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".po" ;
+                if (! this.try_load_lang_po(link.href) ) {
+
+                    switch (this.locale_format) {
+
+                        case 2: //locale name format is something like *en_US.utf8*. will try to use *en_US* or *en* format
+                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('.')[0]+"* format...") ;
+                            link.href = domain.path+"/"+this.locale.split('.')[0]+"/LC_MESSAGES/"+domain.value+".po" ;
+
+                            if (! this.try_load_lang_po( link.href )) {
+
+                                console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale.split('.')[0]+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
+                                link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".po" ;
+
+                                if (! this.try_load_lang_po( link.href )) {
+
+                                    link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".po";
+                                    console.warn("iJS-gettext:'try_load_lang_po' failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                                }
+                            }
+                            break;
+                        case 1://locale name format is something like *en_US*. will try to use *en* format
+                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
+                            link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".po" ;
+
+                            if (! this.try_load_lang_po( link.href )) {
+
+                                link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".po";
+                                console.error("iJS-gettext:'try_load_lang_po' failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                            }
+                            break;
+
+                        default:
+                            console.error("iJS-gettext:'try_load_lang_po' failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                            break;
+                    }
+                }
+            } else {
+                //if `domain.path` is not define, check to see if language is statically included via  a json object.
+                if (domain.path == "") {
+                    
+                    if (typeof(this.locale_data) != 'undefined') {
+                        // we're going to reformat it, and overwrite the variable
+                        var locale_data_copy = this.locale_data ;
+                        this.locale_data = undefined ;
+                        this.parse_locale_data(locale_data_copy) ;
+
+                        if (typeof(Gettext._locale_data[domain.value]) == 'undefined') {
+                            console.error("iJS-gettext:'try_load_lang':'locale_data': does not contain the domain '"+domain.value+"'") ;
+                        }
+                    }
+                    
+                } else {
+                    // TODO: implement the other types (.mo)
+                    throw new Error("TODO: link type mo found, and support is planned, but not implemented at this time.") ;
+                }
+                              
+            }
+        }
+        
+    } else {
+        console.warn("iJS-gettext:'try_load_lang': Not thing to do. It’s seem like no locale or domain have been register. Use `setlocale` or `bindtextdomain` for that.") ;
+    }
+};
+
+
+/**
+ * This takes a json’d data (a portable object variant) and moves it into an internal form, 
+ * for use in our lib, and puts it in our object as: 
+ * &lt;PRE>&lt;CODE>
+   Gettext._locale_data = {
+          domain : {
+              head : { headfield : headvalue },
+              msgs : {
+                  msgid : [ msgid_plural, msgstr, msgstr_plural ],
+              },
+            ...
+   &lt;/CODE>&lt;/PRE>
+ * The json’d data have to respect the library specifications for that. 
+ * For details see the script **po2json** in the associated binary directory.
+ * Also see tutorials for more explanations.
+ * @private
+ * @memberof Gettext
+ * @param   {Object} locale_data json *portable object*
+ * @returns {Object}   [[Description]]
+ */
+Gettext.prototype.parse_locale_data = function (locale_data) {
+    
+    if (typeof(Gettext._locale_data) == 'undefined') {
+        Gettext._locale_data = {};
+    }
+
+    // suck in every domain defined in the supplied data
+    for (var domain in locale_data) {
+        // skip empty specs (flexibly)
+        if ((! locale_data.hasOwnProperty(domain)) || (! iJS.isSet(locale_data[domain])))
+            continue;
+        // skip if it has no msgid's
+        var has_msgids = false;
+        for (var msgid in locale_data[domain]) {
+            has_msgids = true;
+            break;
+        }
+        if (! has_msgids) continue;
+
+        // grab shortcut to data
+        var data = locale_data[domain];
+
+        // if they specifcy a blank domain, default to "messages"
+        if (domain == "") domain = "messages";
+        // init the data structure
+        if (! iJS.isSet(Gettext._locale_data[domain]) )
+            Gettext._locale_data[domain] = { };
+        if (! iJS.isSet(Gettext._locale_data[domain].head) )
+            Gettext._locale_data[domain].head = { };
+        if (! iJS.isSet(Gettext._locale_data[domain].msgs) )
+            Gettext._locale_data[domain].msgs = { };
+
+        for (var key in data) {
+            if (key == "") {
+                var header = data[key];
+                for (var head in header) {
+                    var h = head.toLowerCase();
+                    Gettext._locale_data[domain].head[h] = header[head];
+                }
+            } else {
+                Gettext._locale_data[domain].msgs[key] = data[key];
+            }
+        }
+    }
+
+    // build the plural forms function
+    for (var domain in Gettext._locale_data) {
+        
+        if (iJS.isSet(Gettext._locale_data[domain].head['plural-forms']) &amp;&amp;
+            typeof(Gettext._locale_data[domain].head.plural_func) == 'undefined') {
+            // untaint data
+            var plural_forms = Gettext._locale_data[domain].head['plural-forms'];
+            var pf_re = new RegExp('^(\\s*nplurals\\s*=\\s*[0-9]+\\s*;\\s*plural\\s*=\\s*(?:\\s|[-\\?\\|&amp;=!&lt;>+*/%:;a-zA-Z0-9_\(\)])+)', 'm');
+            if (pf_re.test(plural_forms)) {
+                //ex english: "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+                //pf = "nplurals=2; plural=(n != 1);";
+                //ex russian: nplurals=3; plural=(n%10==1 &amp;&amp; n%100!=11 ? 0 : n%10>=2 &amp;&amp; n%10&lt; =4 &amp;&amp; (n%100&lt;10 or n%100>=20) ? 1 : 2)
+                //pf = "nplurals=3; plural=(n%10==1 &amp;&amp; n%100!=11 ? 0 : n%10>=2 &amp;&amp; n%10&lt;=4 &amp;&amp; (n%100&lt;10 || n%100>=20) ? 1 : 2)";
+
+                var pf = Gettext._locale_data[domain].head['plural-forms'];
+                if (! /;\s*$/.test(pf)) pf = pf.concat(';');
+                /* We used to use eval, but it seems IE has issues with it.
+                 * We now use "new Function", though it carries a slightly
+                 * bigger performance hit.
+                var code = 'function (n) { var plural; var nplurals; '+pf+' return { "nplural" : nplurals, "plural" : (plural === true ? 1 : plural ? plural : 0) }; };';
+                Gettext._locale_data[domain].head.plural_func = eval("("+code+")");
+                */
+                var code = 'var plural; var nplurals; '+pf+' return { "nplural" : nplurals, "plural" : (plural === true ? 1 : plural ? plural : 0) };';
+                Gettext._locale_data[domain].head.plural_func = new Function("n", code);
+                
+            } else {
+                throw new Error("iJS-gettext:'parse_locale_data': Syntax error in language file. Plural-Forms header is invalid ["+plural_forms+"]");
+            }   
+
+            // default to english plural form
+        } else if (typeof(Gettext._locale_data[domain].head.plural_func) == 'undefined') {
+            Gettext._locale_data[domain].head.plural_func = function (n) {
+                var p = (n != 1) ? 1 : 0;
+                return { 'nplural' : 2, 'plural' : p };
+            };
+        } // else, plural_func already created
+    }
+
+    return;
+};
+
+
+/**
+ * Do an ajax call to load in a .po files, language definitions from associated catalogue.
+ * @private
+ * @memberof Gettext
+ * @param   {string} uri link to the "po" files
+ * @returns {number} *1* if the operation is a success, *undefined* if not.
+ */
+Gettext.prototype.try_load_lang_po = function (uri) {
+    
+    var data = this.sjax(uri);
+    if (! data) return;
+    var domain = this.uri_basename(uri);
+    var parsed = this.parse_po(data);
+
+    var rv = {};
+    // munge domain into/outof header
+    if (parsed) {
+        if (! parsed[""]) parsed[""] = {};
+        if (! parsed[""]["domain"]) parsed[""]["domain"] = domain;
+        domain = parsed[""]["domain"];
+        rv[domain] = parsed;
+
+        this.parse_locale_data(rv);
+    }
+
+    return 1;
+};
+
+/**
+ * Get the base name of an url.
+ * Needed for know in which domain are loaded the messages data.
+ * Url’s base name will be considered as domain.
+ * @private
+ * @memberof Gettext
+ * @param   {string} uri an url
+ * @returns {string} the base name of the given url.
+ */
+Gettext.prototype.uri_basename = function (uri) {
+    
+    var rv;
+    if (rv = uri.match(/^(.*\/)?(.*)/)) {
+        var ext_strip;
+        if (ext_strip = rv[2].match(/^(.*)\..+$/))
+            return ext_strip[1];
+        else
+            return rv[2];
+    } else {
+        return "";
+    }
+};
+
+/**
+ * Parse po data in a json structure. 
+ * (like the library associated **po2json** perl script). 
+ * @private
+ * @memberof Gettext
+ * @param   {String}   data a portable object content
+ * @returns {Object} a json parsed data
+ */
+Gettext.prototype.parse_po = function (data) {
+    
+    var rv = {};
+    var buffer = {};
+    var lastbuffer = "";
+    var errors = [];
+    var lines = data.split("\n");
+    
+    for (var i=0; i&lt;lines.length; i++) {
+        // chomp
+        lines[i] = lines[i].replace(/(\n|\r)+$/, '');
+
+        var match;
+        // Empty line / End of an entry.
+        if (/^$/.test(lines[i])) {
+            if (typeof(buffer['msgid']) != 'undefined') {
+                var msg_ctxt_id = (typeof(buffer['msgctxt']) != 'undefined' &amp;&amp;
+                                   buffer['msgctxt'].length) ?
+                    buffer['msgctxt']+Gettext.context_glue+buffer['msgid'] :
+                buffer['msgid'];
+                var msgid_plural = (typeof(buffer['msgid_plural']) != 'undefined' &amp;&amp;
+                                    buffer['msgid_plural'].length) ?
+                    buffer['msgid_plural'] :
+                null;
+
+                // find msgstr_* translations and push them on
+                var trans = [];
+                for (var str in buffer) {
+                    var match;
+                    if (match = str.match(/^msgstr_(\d+)/))
+                        trans[parseInt(match[1])] = buffer[str];
+                }
+                trans.unshift(msgid_plural);
+
+                // only add it if we've got a translation
+                // NOTE: this doesn't conform to msgfmt specs
+                if (trans.length > 1) rv[msg_ctxt_id] = trans;
+
+                buffer = {};
+                lastbuffer = "";
+            }
+
+            // comments
+        } else if (/^#/.test(lines[i])) {
+            continue;
+
+            // msgctxt
+        } else if (match = lines[i].match(/^msgctxt\s+(.*)/)) {
+            lastbuffer = 'msgctxt';
+            buffer[lastbuffer] = this.parse_po_dequote(match[1]);
+
+            // msgid
+        } else if (match = lines[i].match(/^msgid\s+(.*)/)) {
+            lastbuffer = 'msgid';
+            buffer[lastbuffer] = this.parse_po_dequote(match[1]);
+
+            // msgid_plural
+        } else if (match = lines[i].match(/^msgid_plural\s+(.*)/)) {
+            lastbuffer = 'msgid_plural';
+            buffer[lastbuffer] = this.parse_po_dequote(match[1]);
+
+            // msgstr
+        } else if (match = lines[i].match(/^msgstr\s+(.*)/)) {
+            lastbuffer = 'msgstr_0';
+            buffer[lastbuffer] = this.parse_po_dequote(match[1]);
+
+            // msgstr[0] (treak like msgstr)
+        } else if (match = lines[i].match(/^msgstr\[0\]\s+(.*)/)) {
+            lastbuffer = 'msgstr_0';
+            buffer[lastbuffer] = this.parse_po_dequote(match[1]);
+
+            // msgstr[n]
+        } else if (match = lines[i].match(/^msgstr\[(\d+)\]\s+(.*)/)) {
+            lastbuffer = 'msgstr_'+match[1];
+            buffer[lastbuffer] = this.parse_po_dequote(match[2]);
+
+            // continued string
+        } else if (/^"/.test(lines[i])) {
+            buffer[lastbuffer] += this.parse_po_dequote(lines[i]);
+
+            // something strange
+        } else {
+            errors.push("Strange line ["+i+"] : "+lines[i]);
+        }
+    }
+
+    // handle the final entry
+    if (typeof(buffer['msgid']) != 'undefined') {
+        
+        var msg_ctxt_id = (typeof(buffer['msgctxt']) != 'undefined' &amp;&amp;
+                           buffer['msgctxt'].length) ?
+            buffer['msgctxt']+Gettext.context_glue+buffer['msgid'] :
+        buffer['msgid'];
+        var msgid_plural = (typeof(buffer['msgid_plural']) != 'undefined' &amp;&amp;
+                            buffer['msgid_plural'].length) ?
+            buffer['msgid_plural'] :
+        null;
+
+        // find msgstr_* translations and push them on
+        var trans = [];
+        for (var str in buffer) {
+            var match;
+            if (match = str.match(/^msgstr_(\d+)/))
+                trans[parseInt(match[1])] = buffer[str];
+        }
+        trans.unshift(msgid_plural);
+
+        // only add it if we've got a translation
+        // NOTE: this doesn't conform to msgfmt specs
+        if (trans.length > 1) rv[msg_ctxt_id] = trans;
+
+        buffer = {};
+        lastbuffer = "";
+    }
+
+    // parse out the header
+    if (rv[""] &amp;&amp; rv[""][1]) {
+        var cur = {};
+        var hlines = rv[""][1].split(/\\n/);
+        for (var i=0; i&lt;hlines.length; i++) {
+            if (! hlines.length) continue;
+
+            var pos = hlines[i].indexOf(':', 0);
+            if (pos != -1) {
+                var key = hlines[i].substring(0, pos);
+                var val = hlines[i].substring(pos +1);
+                var keylow = key.toLowerCase();
+
+                if (cur[keylow] &amp;&amp; cur[keylow].length) {
+                    errors.push("SKIPPING DUPLICATE HEADER LINE: "+hlines[i]);
+                } else if (/#-#-#-#-#/.test(keylow)) {
+                    errors.push("SKIPPING ERROR MARKER IN HEADER: "+hlines[i]);
+                } else {
+                    // remove begining spaces if any
+                    val = val.replace(/^\s+/, '');
+                    cur[keylow] = val;
+                }
+
+            } else {
+                errors.push("PROBLEM LINE IN HEADER: "+hlines[i]);
+                cur[hlines[i]] = '';
+            }
+        }
+
+        // replace header string with assoc array
+        rv[""] = cur;
+    } else {
+        rv[""] = {};
+    }
+
+    // TODO: XXX: if there are errors parsing, what do we want to do?
+    // GNU Gettext silently ignores errors. So will we.
+    // alert( "Errors parsing po file:\n" + errors.join("\n") );
+
+    return rv;
+};
+
+/**
+ * Unscaled all embedded quotes in a string. Useful when parsing a po messages data.
+ * @private
+ * @memberof Gettext
+ * @param   {String}   str string to analyse
+ * @returns {String} formated string
+ */
+Gettext.prototype.parse_po_dequote = function (str) {
+    
+    var match;
+    if (match = str.match(/^"(.*)"/)) {
+        str = match[1];
+    }
+    // unescale all embedded quotes (fixes bug #17504)
+    str = str.replace(/\\"/g, "\"");
+    return str;
+};
+
+
+/**
+ * Do an ajax call to load in a .json files, language definitions from associated catalogue.
+ * @private
+ * @memberof Gettext
+ * @param   {string} uri link to the "json" files
+ * @returns {number} *1* if the operation is a success, *undefined* if not.
+ */
+Gettext.prototype.try_load_lang_json = function (uri) {
+    
+    var data = this.sjax(uri);
+    if (! data) return;
+
+    var rv = this.JSON(data);
+    this.parse_locale_data(rv);
+
+    return 1;
+};
+
+/**
+ * Set domain for future `gettext()` calls. &lt;BR/>
+ * If the given domain is not NULL, the current message domain is set to it; 
+ * else the function returns the current message domain. &lt;BR/>
+ * A  message  domain  is  a  set of translatable msgid messages. Usually,
+ * every software package has its own message domain. The domain  name  is
+ * used to determine the message catalogue where a translation is looked up;
+ * it must be a non-empty string.
+ * @memberof Gettext
+ * @param   {string} domain  message domain to set as current.
+ * @returns {string} current message domain.
+ */
+Gettext.prototype.textdomain = function (domain) {
+    
+    if (domain &amp;&amp; domain.length) this.domain = domain;
+    return this.domain;
+}
+
+
+/**
+ * Returns the translation for **msgid**.&lt;BR/>
+ * If no translation can be found, the unmodified **&lt;msgid>** is returned.
+ * See tutorials for more.
+ * @memberof Gettext
+ * @param   {String} msgid  Text to translate
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.gettext = function (msgid) {
+    
+    var msgctxt;
+    var msgid_plural;
+    var n;
+    var category;
+    return this.dcnpgettext(null, msgctxt, msgid, msgid_plural, n, category);
+};
+
+
+/**
+ * Like `gettext()`, but retrieves the message for the specified 
+ * **TEXTDOMAIN** instead of the default domain.
+ * @memberof Gettext
+ * @param   {String} domain  Domain where translation can be found.
+ * @param   {String} msgid   Text to translate
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.dgettext = function (domain, msgid) {
+    
+    var msgctxt;
+    var msgid_plural;
+    var n;
+    var category;
+    return this.dcnpgettext(domain, msgctxt, msgid, msgid_plural, n, category);
+};
+
+/**
+ * Like `dgettext()` but retrieves the message from the specified **CATEGORY**
+ * instead of the default category "LC_MESSAGES". &lt;BR/>
+ * &lt;U>NOTE:&lt;/U> the categories are really useless in javascript context. This is
+ * here for GNU Gettext API compatibility. In practice, you'll never need
+ * to use this. This applies to all the calls including the **CATEGORY**.
+ * @memberof Gettext
+ * @param   {String} domain      Domain where translation can be found.
+ * @param   {String} msgid       Text to translate
+ * @param   {String} category    (for now is will always be "LC_MESSAGES")
+ * @returns {String} translated  text or the *msgid* if not found
+ */
+Gettext.prototype.dcgettext = function (domain, msgid, category) {
+    
+    var msgctxt;
+    var msgid_plural;
+    var n;
+    return this.dcnpgettext(domain, msgctxt, msgid, msgid_plural, n, category);
+};
+
+
+/**
+ * Retrieves the correct translation for **count** items.
+ * @memberof Gettext
+ * @param   {String} msgid        Text to translate
+ * @param   {String} msgid_plural Plural form of text to translate
+ * @param   {Number} n            Counting number
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.ngettext = function (msgid, msgid_plural, n) {
+    
+    var msgctxt;
+    var category;
+    return this.dcnpgettext(null, msgctxt, msgid, msgid_plural, n, category);
+};
+
+/**
+ * Like `ngettext()` but retrieves the translation from the specified
+ * textdomain instead of the default domain.
+ * @memberof Gettext
+ * @param   {String} domain       Domain where translation can be found.
+ * @param   {String} msgid        Text to translate
+ * @param   {String} msgid_plural Plural form of text to translate
+ * @param   {Number} n            Counting number
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.dngettext = function (domain, msgid, msgid_plural, n) {
+    
+    var msgctxt;
+    var category;
+    return this.dcnpgettext(domain, msgctxt, msgid, msgid_plural, n, category);
+};
+
+/**
+ * Like `dngettext()` but retrieves the translation from the specified
+ * category, instead of the default category **LC_MESSAGES**.
+ * @memberof Gettext
+ * @param   {String} domain       Domain where translation can be found.
+ * @param   {String} msgid        Text to translate
+ * @param   {String} msgid_plural Plural form of text to translate
+ * @param   {Number} n            Counting number
+ * @param   {String} category    (for now is will always be "LC_MESSAGES")
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.dcngettext = function (domain, msgid, msgid_plural, n, category) {
+    
+    var msgctxt;
+    return this.dcnpgettext(domain, msgctxt, msgid, msgid_plural, n, category, category);
+};
+
+/**
+ * Returns the translation of **msgid**, given the context of **msgctxt**.&lt;BR/>
+ * Both items are used as a unique key into the message catalog.
+ * This allows the translator to have two entries for words that may
+ * translate to different foreign words based on their context.
+ * @memberof Gettext
+ * @param   {String} msgctxt  context of text
+ * @param   {String} msgid    Text to translate
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.pgettext = function (msgctxt, msgid) {
+    
+    var msgid_plural;
+    var n;
+    var category;
+    return this.dcnpgettext(null, msgctxt, msgid, msgid_plural, n, category);
+};
+
+/**
+ * Like pgettext(), but retrieves the message for the specified 
+ * **domain** instead of the default domain.
+ * @memberof Gettext
+ * @param   {String} domain   Domain where translation can be found.
+ * @param   {String} msgctxt  Context of text
+ * @param   {String} msgid    Text to translate
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.dpgettext = function (domain, msgctxt, msgid) {
+    
+    var msgid_plural;
+    var n;
+    var category;
+    return this.dcnpgettext(domain, msgctxt, msgid, msgid_plural, n, category);
+};
+
+/**
+ * Like `dpgettext()` but retrieves the message from the specified **category**
+ * instead of the default category **LC_MESSAGES**.
+ * @memberof Gettext
+ * @param   {String} domain   Domain where translation can be found.
+ * @param   {String} msgctxt  Context of text
+ * @param   {String} msgid    Text to translate
+ * @param   {String} category (for now is will always be "LC_MESSAGES")
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.dcpgettext = function (domain, msgctxt, msgid, category) {
+    
+    var msgid_plural;
+    var n;
+    return this.dcnpgettext(domain, msgctxt, msgid, msgid_plural, n, category);
+};
+
+
+/**
+ * Like ngettext() with the addition of context as in pgettext(). &lt;BR/>
+ * In English, or if no translation can be found, the second argument
+ * *msgid* is picked if *n* is one, the third one otherwise.
+ * @memberof Gettext
+ * @param   {String} msgctxt      Context of text
+ * @param   {String} msgid        Text to translate
+ * @param   {String} msgid_plural Plural form of text to translate
+ * @param   {Number} n            Counting number
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.npgettext = function (msgctxt, msgid, msgid_plural, n) {
+    
+    var category;
+    return this.dcnpgettext(null, msgctxt, msgid, msgid_plural, n, category);
+};
+
+/**
+ * Like `npgettext()` but retrieves the translation from the specified
+ * textdomain instead of the default domain.
+ * @memberof Gettext
+ * @param   {String} domain       Domain where translation can be found.
+ * @param   {String} msgctxt      Context of text
+ * @param   {String} msgid        Text to translate
+ * @param   {String} msgid_plural Plural form of text to translate
+ * @param   {Number} n            Counting number
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.dnpgettext = function (domain, msgctxt, msgid, msgid_plural, n) {
+    
+    var category;
+    return this.dcnpgettext(domain, msgctxt, msgid, msgid_plural, n, category);
+};
+
+
+// this has all the options, so we use it for all of previous `gettext()`.
+/**
+ * Like `dnpgettext()` but retrieves the translation from the specified
+ * category, instead of the default category **LC_MESSAGES**.
+ * @memberof Gettext
+ * @param   {String} domain       Domain where translation can be found.
+ * @param   {String} msgctxt      Context of text
+ * @param   {String} msgid        Text to translate
+ * @param   {String} msgid_plural Plural form of text to translate
+ * @param   {Number} n    
+ * @param   {String} category (for now is will always be "LC_MESSAGES")
+ * @returns {String} translated text or the *msgid* if not found
+ */
+Gettext.prototype.dcnpgettext = function (domain, msgctxt, msgid, msgid_plural, n, category) {
+    
+    if (! iJS.isSet(msgid)) return '';
+
+    var plural = iJS.isSet(msgid_plural);
+    var msg_ctxt_id = iJS.isSet(msgctxt) ? msgctxt+Gettext.context_glue+msgid : msgid;
+
+    var domainname = iJS.isSet(domain)      ? domain :
+    iJS.isSet(this.domain) ? this.domain :
+    'messages';
+
+    // category is always LC_MESSAGES. We ignore all else
+    var category_name = 'LC_MESSAGES';
+    var category = 5;
+
+    var locale_data = new Array();
+    if (typeof(Gettext._locale_data) != 'undefined' &amp;&amp;
+        iJS.isSet(Gettext._locale_data[domainname])) {
+        locale_data.push( Gettext._locale_data[domainname] );
+
+    } else if (typeof(Gettext._locale_data) != 'undefined') {
+        // didn't find domain we're looking for. Search all of them.
+        for (var dom in Gettext._locale_data) {
+            locale_data.push( Gettext._locale_data[dom] );
+        }
+    }
+
+    var trans = [];
+    var found = false;
+    var domain_used; // so we can find plural-forms if needed
+    if (locale_data.length) {
+        for (var i=0; i&lt;locale_data.length; i++) {
+            var locale = locale_data[i];
+            if (iJS.isSet(locale.msgs[msg_ctxt_id])) {
+                // make copy of that array (cause we'll be destructive)
+                for (var j=0; j&lt;locale.msgs[msg_ctxt_id].length; j++) {
+                    trans[j] = locale.msgs[msg_ctxt_id][j];
+                }
+                trans.shift(); // throw away the msgid_plural
+                domain_used = locale;
+                found = true;
+                // only break if found translation actually has a translation.
+                if ( trans.length > 0 &amp;&amp; trans[0].length != 0 )
+                    break;
+            }
+        }
+    }
+
+    // default to english if we lack a match, or match has zero length
+    if ( trans.length == 0 || trans[0].length == 0 ) {
+        trans = [ msgid, msgid_plural ];
+    }
+
+    var translation = trans[0];
+    if (plural) {
+        var p;
+        if (found &amp;&amp; iJS.isSet(domain_used.head.plural_func) ) {
+            var rv = domain_used.head.plural_func(n);
+            if (! rv.plural) rv.plural = 0;
+            if (! rv.nplural) rv.nplural = 0;
+            // if plurals returned is out of bound for total plural forms
+            if (rv.nplural &lt;= rv.plural) rv.plural = 0;
+            p = rv.plural;
+        } else {
+            p = (n != 1) ? 1 : 0;
+        }
+        if (iJS.isSet(trans[p]))
+            translation = trans[p];
+    }
+
+    return translation;
+};
+
+
+/**
+ * This is a utility method to provide some way to support positional parameters within a string, as javascript lacks a printf() method.
+ * The format is similar to printf(), but greatly simplified (ie. fewer features).&lt;BR/>
+ * Any percent signs followed by numbers are replaced with the corresponding item from the B&lt;argument_array>.
+ * @class
+ * @constructs Strargs
+ * @memberof Gettext
+ * @param   {String} str  a string that potentially contains formatting characters
+ * @param   {Array} args  an array of positional replacement values
+ * @returns {String} The formatted text.
+ */
+Gettext.strargs = function (str, args) {
+    
+    // make sure args is an array
+    if ( null == args || 'undefined' == typeof(args) ) {
+        args = [];
+    } else if (args.constructor != Array) {
+        args = [args];
+    }
+
+    // NOTE: javascript lacks support for zero length negative look-behind
+    // in regex, so we must step through w/ index.
+    // The perl equiv would simply be:
+    //    $string =~ s/(?&lt;!\%)\%([0-9]+)/$args[$1]/g;
+    //    $string =~ s/\%\%/\%/g; # restore escaped percent signs
+
+    var newstr = "";
+    while (true) {
+        var i = str.indexOf('%');
+        var match_n;
+
+        // no more found. Append whatever remains
+        if (i == -1) {
+            newstr += str;
+            break;
+        }
+
+        // we found it, append everything up to that
+        newstr += str.substr(0, i);
+
+        // check for escpaed %%
+        if (str.substr(i, 2) == '%%') {
+            newstr += '%';
+            str = str.substr((i+2));
+
+            // % followed by number
+        } else if ( match_n = str.substr(i).match(/^%(\d+)/) ) {
+            var arg_n = parseInt(match_n[1]);
+            var length_n = match_n[1].length;
+            if ( arg_n > 0 &amp;&amp; args[arg_n -1] != null &amp;&amp; typeof(args[arg_n -1]) != 'undefined' )
+                newstr += args[arg_n -1];
+            str = str.substr( (i + 1 + length_n) );
+
+            // % followed by some other garbage - just remove the %
+        } else {
+            newstr += '%';
+            str = str.substr((i+1));
+        }
+    }
+
+    return newstr;
+}
+
+
+/**
+ * instance method wrapper of strargs
+ * @memberof Gettext
+ * @constructs Strargs
+ * @param   {String} str  a string that potentially contains formatting characters
+ * @param   {Array} args  an array of positional replacement values
+ * @returns {String} The formatted text.
+ */
+Gettext.prototype.strargs = function (str, args) {
+    
+    return Gettext.strargs(str, args);
+}
+
+/**
+ * Synchronously get a response text via an ajax call to a file’s url.
+ * @private
+ * @memberof Gettext
+ * @param   {String} uri file url
+ * @returns {String} a response text if succeed or *"undefined"* if not.
+ */
+Gettext.prototype.sjax = function (uri) {
+    
+    var xmlhttp = iJS.newHTTPRequest() ;
+        
+    if (! xmlhttp) {
+        console.error("iJS-gettext:'sjax': Your browser doesn't do Ajax. Unable to support external language files.");
+        
+    } else {
+        
+        xmlhttp.open('GET', uri, false);
+        try { xmlhttp.send(null); }
+        catch (e) { return; }
+
+        // we consider status 200 and 0 as ok.
+        // 0 happens when we request local file, allowing this to run on local files
+        var sjax_status = xmlhttp.status;
+        if (sjax_status == 200 || sjax_status == 0) {
+            return xmlhttp.responseText;
+        } else {
+            var error = xmlhttp.statusText + " (Error " + xmlhttp.status + ")";
+            if (xmlhttp.responseText.length) {
+                error += "\n" + xmlhttp.responseText;
+            }
+            console.error( error );
+            return;
+        }
+    }
+
+}
+
+/**
+ * Evaluate A string representing a JavaScript expression, statement, or sequence of statements. 
+ * @private
+ * @param   {String} data  JavaScript expression
+ * @returns {Object} [[Description]]
+ */
+Gettext.prototype.JSON = function (data) {
+    return eval('(' + data + ')');
+}
+</code></pre>
         </article>
     </section>
 
@@ -331,13 +1454,13 @@ iJS = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Gettext.html">Gettext</a></li><li><a href="Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Thu Jul 30 2015 12:10:30 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Aug 09 2015 17:46:50 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>

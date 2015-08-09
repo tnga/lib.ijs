@@ -1,0 +1,415 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2015 UMI-PROJET
+# This file is distributed in the hope that anyone can contribute to UMI-PROJET website translation.
+# Tindo Ngoufo Arsel <umitnga@gmail.com>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: UMI-PROJET-WEBSITE 1.0\n"
+"Report-Msgid-Bugs-To: umitnga@gmail.com\n"
+"POT-Creation-Date: 2015-05-28 09:15+0100\n"
+"PO-Revision-Date: 2015-05-28 09:15+0100\n"
+"Last-Translator: Tindo Ngoufo Arsel <tngatransporteur@gmail.com>\n"
+"Language-Team: MI-TEAM <umitnga@gmail.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: /opt/lampp/htdocs/eclipse_php/umi_site_php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: screenhost.php:47 journal.php:46 home.php:46
+msgid ""
+"Découvrez le meilleur du GNU/Linux et d’un système Debian/Ubuntu pour PC "
+"stable, sécurise, robuste et optimisé qui s’adapte facilement à vos besoins."
+msgstr ""
+"Discover the best of GNU/Linux and stable , secure , robust and optimized "
+"Debian/Ubuntu system for PC that easily adapts to your needs."
+
+#: screenhost.php:55 journal.php:54 home.php:54
+msgid "Opter pour "
+msgstr "Opting for"
+
+#: screenhost.php:55 journal.php:54 home.php:54
+msgid "et l’actuelle version de nom de code :"
+msgstr "and the current version codenamed :"
+
+#: screenhost.php:65
+msgid ""
+"Élégance et beauté pour mettre en relief les travaux extraordinaires des "
+"développeurs et des communautés à travers le monde ; pour le développement "
+"de logiciel  et de projet sous GNU/Linux."
+msgstr ""
+"Elegance and beauty to highlight the extraordinary work of developers and "
+"communities around the world ; for software development and project under "
+"GNU/Linux."
+
+#: screenhost.php:70
+msgid ""
+"Des environnements graphiques élégants, au choix, en fonction de vos "
+"exigences et des caractéristiques de votre matériel."
+msgstr ""
+"Elegant graphical environments to choose from, depending on your "
+"requirements and characteristics of your equipment."
+
+#: screenhost.php:76
+msgid "choisir, lancer ou installer"
+msgstr "choose , launch or install"
+
+#: screenhost.php:100
+msgid "Découvrez Unity + Cairo-Dock"
+msgstr "Discover Unity + Cairo-Dock"
+
+#: screenhost.php:122
+msgid "Découvrez cinnamon"
+msgstr "Discover cinnamon"
+
+#: screenhost.php:143
+msgid "Découvrez lxde"
+msgstr "Discover lxde"
+
+#: screenhost.php:164
+msgid "Managez vos OS en toute élégance"
+msgstr "Manage your OS with style"
+
+#: donate.php:13
+msgid "opération annulée"
+msgstr "operation canceled"
+
+#: donate.php:56
+msgid "Faire d’un rêve une réalité..."
+msgstr "Make a dream a reality..."
+
+#: donate.php:62
+msgid "... grâce à vous, notre seule limite, notre imagination."
+msgstr "... thanks to you, our only limit, our imagination"
+
+#: donate.php:72
+msgid "Ce que tes mains ont donné t’emmènera beaucoup plus loin que tes pieds "
+msgstr "What gave your hands take you far beyond your feet"
+
+#: donate.php:75
+msgid "Proverbe Camerounais"
+msgstr "Cameroonain Proverb"
+
+#: donate.php:83
+msgid "merci pour votre don ! "
+msgstr "thank for your donation!"
+
+#: donate.php:85
+msgid "merci pour l’interêt que vous nous portez ! "
+msgstr "thank for the interest you have shown us!"
+
+#: donate.php:100 participate.php:90
+msgid ""
+"Le projet UMI fait partie d’un ensemble visant l’utilisation de la science "
+"pour le développement et ainsi l’évolution; dans un esprit de sérénité, "
+"soucieux du bien être de la nature et d’un équilibre convenable. "
+msgstr ""
+"The UMI project is part of a set for the use of science for development and "
+"thus evolution; in a spirit of serenity, concerned about the well being of "
+"nature and a suitable balance. "
+
+#: donate.php:105 participate.php:95
+msgid ""
+"Tout projet libre digne de ce nom, regroupant une communauté d’utilisateur "
+"et/ou de développeur assez importante doit être soutenue; que ce soit "
+"financièrement ou d’une autre manière à pérenniser au mieux son "
+"développement. "
+msgstr ""
+"All free project worthy of the name, bringing together a user community and/"
+"or sizeable developer should be supported; either financially or in any "
+"other way to perpetuate its development. "
+
+#: donate.php:110 participate.php:100
+msgid ""
+"Nous somme pour l’instant des étudiants et en donnant vous contribuez à "
+"soutenir nos projets et nos études."
+msgstr ""
+"We are for now students and by giving you help to support our projects and "
+"studies."
+
+#: donate.php:117 participate.php:107
+msgid "Faire un don!"
+msgstr "Make a donation!"
+
+#: donate.php:133
+msgid ""
+"GNU/Linux regroupe un ensemble de communautés reparties suivant les "
+"distributions et leurs variantes, ainsi que les applications plus ou moins "
+"populaires qui y sont prise en charge. \n"
+"\t\t\t\t\t\t\tMerci de nous soutenir."
+msgstr ""
+"GNU/Linux is a set of communities distributed according to the distributions "
+"and their variants, as well as more or less popular supported "
+"applications. \n"
+"\t\t\t\t\t\t\t Thank for supporting us."
+
+#: donate.php:140 participate.php:140
+msgid "écrivez-nous ici"
+msgstr "Write us here"
+
+#: participate.php:48
+msgid ""
+"Toute participation ou contribution est toujours la bienvenu. En effet, "
+"chacun d’entre  nous est un maçon qui contribue à sa manière à façonner ce "
+"monde. \n"
+"\t\t\t\t\t\t\t\tLe tout est de savoir comment vous y contribuez; car nous, "
+"nous visons un monde encore plus meilleur.\n"
+"\t\t\t\t\t\t\t"
+msgstr ""
+"Any participation or contribution is always welcome. Indeed, each of us is a "
+"mason who contributes to its role in shaping the world. \n"
+"\t\t\t\t\t\t\t\t Everything is how you contribute to it; because , we are "
+"aiming for a more better world. \n"
+"\t\t\t\t\t\t\t"
+
+#: participate.php:60
+msgid ""
+"À moins que quelqu’un comme toi ne se sente concerné par ce qui ce passe, "
+"rien ne s’arrangera jamais. Hélas ! "
+msgstr ""
+"Unless someone like you cares a whole awful lot, nothing is going to get "
+"better. it’s not !"
+
+#: participate.php:70
+msgid ""
+"Faites nous part de vos projets ou applications dans la mesure où ils sont "
+"portés ou développés sous GNU/Linux. "
+msgstr ""
+"Tell us about your projects or applications to the extent that they are worn "
+"or developed under GNU/Linux."
+
+#: participate.php:77
+msgid "soumettez vos projets"
+msgstr "Submit your projects"
+
+#: participate.php:81
+msgid ""
+"Faite-nous en part qu’ils soient libres ou propriétaires, gratuits ou "
+"payants "
+msgstr "Made us know even if they are free or proprietary, free or paid"
+
+#: participate.php:124
+msgid ""
+"GNU/Linux regroupe un ensemble de communautés reparties suivant les "
+"distributions et leurs variantes, ainsi que les applications plus ou moins "
+"populaires qui y sont prise en charge. \n"
+"\t\t\t\t\t\t\tRejoignez notre communauté d’utilisateur ou de développeur et "
+"participez à cette nouvelle aventure."
+msgstr ""
+"GNU/Linux is a set of communities distributed according to the distributions "
+"and their variants, as well as more or less popular supported "
+"applications. \n"
+"\t\t\t\t\t\t\t Join our user or developer community and participate in this "
+"new adventure."
+
+#: participate.php:131
+msgid "rejoignez-nous sur facebook"
+msgstr "Join us on facebook"
+
+#: participate.php:134
+msgid "rejoignez-nous sur google+"
+msgstr "Join us on google+"
+
+#: participate.php:137
+msgid "suivez-nous sur twitter"
+msgstr "Follow us on Twitter"
+
+#: participate.php:150
+msgid ""
+"Toute critique ou suggestion visant à améliorer les performances du système "
+"et l’adapter à une convenance générale est la bienvenue."
+msgstr ""
+"Any criticism or suggestion to improve system performance and adaptation to "
+"a general convenience is welcome."
+
+#: participate.php:156
+msgid "soumettez vos suggestions ou critiques ici"
+msgstr "Submit your suggestions or criticisms here"
+
+#: participate.php:161
+msgid ""
+"Leurs suggestions pertinentes ont contribué d’une certaine manière à "
+"améliorer le projet"
+msgstr ""
+"Their valuable suggestions have contributed in some way to improve the "
+"project "
+
+#: home.php:66 mi_store.php:56
+msgid ""
+"Ubuntu Me Inside vous est proposé dans le but de vous permettre de vivre des "
+"expériences fabuleuses sous GNU/Linux et de mieux explorer le monde qui "
+"s’offre à vous. "
+msgstr ""
+"Ubuntu Me Inside is proposed in order to allow you to live a fabulous "
+"experience on GNU/Linux and better explore the world awaits you ."
+
+#: home.php:72 mi_store.php:61
+msgid "télécharger UMI (peace and love) ici "
+msgstr "Download UMI ( peace and love ) here"
+
+#: home.php:77
+msgid "Une expérience magique sous vos mac"
+msgstr "A magical experience under your mac"
+
+#: home.php:90
+msgid "Une expérience magique sous vos pc"
+msgstr "A magical experience under your pc"
+
+#: home.php:103
+msgid "Une installation en fonction de vos besoins"
+msgstr "An installation according to your needs"
+
+#: home.php:110
+msgid ""
+"Fini les systèmes d’exploitations qui s’installent avec plein de logiciels "
+"qui ne vous servent pas à grand-chose.\n"
+"\t\t\t\t\t\t\t\tNous vous proposons au choix, à la fin de l’installation du "
+"système une panoplie des meilleurs logiciels triés à la volée.\n"
+"\t\t\t\t\t\t\t\tAinsi, choisissez les logiciels qui s’installeront sur votre "
+"système en fonction de vos besoins. "
+msgstr ""
+"No more operating systems that install with lots of software that do not "
+"serve you much. We offer a choice at the end of the system installed a range "
+"of the best software sorted on the fly. So , choose the software that will "
+"be installed on your system to suit your needs."
+
+#: home.php:118
+msgid "Des environnements graphiques adaptés"
+msgstr "Suitable graphical environments"
+
+#: home.php:123
+msgid ""
+"En fonction des performances de votre ordinateur, nous vous proposons des "
+"environnements graphiques adaptés. Ainsi choisissez parmi les gestionnaires "
+"de bureau qui vous sont conseillés, celui qui vous convient. "
+msgstr ""
+"Depending on your computer's performance , we offer tailored graphical "
+"environments . thus, select from the offices managers advised to you, one "
+"that suits you."
+
+#: home.php:130
+msgid "La beauté et l’élégance aux cœurs de votre confort"
+msgstr "Beauty and elegance to the hearts of your comfort"
+
+#: home.php:137
+msgid ""
+"Optez pour un design standard et familier pour une meilleure migration des "
+"systèmes tels que Windows ou Os X vers UMI ou de UMI vers  les autres "
+"systèmes. \n"
+"\t\t\t\t\t\t\t\tCeci dit, disposez cependant d’une interface très "
+"personnalisable et ceux en fonction de vos préférences. "
+msgstr ""
+"Choose a standard and familiar design for better migration from systems such "
+"as Windows or OS X to UMI or from UMI to other systems.\t\t\t\t\t\t\t\t That "
+"said, have a very customizable interface and those according to your "
+"preferences."
+
+#: home.php:144
+msgid "Des milliers de logiciels disponibles pour Linux"
+msgstr "Thousands of software available for Linux"
+
+#: home.php:149
+msgid ""
+"Retrouvez et installez en un clin d’œil vos logiciels préférés ou des "
+"alternatives tout aussi puissants et fonctionnels. \n"
+"\t\t\t\t\t\t\t\t\tCeci via des dépôts officiels et des logiciels des "
+"gestions de paquets adaptés, dès lors que vous disposez d’une connexion "
+"internet. "
+msgstr ""
+"Find and install in a snap your favorite software or alternative just as "
+"powerful and functional. \n"
+"\t\t\t\t\t\t\t\t\t This from official repositories and adapted software "
+"packages managers , once you have an internet connection."
+
+#: home.php:157
+msgid "Des performances alliant rapidité et fluidité"
+msgstr "Performance combining speed and fluidity"
+
+#: home.php:163
+msgid ""
+"Grâce aux environnements graphiques installables en fonction des "
+"caractéristiques de votre machine, vous avez un système qui se veut adapté à "
+"celles-ci, qui démarre rapidement, tout en restant fluide; permettant ainsi "
+"à vos travaux et à vos applications de profiter au mieux des ressources "
+"disponibles. "
+msgstr ""
+"With installable desktop environments based on the characteristics of your "
+"machine, you have a system that wants adapted to them , which starts "
+"rapidly, while remaining fluid; allowing your work and your applications to "
+"make the most of available resources."
+
+#: home.php:169
+msgid "Sécurisé pour une utilisation sans soucis"
+msgstr "Safe for a carefree use "
+
+#: home.php:175
+msgid ""
+"GNU/Linux est réputé pour être développé suivant une philosophie ayant à "
+"cœur la sécurité. \n"
+"\t\t\t\t\t\t\t\tNous vous proposons ainsi un système sur lequel les virus "
+"sont quasi inexistants et vous garantissons une utilisation sans soucis sur "
+"plusieurs années.\n"
+"\t\t\t\t\t\t\t\tAucun antivirus n’est vraiment nécessaire tant que vous "
+"utilisez des dépôts officiels ou sûrs et la bibliothèque de logiciels qui "
+"est associée au système. "
+msgstr ""
+"GNU/Linux is reputed to be developed according to a philosophy having to "
+"heart, safety. \t\t\t\t\t\t\t\t We thus propose a system where viruses are "
+"almost non-existent and guarantee a worry-free for several years. \n"
+"\t\t\t\t\t\t\t\t No antivirus is really needed as you use official or safe "
+"deposit and software library that is associated with the system."
+
+#: home.php:184
+msgid "Le cloud: quand vous voulez où vous voulez"
+msgstr "Cloud : when you want, where you want"
+
+#: home.php:190
+msgid ""
+"Retrouvez vos services de stockage, de traitement de texte et de données en "
+"ligne. Profitez du cloud plus que jamais. "
+msgstr ""
+"Find your storage services, word processing and data online. Enjoy the cloud "
+"more than ever."
+
+#: home.php:196
+msgid "GNU/Linux et une communauté formidable"
+msgstr "GNU/Linux and a great community"
+
+#: home.php:201
+msgid ""
+"Découvrez une communauté aguerrie d’utilisateurs à travers le monde et "
+"partagez vos expériences. Participez aux forums et accédez aux "
+"documentations pour une utilisation encore plus magique. "
+msgstr ""
+"Discover a seasoned community of users around the world and share your "
+"experiences . Join the forums and access the documentation for an even more "
+"magical use."
+
+#: mi_store.php:64
+msgid "Oops! Le site est encore en construction..."
+msgstr "Oops! The website is still under construction ..."
+
+#: get_php_files/main_menu.php:17 get_php_files/main_menu.php:19
+msgid "accueil"
+msgstr "home"
+
+#: get_php_files/main_menu.php:22 get_php_files/main_menu.php:24
+msgid "capture d’écran"
+msgstr "screenhost"
+
+#: get_php_files/main_menu.php:27 get_php_files/main_menu.php:29
+msgid "mi-store"
+msgstr "mi-store"
+
+#: get_php_files/main_menu.php:32 get_php_files/main_menu.php:34
+msgid "participer"
+msgstr "participate"
+
+#: get_php_files/main_menu.php:37 get_php_files/main_menu.php:39
+msgid "journal"
+msgstr "journal"

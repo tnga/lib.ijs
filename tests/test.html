@@ -8,11 +8,28 @@
         </STYLE>
         
         <SCRIPT type="text/javascript" src="../i.js" ></SCRIPT>
+        <link rel="gettext" href="local/en/LC_MESSAGES/umiwebsite.po" />
+        <link rel="gettext" href="local/it/LC_MESSAGES/umiwebsite-it.po" />
+        <!--<script language="javascript" src="../Gettext.js"></script> -->
+        
+    </HEAD>
+    
+    <BODY>
+        
         <SCRIPT>
             //alert (iJS);
             var xhr = iJS.newHTTPRequest(),
                 str = "jjjj";
-            
+            var gt = new Gettext();
+            gt.setlocale("en_US.UTF8");
+            gt.bindtextdomain("umiwebsite", "local", "po");
+            gt.try_load_lang();
+            alert( gt.gettext('soumettez vos projets'));
+            gt.setlocale("it_IT.UTF8");
+            gt.try_load_lang();
+            alert( gt.gettext('soumettez vos projets'));
+            //gt.textdomain("umiwebsite-it");
+            //alert( gt.gettext('soumettez vos projets'));
             document.writeln ("<BR/><i> xhr = iJS.newHTTPRequest() </i> : "+xhr);
             document.writeln ("<BR/>");
             document.writeln ("<BR/><i> iJS.isBoolean(true) </i> : "+iJS.isBoolean(true));
@@ -39,12 +56,11 @@
             document.writeln ("<BR/>");
             document.writeln ("<BR/><i> iJS.isDefined( str[5] ) </i> : "+iJS.isDefined( str[5] ));
             document.writeln ("<BR/><i> iJS.isDefined(\"\") </i> : "+iJS.isDefined(""));
-            
+
             alert("test end - iJS - version: "+iJS.version);
         </SCRIPT>
-    </HEAD>
-    
-    <BODY>
+        
+        
         <P><U>development test of <STRONG>iJS</STRONG></U></P>
     </BODY>
 </HTML>
