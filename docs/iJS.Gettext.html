@@ -29,6 +29,8 @@
 <header>
     
         <h2>
+            <span class="ancestors"><a href="iJS.html">iJS</a>.</span>
+        
         Gettext
         </h2>
         
@@ -42,7 +44,7 @@
 
     
 
-    <h4 class="name" id="Gettext"><span class="type-signature"></span>new Gettext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Gettext.html">Gettext</a>}</span></h4>
+    <h4 class="name" id="Gettext"><span class="type-signature"></span>new Gettext<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="iJS.Gettext.html">iJS.Gettext</a>}</span></h4>
 
     
 
@@ -127,7 +129,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Gettext.html">Gettext</a></span>
+<span class="param-type"><a href="iJS.Gettext.html">iJS.Gettext</a></span>
 
 
     </dd>
@@ -139,7 +141,7 @@
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>//create new instance
-var igt = new Gettext() ;
+var igt = new iJS.Gettext() ;
 //set the locale in which the messages have to be translate.
 igt.setlocale("fr_FR.utf8") ; // local can also be *fr_FR* or *fr*.
 //also add or register a domain where to get the messages data
@@ -167,10 +169,7 @@ alert( igt.gettext("Hello world!") ) ;
         <h3 class="subsection-title">Classes</h3>
 
         <dl>
-            <dt><a href="Gettext.Strargs.html">Strargs</a></dt>
-            <dd></dd>
-        
-            <dt><a href="Gettext.Strargs.html">Strargs</a></dt>
+            <dt><a href="iJS.Gettext.Strargs.html">Strargs</a></dt>
             <dd></dd>
         </dl>
     
@@ -179,136 +178,6 @@ alert( igt.gettext("Hello world!") ) ;
 
     
 
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="._locale_data"><span class="type-signature">(private, static) </span>_locale_data<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    json structure of all registered domain with corresponding messages data.
-It depend of setting locale which define the catalogue that will be load.
-It will also content messages data that are parsed from developer’s defined json'd portable object.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line502">line 502</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".context_glue"><span class="type-signature">(private, static) </span>context_glue<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Use for some concatenation: see for example `Gettext.prototype.parse_po`.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line494">line 494</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
     
 
     
@@ -650,7 +519,7 @@ to use this. This applies to all the calls including the **CATEGORY**.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1063">line 1063</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1059">line 1059</a>
     </li></ul></dd>
     
 
@@ -896,7 +765,7 @@ category, instead of the default category **LC_MESSAGES**.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1115">line 1115</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1111">line 1111</a>
     </li></ul></dd>
     
 
@@ -1165,7 +1034,7 @@ category, instead of the default category **LC_MESSAGES**.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1222">line 1222</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1218">line 1218</a>
     </li></ul></dd>
     
 
@@ -1388,7 +1257,7 @@ instead of the default category **LC_MESSAGES**.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1166">line 1166</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1162">line 1162</a>
     </li></ul></dd>
     
 
@@ -1565,7 +1434,7 @@ instead of the default category **LC_MESSAGES**.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1042">line 1042</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1038">line 1038</a>
     </li></ul></dd>
     
 
@@ -1788,7 +1657,7 @@ textdomain instead of the default domain.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1097">line 1097</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1093">line 1093</a>
     </li></ul></dd>
     
 
@@ -2034,7 +1903,7 @@ textdomain instead of the default domain.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1202">line 1202</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1198">line 1198</a>
     </li></ul></dd>
     
 
@@ -2234,7 +2103,7 @@ textdomain instead of the default domain.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1148">line 1148</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1144">line 1144</a>
     </li></ul></dd>
     
 
@@ -2389,7 +2258,7 @@ See tutorials for more.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1024">line 1024</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1020">line 1020</a>
     </li></ul></dd>
     
 
@@ -2428,159 +2297,6 @@ See tutorials for more.
     <dd>
         
 <span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="JSON"><span class="type-signature">(private) </span>JSON<span class="signature">(data)</span><span class="type-signature"> &rarr; {Object}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Evaluate A string representing a JavaScript expression, statement, or sequence of statements.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">JavaScript expression</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1416">line 1416</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    [[Description]]
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
 
 
     </dd>
@@ -2741,7 +2457,7 @@ See tutorials for more.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1080">line 1080</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1076">line 1076</a>
     </li></ul></dd>
     
 
@@ -2965,7 +2681,7 @@ In English, or if no translation can be found, the second argument
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1185">line 1185</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1181">line 1181</a>
     </li></ul></dd>
     
 
@@ -2993,479 +2709,6 @@ In English, or if no translation can be found, the second argument
         
 <div class="param-desc">
     translated text or the *msgid* if not found
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">String</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="parse_locale_data"><span class="type-signature">(private) </span>parse_locale_data<span class="signature">(locale_data)</span><span class="type-signature"> &rarr; {Object}</span></h4>
-
-    
-
-
-
-<div class="description">
-    This takes a json’d data (a portable object variant) and moves it into an internal form, 
-for use in our lib, and puts it in our object as: 
-<PRE><CODE>
-   Gettext._locale_data = {
-          domain : {
-              head : { headfield : headvalue },
-              msgs : {
-                  msgid : [ msgid_plural, msgstr, msgstr_plural ],
-              },
-            ...
-   </CODE></PRE>
-The json’d data have to respect the library specifications for that. 
-For details see the script **po2json** in the associated binary directory.
-Also see tutorials for more explanations.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>locale_data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">json *portable object*</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line657">line 657</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    [[Description]]
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="parse_po"><span class="type-signature">(private) </span>parse_po<span class="signature">(data)</span><span class="type-signature"> &rarr; {Object}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Parse po data in a json structure. 
-(like the library associated **po2json** perl script).
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">a portable object content</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line803">line 803</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    a json parsed data
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="parse_po_dequote"><span class="type-signature">(private) </span>parse_po_dequote<span class="signature">(str)</span><span class="type-signature"> &rarr; {String}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Unscaled all embedded quotes in a string. Useful when parsing a po messages data.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>str</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">string to analyse</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line967">line 967</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    formated string
 </div>
 
 
@@ -3617,7 +2860,7 @@ translate to different foreign words based on their context.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1131">line 1131</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1127">line 1127</a>
     </li></ul></dd>
     
 
@@ -3801,14 +3044,14 @@ translate to different foreign words based on their context.
 
     
 
-    <h4 class="name" id="sjax"><span class="type-signature">(private) </span>sjax<span class="signature">(uri)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id="strargs"><span class="type-signature"></span>strargs<span class="signature">(str, args)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
 
 
 <div class="description">
-    Synchronously get a response text via an ajax call to a file’s url.
+    instance method wrapper of strargs
 </div>
 
 
@@ -3844,7 +3087,7 @@ translate to different foreign words based on their context.
 
         <tr>
             
-                <td class="name"><code>uri</code></td>
+                <td class="name"><code>str</code></td>
             
 
             <td class="type">
@@ -3860,7 +3103,30 @@ translate to different foreign words based on their context.
 
             
 
-            <td class="description last">file url</td>
+            <td class="description last">a string that potentially contains formatting characters</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">an array of positional replacement values</td>
         </tr>
 
     
@@ -3901,7 +3167,7 @@ translate to different foreign words based on their context.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1380">line 1380</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1361">line 1361</a>
     </li></ul></dd>
     
 
@@ -3928,7 +3194,7 @@ translate to different foreign words based on their context.
 
         
 <div class="param-desc">
-    a response text if succeed or *"undefined"* if not.
+    The formatted text.
 </div>
 
 
@@ -4060,7 +3326,7 @@ it must be a non-empty string.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1009">line 1009</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1005">line 1005</a>
     </li></ul></dd>
     
 
@@ -4194,467 +3460,6 @@ This method have to be always call after a `setlocale` and `bindtextdomain` call
 
 
         
-            
-
-    
-
-    <h4 class="name" id="try_load_lang_json"><span class="type-signature">(private) </span>try_load_lang_json<span class="signature">(uri)</span><span class="type-signature"> &rarr; {number}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Do an ajax call to load in a .json files, language definitions from associated catalogue.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>uri</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">link to the "json" files</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line986">line 986</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    *1* if the operation is a success, *undefined* if not.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="try_load_lang_po"><span class="type-signature">(private) </span>try_load_lang_po<span class="signature">(uri)</span><span class="type-signature"> &rarr; {number}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Do an ajax call to load in a .po files, language definitions from associated catalogue.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>uri</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">link to the "po" files</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line751">line 751</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    *1* if the operation is a success, *undefined* if not.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="uri_basename"><span class="type-signature">(private) </span>uri_basename<span class="signature">(uri)</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Get the base name of an url.
-Needed for know in which domain are loaded the messages data.
-Url’s base name will be considered as domain.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>uri</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">an url</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line781">line 781</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    the base name of the given url.
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
     
 
     
@@ -4670,13 +3475,13 @@ Url’s base name will be considered as domain.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Gettext.html">Gettext</a></li><li><a href="Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.Gettext.html">Gettext</a></li><li><a href="iJS.Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Aug 09 2015 17:46:50 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 06:38:14 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>

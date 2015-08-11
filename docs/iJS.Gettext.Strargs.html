@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: iJS</title>
+    <title>JSDoc: Class: Strargs</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: iJS</h1>
+    <h1 class="page-title">Class: Strargs</h1>
 
     
 
@@ -29,7 +29,9 @@
 <header>
     
         <h2>
-        iJS
+            <span class="ancestors"><a href="iJS.html">iJS</a><a href="iJS.Gettext.html">.Gettext</a>.</span>
+        
+        Strargs
         </h2>
         
     
@@ -39,98 +41,33 @@
     <div class="container-overview">
     
         
-            <div class="description">This name space provide some functionalities that facilitate JavaScript development of the associated projects.</div>
-        
-
-        
-
-
-<dl class="details">
 
     
 
-    
+    <h4 class="name" id="Strargs"><span class="type-signature"></span>new Strargs<span class="signature">(str, args)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
+
+
+<div class="description">
+    This is a utility method to provide some way to support positional parameters within a string, as javascript lacks a printf() method.
+The format is similar to printf(), but greatly simplified (ie. fewer features).<BR/>
+Any percent signs followed by numbers are replaced with the corresponding item from the B<argument_array>.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line29">line 29</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="iJS.Gettext.html">Gettext</a></dt>
-            <dd></dd>
-        
-            <dt><a href="iJS.mi_loader.html">mi_loader</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id=".version"><span class="type-signature">(static) </span>version<span class="type-signature"></span></h4>
-
-
-
-
-
-
-
-
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
+<table class="params">
     <thead>
     <tr>
         
@@ -152,13 +89,13 @@
 
         <tr>
             
-                <td class="name"><code>version</code></td>
+                <td class="name"><code>str</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">String</span>
 
 
             
@@ -168,12 +105,37 @@
 
             
 
-            <td class="description last">Inform about the version of library that is use.</td>
+            <td class="description last">a string that potentially contains formatting characters</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">an array of positional replacement values</td>
         </tr>
 
     
     </tbody>
 </table>
+
+
 
 
 
@@ -207,7 +169,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line40">line 40</a>
+        <a href="i.js.html">i.js</a>, <a href="i.js.html#line1301">line 1301</a>
     </li></ul></dd>
     
 
@@ -223,7 +185,51 @@
 
 
 
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
         
+<div class="param-desc">
+    The formatted text.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
     
 
     
