@@ -26,10 +26,10 @@ Not yet powerfull, but will grow up soon. [Documentation]( http://tnga.github.io
 See the [documentation](http://tnga.github.io/extra.js-ijs/docs/) for more informations about all the library’s features.
 
 ##Installation
-
 There are two possible ways:
 
-1. Directly include it in your project via the official link where you will sure to have the latest version.
+1. Directly include it in your project via the official link where you will sure to have the latest version.   
+   Here is the link: https://github.com/tnga/extra.js-ijs/i.min.latest.js
 2. [Download the code](https://github.com/tnga/extra.js-ijs/archive/master.zip) and follow instructions.
   - The minify code is sufficient to include it to your project.
   - Read the documentation for more information.
