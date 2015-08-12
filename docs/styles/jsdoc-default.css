@@ -101,9 +101,13 @@ section
 nav
 {
     display: block;
-    float: right;
-    margin-top: 28px;
+    position: fixed;
+    right: 25px;
+    top: 28px;
     width: 30%;
+    height: 90%;
+    min-height: 150px;
+    overflow: auto;
     box-sizing: border-box;
     border-left: 1px solid #ccc;
     padding-left: 16px;
