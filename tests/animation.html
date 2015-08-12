@@ -21,8 +21,9 @@
 
             var iloader = new iJS.mi_loader("img-loader", "./images", 3, "img_load") ;
 
-            iloader.startLoading() ;
-            iloader.stopLoading(15000) ;
+            iloader.startLoading(250) ;
+            //iloader.startLoading() ;// default time interval 150
+            //iloader.stopLoading(10000) ;
 
             alert("test end - iJS - version: "+iJS.version);
         </SCRIPT>
