@@ -1,0 +1,33 @@
+<HTML>
+    <HEAD>
+        <META charset="utf-8" />
+        <TITLE>iJS test</TITLE>
+        <STYLE>
+            i {color: dimgray;}
+            body {font-size: 0.9em; font-family: "Andale Mono", monospace, sans-serif;}
+        </STYLE>
+
+        <SCRIPT type="text/javascript" src="../i.js" ></SCRIPT>
+
+    </HEAD>
+
+    <BODY>
+
+        <P style="text-align: center;">
+            <IMG id="img-loader" src="./images/img_load0.png" alt="images loader test" />
+        </P>
+
+        <SCRIPT>
+
+            var iloader = new iJS.mi_loader("img-loader", "./images", 3, "img_load") ;
+
+            iloader.startLoading() ;
+            iloader.stopLoading(15000) ;
+
+            alert("test end - iJS - version: "+iJS.version);
+        </SCRIPT>
+
+
+        <P><U>development test of <STRONG>iJS</STRONG></U></P>
+    </BODY>
+</HTML>
