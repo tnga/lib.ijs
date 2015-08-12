@@ -428,7 +428,7 @@ iJS.Gettext = function () {
 }
 
 /**
- * @property {iJS.Gettext} i18n  Defined `Gettext` object, to make *iJS gettext* functionnalities to be directly use.
+ * @property {iJS.Gettext} i18n  Defined `Gettext` object, to make *iJS gettext* functionalities to be directly use.
  * @example 
  * //set the locale in which the messages will be translated
  * iJS.i18n.setlocale("en_US.utf8") ;
@@ -444,7 +444,7 @@ iJS.Gettext = function () {
 iJS.i18n = new iJS.Gettext() ;
 
 /**
- * Easily translate your messages when use `Gettext` functionnalities.<BR/>
+ * Easily translate your messages when use `Gettext` functionalities.<BR/>
  * Same as you call `iJS.i18n.gettext()`. See documentation of associated terms for more informations.
  * @param   {String} msgid  message to be translated
  * @returns {String} translated message if is found or `msgid` if not.
