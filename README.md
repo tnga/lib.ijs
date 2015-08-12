@@ -2,14 +2,16 @@ iJS: inside JavaScript
 ======================
 > Simple mini library which provide some functionalities that facilitate JavaScript development of the associated projects.
 
-It’s firstly build with UMI web’s projects and for pure JavaScript development.
+It’s firstly build with [UMI web’s projects](http://umiproject.sf.net) and for pure JavaScript development.
 However it can be use for any JavaScript projects.
 
 The goal is not to build another big library like Jquery, Mootools, AngularJS, ..., but to complete them.
-The script is wrote in pure JavaScript, so it’s independent and can be easily associated to any previous libraries. 
+The script is written in pure JavaScript, so it’s independent and can be easily associated to any previous libraries. 
 
 ##What’s there?
-Actually the main feature of the library is the Javascript implemenation of GNU Gettext API.
+
+####Internationalization
+Actually the main feature of the library is the Javascript implementation of GNU Gettext API.   
 This implementation of GNU Gettext, providing internationalization support for JavaScript. 
 It differs from existing JavaScript implementations in that it will support all current Gettext features 
 (ex. plural and context support), and will also support loading language catalogs from .mo, .po, 
@@ -17,6 +19,10 @@ or preprocessed json files (*converter included*).
 
 In this case the "i" in **iJS** can be considered as **i**nternalization.
 
+####Animation
+Not yet powerfull, but will grow up soon. Documentation is a friends to see what are provided. 
+
+####Some simple functionalities
 See the documentation for more informations about all the library’s features.
 
 ##Installation

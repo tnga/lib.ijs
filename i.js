@@ -341,7 +341,7 @@ iJS = {
     isValidOject  ()
     isArray       (Object)
     
--   The following methods are completely rewrote
+-   The following methods are completely rewritten
 
     new Gettext   ()
     try_load_lang ()
