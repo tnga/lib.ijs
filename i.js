@@ -10,7 +10,7 @@
  * 
  * @license LGPL v3.0
  * @author  [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
- * @version 0.0_15.07 
+ * @version 0.48_15.08 
 */
 //"use strict";
 
@@ -37,7 +37,7 @@ iJS = {
     /**
      *@property {string} version Inform about the version of library that is use.
      */
-    version: "0.0_15.07",
+    version: "0.48_15.08",
     
     /**
      * Let you know if a value or a variable is type of Number or not.
