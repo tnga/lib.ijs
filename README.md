@@ -6,7 +6,7 @@ It’s firstly build with UMI web’s projects and for pure JavaScript developme
 However it can be use for any JavaScript projects.
 
 The goal is not to build another big library like Jquery, Mootools, AngularJS, ...
-The script is write in pure JavaScript, so it’s independent and can be easily associated to any previous libraries.  
+The script is wrote in pure JavaScript, so it’s independent and can be easily associated to any previous libraries.  
 
 ##Installation
 
@@ -19,7 +19,7 @@ There are two possible ways:
 
 ##The LGPL version 3
 
-Copyright (c) (April->july)-2015 [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
+Copyright (c) (April->August)-2015 [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
 
 See [LICENSE.md](https://github.com/tnga/extra.js-ijs/blob/master/LICENSE.md) for more details.
 
