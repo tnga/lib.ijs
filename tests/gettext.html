@@ -16,30 +16,30 @@
         <SCRIPT>
             //Use `iJS.i18n`
             iJS.i18n.setlocale("en_US.UTF8");
-            iJS.i18n.bindtextdomain("umiwebsite", "local", "po");
+            iJS.i18n.bindtextdomain("test", "local", "po");
             iJS.i18n.try_load_lang();
 
             document.writeln ("<BR/>");
             document.writeln ("<i><b>french-></b> Bonjour le monde </i><b>: english-> </b> "+iJS._("Bonjour le monde") );
             document.writeln ("<BR/>");
-            document.writeln ("<i><b>french-></b> soumettez vos projets </i><b>: english-> </b> "+iJS._("soumettez vos projets") );
+            document.writeln ("<i><b>french-></b> Faire d’un rêve une réalité... </i><b>: english-> </b> "+iJS._("Faire d’un rêve une réalité...") );
             document.writeln ("<BR/>");
-            document.writeln ("<i><b>french-></b> faire un don </i><b>: english-> </b> "+iJS._("faire un don") );
+            document.writeln ("<i><b>french-></b> Faire un don! </i><b>: english-> </b> "+iJS._("Faire un don!") );
             document.writeln ("<BR/>");
 
             //Use your own object
             var gt = new iJS.Gettext();
 
-            gt.bindtextdomain("umiwebsite", "local", "po");
+            gt.bindtextdomain("test", "local", "po");
             gt.setlocale("it_IT.UTF8");
             gt.try_load_lang();
 
             document.writeln ("<BR/>");
-            document.writeln ("<i><b>french-></b> Bonjour le monde </i><b>: italian-> </b> "+gt.gettext("Bonjour le monde") );
+            document.writeln ("<i><b>french-></b> opération annulée </i><b>: italian-> </b> "+gt.gettext("opération annulée") );
             document.writeln ("<BR/>");
-            document.writeln ("<i><b>french-></b> soumettez vos projets </i><b>: italian-> </b> "+gt.gettext("soumettez vos projets") );
+            document.writeln ("<i><b>french-></b> Faire d’un rêve une réalité... </i><b>: italian-> </b> "+gt.gettext("Faire d’un rêve une réalité...") );
             document.writeln ("<BR/>");
-            document.writeln ("<i><b>french-></b> faire un don </i><b>: italian-> </b> "+gt.gettext("faire un don") );
+            document.writeln ("<i><b>french-></b> faire un don </i><b>: italian-> </b> "+gt.gettext("Faire un don!") );
             document.writeln ("<BR/>");
 
 
