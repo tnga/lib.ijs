@@ -132,6 +132,17 @@ iJS = {
 
         return (arg instanceof HTMLImageElement);
     },
+    
+    /**
+     * Let you know if a variable is type of HTMLLinkElement or not.
+     * @function isHTMLLinkElement
+     * @param   {all}     arg argument of test.
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isHTMLLinkElement: function (arg) {
+
+        return (arg instanceof HTMLLinkElement);
+    },
 
     /**
      * Let you know if a variable is type of Object or not.
@@ -325,11 +336,15 @@ iJS = {
 };
 
 
-/*===========================================================================
+
+/*=================================================================================================================================================
  * Pure Javascript implementation of Uniforum message translation.
- * Use this [2008 - Javascript Gettext](https://sourceforge.net/projects/jsgettext.berlios/?source=navbar)
+ * This implementation of GNU Gettext, providing internationalization support for javascript. 
+ * It differs from existing javascript implementations in that it will support all current Gettext features 
+ *(ex. plural and context support), and will also support loading language catalogs from .mo, .po, or preprocessed json files (converter included).
+ * It use this [2008 - Javascript Gettext](https://sourceforge.net/projects/jsgettext.berlios/?source=navbar)
  * Thank to [Joshua I. Miller](mailto:unrtst@cpan.org) for that great work.
- *===========================================================================
+ *=================================================================================================================================================
 
 -   The following methods are kept in:
 
@@ -361,8 +376,9 @@ iJS = {
     
 -   The following methods are added
 
-    setlocale       ()
-    bindtextdomaine ()
+    setlocale                 (locale)
+    bindtextdomaine           (domain, path_to_locale, type)
+    try_load_alternative_lang (domain, link)
     
 -   Some other modifications are done for changes and updates
 
@@ -391,9 +407,10 @@ Locale::gettext_pp(3pm), POSIX(3pm), gettext(1), gettext(3)
  * @example
  * //create new instance
  * var igt = new iJS.Gettext() ;
- * //set the locale in which the messages have to be translate.
+ * //set the locale in which the messages have to be translated.
  * igt.setlocale("fr_FR.utf8") ; // local can also be *fr_FR* or *fr*.
- * //also add or register a domain where to get the messages data
+ * //Supposing that most users now have browser that support Ajax;
+ * //also add or register a domain where to get the messages data.
  * igt.bindtextdomain("mydomain", "./path_to_locale", "po") ; //"po" can also be "json" or by default "mo".
  * //Always do this after a `setlocale` or a `bindtextdomain` call.
  * igt.try_load_lang() ; //will load and parse messages data from the setting catalog.
@@ -404,7 +421,28 @@ Locale::gettext_pp(3pm), POSIX(3pm), gettext(1), gettext(3)
  * // path_to_locale/LC_MESSAGES/fr_FR.utf8/mydomain.po
  * // if "fr_FR.utf8" is not found, "fr_FR" or "fr" will be use for replacement.
  * //This is just an overview. See tutoriels for more.
- */
+ * 
+ * //Optimum caching way to add domain is to use *&lt;script>* tag to load it via *iJS.Gettext*’s json like file.
+ * //just do this to add or register a domain where to get the messages data.
+ * igt.locale_data = external_locale_data ;
+ * igt.bindtextdomain("json-domain") ; //domain can be any domain in *external_locale_date*
+ * /* Supposing that this declaration have be done:`&lt;SCRIPT language="javascript" src="path_to/gettext_json_file">&lt;/SCRIPT>`
+ *  * and the gettext_json_file content structurate object like:
+ *  external_locale_data = {
+        "json-domain" : {
+            // po header fields
+            "" : {
+                "plural-forms" : "...",
+                "lang" : "en",
+                },
+            // all the msgid strings and translations
+            "msgid" : [ "msgid_plural", "translation", "plural_translation" ],
+            "msgctxt\004msgid" : [ null, "msgstr" ],
+         },
+     "AnotherDomain" : {
+         },
+    };
+  */
 iJS.Gettext = function () {
     
     this.domain = 'messages';
@@ -418,7 +456,41 @@ iJS.Gettext = function () {
 }
 
 /**
- * Set the locale in which the messages have to be translate.
+ * @property {iJS.Gettext} i18n  Defined `Gettext` object, to make *iJS gettext* functionnalities to be directly use.
+ * @example 
+ * //set the locale in which the messages will be translated
+ * iJS.i18n.setlocale("en_US.utf8") ;
+ * //add domain where to find messages data
+ * iJs.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ; 
+ * //add another domain where to find messages data
+ * iJs.i18n.bindtextdomain("domain_json", "./path_to_locale", "json") ;
+ * //set the current domain
+ * iJS.i18n.textdomain("domain_po") ;
+ * //now print your messages
+ * alert( iJS.i18n.gettext("messages to be translated") ) ;
+ */
+iJS.i18n = new iJS.Gettext() ;
+
+/**
+ * Easily translate your messages when use `Gettext` functionnalities.&lt;BR/>
+ * Same as you call `iJS.i18n.gettext()`. See documentation of associated terms for more informations.
+ * @param   {String} msgid  message to be translated
+ * @returns {String} translated message if is found or `msgid` if not.
+ * @example 
+ * //set the locale in which the messages will be translated
+ * iJS.i18n.setlocale("en_US.utf8") ;
+ * //add domain where to find messages data
+ * iJs.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ; 
+ * //now print your messages
+ * alert( iJS._("messages to be translated") ) ;
+ */
+iJS._ = function (msgid) {
+
+    return iJS.i18n.gettext( msgid ) ;
+}
+
+/**
+ * Set the locale in which the messages have to be translated.
  * @memberof iJS.Gettext
  * @param {String} locale egg: "en", "en_US.utf8", "en_GB" ...
  */
@@ -522,7 +594,7 @@ iJS.Gettext.prototype.bindtextdomain = function (domain, localePath, dtype) {
 iJS.Gettext.context_glue = "\004" ;
 /**
  * json structure of all registered domain with corresponding messages data.
- * It depend of setting locale which define the catalogue that will be load.
+ * It depend of setting locale which define the catalog that will be load.
  * It will also content messages data that are parsed from developer’s defined json'd portable object. 
  * @private
  * @memberof iJS.Gettext
@@ -530,8 +602,8 @@ iJS.Gettext.context_glue = "\004" ;
 iJS.Gettext._locale_data = {} ;
 
 /**
- * Load and parse all the messages data from domain in the domain registry.
- * Data are load depending of the setting catalogue or developer’s defined json$d portable object.
+ * Load and parse all the messages data from domain in the domain’s registry.
+ * Data are load depending of the setting catalog or developer’s defined json’d portable object.
  * Parsed data are save in a internal json structure, to make them easily accessible, depending of the current domain.
  * This method have to be always call after a `setlocale` and `bindtextdomain` call.
  * @memberof iJS.Gettext
@@ -560,78 +632,14 @@ iJS.Gettext.prototype.try_load_lang = function () {
                 link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".json" ;
                 if (! this.try_load_lang_json(link.href) ) {
                     
-                    switch (this.locale_format) {
-                            
-                        case 2: //locale name format is something like *en_US.utf8*. will try to use *en_US* or *en* format
-                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('.')[0]+"* format...") ;
-                            link.href = domain.path+"/"+this.locale.split('.')[0]+"/LC_MESSAGES/"+domain.value+".json" ;
-                            
-                            if (! this.try_load_lang_json( link.href )) {
-                                
-                                console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale.split('.')[0]+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
-                                link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".json" ;
-                                
-                                if (! this.try_load_lang_json( link.href )) {
-                                    
-                                    link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".json";
-                                    console.warn("iJS-gettext:'try_load_lang_json': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
-                                }
-                            }
-                            break;
-                        case 1://locale name format is something like *en_US*. will try to use *en* format
-                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
-                            link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".json" ;
-                            
-                            if (! this.try_load_lang_json( link.href )) {
-
-                                link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".json";
-                                console.error("iJS-gettext:'try_load_lang_json': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
-                            }
-                            break;
-                            
-                        default:
-                            console.error("iJS-gettext:'try_load_lang_json': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
-                            break;
-                    }
+                    this.try_load_alternative_lang(domain, link) ;
                 }
             } else if (domain.type == 'po') {
                 
                 link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".po" ;
                 if (! this.try_load_lang_po(link.href) ) {
 
-                    switch (this.locale_format) {
-
-                        case 2: //locale name format is something like *en_US.utf8*. will try to use *en_US* or *en* format
-                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('.')[0]+"* format...") ;
-                            link.href = domain.path+"/"+this.locale.split('.')[0]+"/LC_MESSAGES/"+domain.value+".po" ;
-
-                            if (! this.try_load_lang_po( link.href )) {
-
-                                console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale.split('.')[0]+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
-                                link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".po" ;
-
-                                if (! this.try_load_lang_po( link.href )) {
-
-                                    link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".po";
-                                    console.warn("iJS-gettext:'try_load_lang_po' failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
-                                }
-                            }
-                            break;
-                        case 1://locale name format is something like *en_US*. will try to use *en* format
-                            console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
-                            link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+".po" ;
-
-                            if (! this.try_load_lang_po( link.href )) {
-
-                                link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+".po";
-                                console.error("iJS-gettext:'try_load_lang_po' failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
-                            }
-                            break;
-
-                        default:
-                            console.error("iJS-gettext:'try_load_lang_po' failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
-                            break;
-                    }
+                    this.try_load_alternative_lang(domain, link) ;
                 }
             } else {
                 //if `domain.path` is not define, check to see if language is statically included via  a json object.
@@ -661,6 +669,81 @@ iJS.Gettext.prototype.try_load_lang = function () {
     }
 };
 
+/**
+ * Try to load messages data from alternative catalog when associated catalog of user’s given locale can’t be found. &lt;BR/>
+ * for example for a given "en_US.UTF8" locale, if associated catalog can’t be found, this will try to find it with "en_US" or "en".
+ * @private
+ * @memberof iJS.Gettext
+ * @param {Object} domain          from domain’s registry
+ * @param {HTMLLinkElement} link   content the catalog’s path
+ */
+iJS.Gettext.prototype.try_load_alternative_lang = function (domain, link) {
+    
+    if (iJS.isObject( domain ) &amp;&amp; iJS.isHTMLLinkElement( link )) {
+        
+        var isCatalogOk = false ;
+        
+        switch (this.locale_format) {
+
+            case 2: //locale name format is something like *en_US.utf8*. will try to use *en_US* or *en* format
+                console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('.')[0]+"* format...") ;
+                link.href = domain.path+"/"+this.locale.split('.')[0]+"/LC_MESSAGES/"+domain.value+"."+domain.type ;
+                
+                if (domain.type == "json")
+                    isCatalogOk = (this.try_load_lang_json( link.href )) ? true : false ;
+                else if (domain.type == "po")
+                    isCatalogOk = (this.try_load_lang_po( link.href )) ? true : false ;
+                //else
+                    //@TODO it will be by default "mo", not supported yet but it’s plan.
+
+                if (! isCatalogOk) {
+
+                    console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale.split('.')[0]+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
+                    link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+"."+domain.type ;
+
+                    if (domain.type == "json")
+                        isCatalogOk = (this.try_load_lang_json( link.href )) ? true : false ;
+                    else if (domain.type == "po")
+                        isCatalogOk = (this.try_load_lang_po( link.href )) ? true : false ;
+                    //else
+                        //@TODO it will be by default "mo", not supported yet but it’s plan.
+                        
+                    if (! isCatalogOk) {
+
+                        link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+"."+domain.type;
+                        console.warn("iJS-gettext:'try_load_lang_"+domain.type+"': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                    }
+                }
+                break;
+                
+            case 1://locale name format is something like *en_US*. will try to use *en* format
+                console.warn("iJS-gettext:'try_load_lang': domaine: *"+domain.value+"* not found with locale: *"+this.locale+"* format. Will try to use *"+this.locale.split('_')[0]+"* format...") ;
+                link.href = domain.path+"/"+this.locale.split('_')[0]+"/LC_MESSAGES/"+domain.value+"."+domain.type ;
+
+                if (domain.type == "json")
+                    isCatalogOk = (this.try_load_lang_json( link.href )) ? true : false ;
+                else if (domain.type == "po")
+                    isCatalogOk = (this.try_load_lang_po( link.href )) ? true : false ;
+                //else
+                    //@TODO it will be by default "mo", not supported yet but it’s plan.
+
+                if (! isCatalogOk) {
+
+                    link.href = domain.path+"/"+this.locale+"/LC_MESSAGES/"+domain.value+"."+domain.type;
+                        console.error("iJS-gettext:'try_load_lang_"+domain.type+"': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                }
+                break;
+
+            default:
+                console.error("iJS-gettext:'try_load_lang_"+domain.type+"': failed. Unable to exec XMLHttpRequest for link ["+link.href+"]") ;
+                break;
+        }
+    } else {
+        
+        console.warn("iJS-gettext:'try_load_alternative_lang': nothing to do or invalid arguments.") ;
+    }
+    
+};
 
 /**
  * This takes a json’d data (a portable object variant) and moves it into an internal form, 
@@ -770,7 +853,7 @@ iJS.Gettext.prototype.parse_locale_data = function (locale_data) {
 
 
 /**
- * Do an ajax call to load in a .po files, language definitions from associated catalogue.
+ * Do an ajax call to load in a .po files, language definitions from associated catalog.
  * @private
  * @memberof iJS.Gettext
  * @param   {string} uri link to the "po" files
@@ -1001,7 +1084,7 @@ iJS.Gettext.prototype.parse_po_dequote = function (str) {
 
 
 /**
- * Do an ajax call to load in a .json files, language definitions from associated catalogue.
+ * Do an ajax call to load in a .json files, language definitions from associated catalog.
  * @private
  * @memberof iJS.Gettext
  * @param   {string} uri link to the "json" files
@@ -1024,7 +1107,7 @@ iJS.Gettext.prototype.try_load_lang_json = function (uri) {
  * else the function returns the current message domain. &lt;BR/>
  * A  message  domain  is  a  set of translatable msgid messages. Usually,
  * every software package has its own message domain. The domain  name  is
- * used to determine the message catalogue where a translation is looked up;
+ * used to determine the message catalog where a translation is looked up;
  * it must be a non-empty string.
  * @memberof iJS.Gettext
  * @param   {string} domain  message domain to set as current.
@@ -1039,10 +1122,9 @@ iJS.Gettext.prototype.textdomain = function (domain) {
 
 /**
  * Returns the translation for **msgid**.&lt;BR/>
- * If no translation can be found, the unmodified **&lt;msgid>** is returned.
- * See tutorials for more.
+ * If translation can’t be found, the unmodified **msgid** is returned.
  * @memberof iJS.Gettext
- * @param   {String} msgid  Text to translate
+ * @param   {String} msgid  Message to translate
  * @returns {String} translated text or the *msgid* if not found
  */
 iJS.Gettext.prototype.gettext = function (msgid) {
@@ -1060,7 +1142,7 @@ iJS.Gettext.prototype.gettext = function (msgid) {
  * **TEXTDOMAIN** instead of the default domain.
  * @memberof iJS.Gettext
  * @param   {String} domain  Domain where translation can be found.
- * @param   {String} msgid   Text to translate
+ * @param   {String} msgid   Message to translate
  * @returns {String} translated text or the *msgid* if not found
  */
 iJS.Gettext.prototype.dgettext = function (domain, msgid) {
@@ -1080,7 +1162,7 @@ iJS.Gettext.prototype.dgettext = function (domain, msgid) {
  * to use this. This applies to all the calls including the **CATEGORY**.
  * @memberof iJS.Gettext
  * @param   {String} domain      Domain where translation can be found.
- * @param   {String} msgid       Text to translate
+ * @param   {String} msgid       Message to translate
  * @param   {String} category    (for now is will always be "LC_MESSAGES")
  * @returns {String} translated  text or the *msgid* if not found
  */
@@ -1096,10 +1178,24 @@ iJS.Gettext.prototype.dcgettext = function (domain, msgid, category) {
 /**
  * Retrieves the correct translation for **count** items.
  * @memberof iJS.Gettext
- * @param   {String} msgid        Text to translate
+ * @param   {String} msgid        Message to translate
  * @param   {String} msgid_plural Plural form of text to translate
  * @param   {Number} n            Counting number
  * @returns {String} translated text or the *msgid* if not found
+ * @example
+ * //In legacy software you will often find something like:
+ * alert( count + " file(s) deleted.\n" );
+ * //Before ngettext() was introduced, one of best practice for internationalized programs was:
+    if (count == 1)
+        alert( iJS._("One file deleted.\n") );
+    else ...
+    
+   //This is a nuisance for the programmer and often still not sufficient for an adequate translation.  
+   //Many languages have completely different ideas on numerals.  Some (French, Italian, ...) treat 0 and 1 alike,
+   //others make no distinction at all (Japanese, Korean, Chinese, ...), others have two or more plural forms (Russian, 
+   //Latvian, Czech, Polish, ...).  The solution is:
+   
+    alert( iJS.i18n.ngettext("One file deleted.\n", "%d files deleted.\n", count) );
  */
 iJS.Gettext.prototype.ngettext = function (msgid, msgid_plural, n) {
     
@@ -1113,7 +1209,7 @@ iJS.Gettext.prototype.ngettext = function (msgid, msgid_plural, n) {
  * textdomain instead of the default domain.
  * @memberof iJS.Gettext
  * @param   {String} domain       Domain where translation can be found.
- * @param   {String} msgid        Text to translate
+ * @param   {String} msgid        Message to translate
  * @param   {String} msgid_plural Plural form of text to translate
  * @param   {Number} n            Counting number
  * @returns {String} translated text or the *msgid* if not found
@@ -1130,7 +1226,7 @@ iJS.Gettext.prototype.dngettext = function (domain, msgid, msgid_plural, n) {
  * category, instead of the default category **LC_MESSAGES**.
  * @memberof iJS.Gettext
  * @param   {String} domain       Domain where translation can be found.
- * @param   {String} msgid        Text to translate
+ * @param   {String} msgid        Message to translate
  * @param   {String} msgid_plural Plural form of text to translate
  * @param   {Number} n            Counting number
  * @param   {String} category    (for now is will always be "LC_MESSAGES")
@@ -1149,8 +1245,15 @@ iJS.Gettext.prototype.dcngettext = function (domain, msgid, msgid_plural, n, cat
  * translate to different foreign words based on their context.
  * @memberof iJS.Gettext
  * @param   {String} msgctxt  context of text
- * @param   {String} msgid    Text to translate
+ * @param   {String} msgid    Message to translate
  * @returns {String} translated text or the *msgid* if not found
+ * @example 
+ * // The word "View" may be a noun or a verb, which may be
+ * //used in a menu as File->View or View->Source.
+
+    alert( iJS.i18n.pgettext( "Verb: To View", "View" ) );
+    alert( iJS.i18n.pgettext( "Noun: A View", "View"  ) );
+ * // The above will both lookup different entries in the message catalog.
  */
 iJS.Gettext.prototype.pgettext = function (msgctxt, msgid) {
     
@@ -1161,12 +1264,12 @@ iJS.Gettext.prototype.pgettext = function (msgctxt, msgid) {
 };
 
 /**
- * Like pgettext(), but retrieves the message for the specified 
+ * Like `pgettext()`, but retrieves the message for the specified 
  * **domain** instead of the default domain.
  * @memberof iJS.Gettext
  * @param   {String} domain   Domain where translation can be found.
  * @param   {String} msgctxt  Context of text
- * @param   {String} msgid    Text to translate
+ * @param   {String} msgid    Message to translate
  * @returns {String} translated text or the *msgid* if not found
  */
 iJS.Gettext.prototype.dpgettext = function (domain, msgctxt, msgid) {
@@ -1183,7 +1286,7 @@ iJS.Gettext.prototype.dpgettext = function (domain, msgctxt, msgid) {
  * @memberof iJS.Gettext
  * @param   {String} domain   Domain where translation can be found.
  * @param   {String} msgctxt  Context of text
- * @param   {String} msgid    Text to translate
+ * @param   {String} msgid    Message to translate
  * @param   {String} category (for now is will always be "LC_MESSAGES")
  * @returns {String} translated text or the *msgid* if not found
  */
@@ -1196,12 +1299,12 @@ iJS.Gettext.prototype.dcpgettext = function (domain, msgctxt, msgid, category) {
 
 
 /**
- * Like ngettext() with the addition of context as in pgettext(). &lt;BR/>
+ * Like `ngettext()` with the addition of context as in `pgettext()`. &lt;BR/>
  * In English, or if no translation can be found, the second argument
  * *msgid* is picked if *n* is one, the third one otherwise.
  * @memberof iJS.Gettext
  * @param   {String} msgctxt      Context of text
- * @param   {String} msgid        Text to translate
+ * @param   {String} msgid        Message to translate
  * @param   {String} msgid_plural Plural form of text to translate
  * @param   {Number} n            Counting number
  * @returns {String} translated text or the *msgid* if not found
@@ -1218,7 +1321,7 @@ iJS.Gettext.prototype.npgettext = function (msgctxt, msgid, msgid_plural, n) {
  * @memberof iJS.Gettext
  * @param   {String} domain       Domain where translation can be found.
  * @param   {String} msgctxt      Context of text
- * @param   {String} msgid        Text to translate
+ * @param   {String} msgid        Message to translate
  * @param   {String} msgid_plural Plural form of text to translate
  * @param   {Number} n            Counting number
  * @returns {String} translated text or the *msgid* if not found
@@ -1237,7 +1340,7 @@ iJS.Gettext.prototype.dnpgettext = function (domain, msgctxt, msgid, msgid_plura
  * @memberof iJS.Gettext
  * @param   {String} domain       Domain where translation can be found.
  * @param   {String} msgctxt      Context of text
- * @param   {String} msgid        Text to translate
+ * @param   {String} msgid        Message to translate
  * @param   {String} msgid_plural Plural form of text to translate
  * @param   {Number} n    
  * @param   {String} category (for now is will always be "LC_MESSAGES")
@@ -1318,13 +1421,40 @@ iJS.Gettext.prototype.dcnpgettext = function (domain, msgctxt, msgid, msgid_plur
 /**
  * This is a utility method to provide some way to support positional parameters within a string, as javascript lacks a printf() method.
  * The format is similar to printf(), but greatly simplified (ie. fewer features).&lt;BR/>
- * Any percent signs followed by numbers are replaced with the corresponding item from the B&lt;argument_array>.
+ * Any percent signs followed by numbers are replaced with the corresponding item from the argument’s array.
  * @class
  * @constructs Strargs
  * @memberof iJS.Gettext
  * @param   {String} str  a string that potentially contains formatting characters
  * @param   {Array} args  an array of positional replacement values
  * @returns {String} The formatted text.
+ * @example
+ * iJS.i18n.setlocale("fr_FR.UTF8") ;
+ * iJS.i18n.bindtextdomain("fr_FR.UTF8") ;
+ * iJS.i18n.try_load_lang() ;
+ * //One common mistake is to interpolate a variable into the string like this:
+ * var translated = iJS._("Hello " + full_name); //`iJS._()` can be replace by `iJS.i18n.gettext()`
+   
+ * //The interpolation will happen before it's passed to gettext, and it's 
+ * //unlikely you'll have a translation for every "Hello Tom" and "Hello Dick"
+ * //and "Hellow Harry" that may arise.
+
+ * //Use `strargs()` (see below) to solve this problem:
+
+ * var translated = iJS.Gettext.strargs( iJS._("Hello %1"), [full_name] );
+
+ /* This is espeically useful when multiple replacements are needed, as they 
+  * may not appear in the same order within the translation. As an English to
+  * French example:
+
+  * Expected result: "This is the red ball"
+  * English: "This is the %1 %2"
+  * French:  "C'est le %2 %1"
+  * Code: iJS.Gettext.strargs( iJS._("This is the %1 %2"), ["red", "ball"] );
+
+  * (The example show thing that not have to be done because neither color nor text 
+  * will get translated here ...).
+  
  */
 iJS.Gettext.strargs = function (str, args) {
     
@@ -1447,13 +1577,13 @@ iJS.Gettext.prototype.JSON = function (data) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.Gettext.html">Gettext</a></li><li><a href="iJS.Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.Gettext.html">Gettext</a></li><li><a href="iJS.Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isHTMLLinkElement">isHTMLLinkElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Mon Aug 10 2015 06:38:14 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Wed Aug 12 2015 11:42:53 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>
