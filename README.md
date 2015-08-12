@@ -12,7 +12,7 @@ The script is written in pure JavaScript, so it’s independent and can be easil
 
 ####Internationalization
 Actually the main feature of the library is the Javascript implementation of GNU Gettext API.   
-This implementation of GNU Gettext, providing internationalization support for JavaScript. 
+[This implementation of GNU Gettext](http://tnga.github.io/extra.js-ijs/docs/iJS.Gettext.html), providing internationalization support for JavaScript. 
 It differs from existing JavaScript implementations in that it will support all current Gettext features 
 (ex. plural and context support), and will also support loading language catalogs from .mo, .po, 
 or preprocessed json files (*converter included*).
@@ -20,10 +20,10 @@ or preprocessed json files (*converter included*).
 In this case the "i" in **iJS** can be considered as **i**nternalization.
 
 ####Animation
-Not yet powerfull, but will grow up soon. Documentation is a friends to see what are provided. 
+Not yet powerfull, but will grow up soon. [Documentation]( http://tnga.github.io/extra.js-ijs/docs/iJS.mi_loader.html) is a friends to see what are provided. 
 
 ####Some simple functionalities
-See the documentation for more informations about all the library’s features.
+See the [documentation](http://tnga.github.io/extra.js-ijs/docs/) for more informations about all the library’s features.
 
 ##Installation
 
