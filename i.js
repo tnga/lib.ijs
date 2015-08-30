@@ -433,9 +433,9 @@ iJS.Gettext = function () {
  * //set the locale in which the messages will be translated
  * iJS.i18n.setlocale("en_US.utf8") ;
  * //add domain where to find messages data
- * iJs.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ; 
+ * iJS.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ;
  * //add another domain where to find messages data
- * iJs.i18n.bindtextdomain("domain_json", "./path_to_locale", "json") ;
+ * iJS.i18n.bindtextdomain("domain_json", "./path_to_locale", "json") ;
  * //set the current domain
  * iJS.i18n.textdomain("domain_po") ;
  * //now print your messages
@@ -452,7 +452,7 @@ iJS.i18n = new iJS.Gettext() ;
  * //set the locale in which the messages will be translated
  * iJS.i18n.setlocale("en_US.utf8") ;
  * //add domain where to find messages data
- * iJs.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ; 
+ * iJS.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ;
  * //now print your messages
  * alert( iJS._("messages to be translated") ) ;
  */
