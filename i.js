@@ -164,6 +164,32 @@ iJS = {
     },
 
     /**
+     * Set the `textContent` of an element without worry about browser’s support.
+     * @function setTextContent
+     * @param {HTMLElement}   arg  Element to set the text’s content
+     * @param {String} text Text that will be used
+     */
+    setTextContent: function (arg, text) {
+
+        if (iJS.isHTMLElement(arg) && iJS.isDefined(text)) {
+
+            if (arg.textContent) arg.textContent = ''+text ;
+            if (arg.innerText) arg.innerText = ''+text ;
+        }
+
+    },
+
+    /**
+     * Get the `textContent` of an element without worry about browser’s support.
+     * @param   {HTMLElement}   arg  Element to get the text content
+     * @returns {String} the text content, empty string if can not be got or `null` if the element is not a *HTMLElement*.
+     */
+    getTextContent: function (arg) {
+
+        return iJS.isHTMLElement(arg) ? arg.textContent || arg.innerText || '' : null ;
+    },
+
+    /**
      * Easily create compatible Ajax XMLHttpResquest object, depending of web browsers support.
      * @function newHTTPRequest
      * @returns {XMLHttpRequest} new instance of `XMLHttpRequest` class.
