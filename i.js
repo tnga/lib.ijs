@@ -181,12 +181,71 @@ iJS = {
 
     /**
      * Get the `textContent` of an element without worry about browser’s support.
+     * @function getTextContent
      * @param   {HTMLElement}   arg  Element to get the text content
      * @returns {String} the text content, empty string if can not be got or `null` if the element is not a *HTMLElement*.
      */
     getTextContent: function (arg) {
 
         return iJS.isHTMLElement(arg) ? arg.textContent || arg.innerText || '' : null ;
+    },
+
+    /**
+     * Get the coordonnate of an element relative to document.
+     * @function getXY
+     * @param   {Object} arg a `HTMLElement` or a `id` of an element
+     * @returns {Object} coordonnate `{x:x, y:y}`
+     * @example var eltPos = iJS.getXY( HTMLElt ) ;
+     *          alert( eltPos.x ) ;
+     *          alert( eltPos.y ) ;
+     */
+    getXY: function (arg) {
+
+        if (iJS.isString(arg)) arg = document.getElementById( arg ) ;
+        if (! iJS.isHTMLElement(arg)) return null ;
+
+        var x=0, y=0 ;
+
+        while (iJS.isSet(arg)) {
+
+            x += arg.offsetLeft - arg.scrollLeft ;
+            y += arg.offsetTop - arg.scrollTop ;
+            arg = arg.offsetParent;
+        }
+
+        return {x:x, y:y} ;
+    },
+
+    /**
+     * Get the coordonnate of an element relative to window.
+     * @function getPageXY
+     * @param   {Object} arg a `HTMLElement` or a `id` of an element
+     * @returns {Object} coordonnate `{x:x, y:y}`
+     * @example var eltScrollPos = iJS.getPageXY( HTMLElt ) ;
+     *          alert( eltScrollPos.x ) ;
+     *          alert( eltScrollPos.y ) ;
+     */
+    getPageXY : function (arg) {
+
+        if (iJS.isString(arg)) arg = document.getElementById( arg ) ;
+
+        var x=0, y=0 ;
+
+        if ( arg === window || arg === document || arg === document.documentElement ) {
+
+            x = window.pageXOffset ? window.pageXOffset : document.documentElement.scrollLeft ;
+            y = window.pageYOffset ? window.pageYOffset : document.documentElement.scrollTop ;
+
+        } else if (! iJS.isHTMLElement(arg)) {
+            return null ;
+
+        } else {
+
+            x = window.pageXOffset ? iJS.getXY( arg ).x - window.pageXOffset : iJS.getXY( arg ).x - document.documentElement.scrollLeft ;
+            y = window.pageYOffset ? iJS.getXY( arg ).y - window.pageYOffset : iJS.getXY( arg ).y - document.documentElement.scrollTop ;
+        }
+
+        return {x:x, y:y} ;
     },
 
     /**
