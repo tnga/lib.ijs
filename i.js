@@ -10,7 +10,7 @@
  * 
  * @license LGPL v3.0
  * @author  [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
- * @version 0.48_15.08 
+ * @version 0.55_15.09 
 */
 //"use strict";
 
@@ -573,6 +573,8 @@ iJS.Gettext = function () {
  * iJS.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ;
  * //add another domain where to find messages data
  * iJS.i18n.bindtextdomain("domain_json", "./path_to_locale", "json") ;
+ * //Always do this after a `setlocale` or a `bindtextdomain` call.
+ * iJS.i18n.try_load_lang() ; //will load and parse messages data from the setting catalog.
  * //set the current domain
  * iJS.i18n.textdomain("domain_po") ;
  * //now print your messages
@@ -590,6 +592,7 @@ iJS.i18n = new iJS.Gettext() ;
  * iJS.i18n.setlocale("en_US.utf8") ;
  * //add domain where to find messages data
  * iJS.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ;
+ * iJS.i18n.try_load_lang() ; //will load and parse messages data from the setting catalog.
  * //now print your messages
  * alert( iJS._("messages to be translated") ) ;
  */
