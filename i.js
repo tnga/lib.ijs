@@ -84,15 +84,26 @@ iJS = {
     },
 
     /**
+     * Let you know if a variable is type of Element or not.
+     * @function isElement
+     * @param   {all}     arg argument of test.
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isElement: function (arg) {
+
+        return (arg instanceof Element);
+    },
+   
+   /**
      * Let you know if a variable is type of HTMLElement or not.
      * @function isHTMLElement
      * @param   {all}     arg argument of test.
      * @returns {boolean} true if it is, false if it isn’t.
      */
-    isHTMLElement: function (arg) {
+   isHTMLElement: function (arg) {
 
-        return (arg instanceof HTMLElement);
-    },
+      return (arg instanceof HTMLElement);
+   },
 
     /**
      * Let you know if a variable is type of HTMLImageElement or not.
@@ -114,6 +125,17 @@ iJS = {
     isHTMLLinkElement: function (arg) {
 
         return (arg instanceof HTMLLinkElement);
+    },
+
+   /**
+     * Let you know if a variable is type of HTMLInputElement or not.
+     * @function isHTMLInputElement
+     * @param   {all}     arg argument of test.
+     * @returns {boolean} true if it is, false if it isn’t.
+     */
+    isHTMLInputElement: function (arg) {
+
+        return (arg instanceof HTMLInputElement);
     },
 
     /**
@@ -162,6 +184,36 @@ iJS = {
       
         return (arg === undefined) ;
     },
+    
+    /**
+     * clear a string by deleting space at the beginning and at the end.
+     * @function stringClear
+     * @param   {String} arg a string to clear
+     * @returns {String} null or the formatted string
+     */
+    stringClear: function (arg) {
+      
+        var str = iJS.isString(arg) ? arg : null ;
+        
+        if (str) {
+            
+            var tabChar = str.split('') ;
+
+            for( var i = 0 ; i < tabChar.length && tabChar[i] == ' ' ; i++) {
+                
+                tabChar.shift() ;
+                --i ;
+            }
+            for( var i = (tabChar.length - 1) ; i >= 0 && tabChar[i] == ' ' ; i--) {
+                
+                tabChar.pop() ;
+            }
+            
+            str = tabChar.join('') ;
+        }
+
+        return str ;
+    },
 
     /**
      * Set the `textContent` of an element without worry about browser’s support.
@@ -187,7 +239,7 @@ iJS = {
      */
     getTextContent: function (arg) {
 
-        return iJS.isHTMLElement(arg) ? arg.textContent || arg.innerText || '' : null ;
+       return iJS.isHTMLElement(arg) || iJS.isElement(arg) ? arg.textContent || arg.innerText || '' : null ;
     },
 
     /**
