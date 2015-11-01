@@ -1,11 +1,10 @@
-/* "iJS"(pour "inside JS") initié ici est une mini bibliothèque pour le développement en JavaScript des projets associés. 
- * Le but n’est pas de refaire ce que des grandes bibliothèques telles que **Jquery**, **mootools**, AngularJS** et autres font assez bien, mais de fournir 
- *soit des fonctionnalités en plus ou soit une meilleur approche pour une certaine facilité.
- * Cette bibliothèque se veut être leger, indépendante et fonctionnelle. Elle peut donc être utilisable dans n’importe quel projet développé en JavaScript.
+/* "iJS"(pour "inside JS") initiée ici est une mini bibliothèque pour le développement en JavaScript des projets associés. 
+ * Le but n’est pas de refaire ce que des grandes bibliothèques telles que **Jquery**, **mootools**, AngularJS** et autres font assez bien, mais de fournir soit des fonctionnalités en plus ou soit une meilleur approche pour une certaine facilité.
+ * Cette bibliothèque se veut être legère, indépendante et fonctionnelle. Elle peut donc être utilisable dans n’importe quel projet développé en JavaScript.
  *__________________________________________________________________________________________________________________________________________________________
  */
 /*
- * This library is firstly build with UMI web’s projects and for pure JavaScript development.
+ * This library is firstly build for UMI web’s projects and for pure JavaScript development.
  * However it can be use for any JavaScript projects.
  * 
  * @license LGPL v3.0
