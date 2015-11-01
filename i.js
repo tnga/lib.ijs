@@ -36,7 +36,7 @@ iJS = {
     /**
      *@property {string} version Inform about the version of library that is use.
      */
-    version: "0.48_15.08",
+    version: "0.55_15.09",
     
     /**
      * Let you know if a value or a variable is type of Number or not.
@@ -332,116 +332,124 @@ iJS = {
         }
         
         return xhr;
-    },
-    
+    }
+
+};
+
+
+
+/*=================================================================================================================================================
+ * Implementation animations features.
+ * This implementation providing usefull way of animations support for javascript. 
+ *=================================================================================================================================================
+
+/**
+ * Allow to change images for animations **it’s specialy usefull to simulate a loading**
+ * @class
+ * @constructs iJS.mi_loader
+ * @param {Object} imgContainer  is an *id* name of a `HTMLImageElement` or represent a `HTMLImageElement`
+ * @param {string} imgDir        is a path where are the images to animate
+ * @param {number} imgLength     is the number of images to animate
+ * @param {string} imgGlobalName is the global name of images to animate. 
+ *                               egg: if *imgload* is your given global name, corresponding images names have to be *imgload0*, *imgload1*, *imgload2*, ...
+ * @param {string} imgFormat     the format of images. By default it’s *png*.
+ */
+iJS.mi_loader = function (imgContainer, imgDir, imgLength, imgGlobalName, imgFormat) {
+
+    if (iJS.isString(imgDir))
+        this.imgDir = imgDir;
+    if (iJS.isNumber(imgLength))
+        this.imgLength = imgLength;
+    if (iJS.isString(imgGlobalName))
+        this.imgGlobalName = imgGlobalName;
+
+    this.imgFormat = (iJS.isString(imgFormat)) ? imgFormat : "png";
+
+    if (iJS.isString(imgContainer))
+        if (iJS.isHTMLImageElement(document.getElementById(imgContainer)))
+            this.imgContainer = document.getElementById(imgContainer);
+        else if (iJS.isHTMLImageElement(imgContainer))
+            this.imgContainer = imgContainer;
+
+    this.imgIndex = 0; //represent the image number to show
+    this.imgPath = ""; //represent image path to show
+    this.loaderID = 0; //for content the identification number of programing events via functions like `setTimeout()`
+
     /**
-     * Allow to change images for animations **it’s specialy usefull to simulate a loading**
-     * @class
-     * @param {Object} imgContainer  is an *id* name of a `HTMLImageElement` or represent a `HTMLImageElement`
-     * @param {string} imgDir        is a path where are the images to animate
-     * @param {number} imgLength     is the number of images to animate
-     * @param {string} imgGlobalName is the global name of images to animate. 
-     *                               egg: if *imgload* is your given global name, corresponding images names have to be *imgload0*, *imgload1*, *imgload2*, ...
-     * @param {string} imgFormat     the format of images. By default it’s *png*.
+     * Allow to change or replace the current showing image by the next one.
+     * @function changeIMGLoader
+     * @memberof iJS.mi_loader
+     * @param {iJS.mi_loader} loader Normaly, it’s the `mi_loader` instance itself, reference by `this`.
+     *                               But it can be any other instance of `mi_loader` class.
+     *                               It’s just necessary when the function is use like argument to another.
+     *@example var miLoader = new iJS.mi_loader(imgContainer, imgDir, imgLength, imgGlobalName, imgFormat);
+     *         miLoader.changeIMGLoader(); //the parameter isn’t needed
+     *         setTimeout( miLoader.changeIMGLoader, delay, miLoader ); //have to give an instance of `mi_loader` in parameter. Here it’s the object itself.
+     *         //the parameter is needed in this case to avoid the using of `window` root object when use the reference `this` in `changeIMGLoader` function.
      */
-    mi_loader: function (imgContainer, imgDir, imgLength, imgGlobalName, imgFormat) {
+    this.changeIMGLoader = function (loader) {
 
-        if (iJS.isString(imgDir))
-            this.imgDir = imgDir;
-        if (iJS.isNumber(imgLength))
-            this.imgLength = imgLength;
-        if (iJS.isString(imgGlobalName))
-            this.imgGlobalName = imgGlobalName;
+        //ld = loader or this **object itself** 
+        var ld = (loader instanceof iJS.mi_loader) ? loader : this;
 
-        this.imgFormat = (iJS.isString(imgFormat)) ? imgFormat : "png";
-
-        if (iJS.isString(imgContainer))
-            if (iJS.isHTMLImageElement(document.getElementById(imgContainer)))
-                this.imgContainer = document.getElementById(imgContainer);
-            else if (iJS.isHTMLImageElement(imgContainer))
-                this.imgContainer = imgContainer;
-
-        this.imgIndex = 0; //represent the image number to show
-        this.imgPath = ""; //represent image path to show
-        this.loaderID = 0; //for content the identification number of programing events via functions like `setTimeout()`
-
-        /**
-         * Allow to change or replace the current showing image by the next one.
-         * @function changeIMGLoader
-         * @memberof iJS.mi_loader
-         * @param {iJS.mi_loader} loader Normaly, it’s the `mi_loader` instance itself, reference by `this`.
-         *                               But it can be any other instance of `mi_loader` class.
-         *                               It’s just necessary when the function is use like argument to another.
-         *@example var miLoader = new iJS.mi_loader(imgContainer, imgDir, imgLength, imgGlobalName, imgFormat);
-         *         miLoader.changeIMGLoader(); //the parameter isn’t needed
-         *         setTimeout( miLoader.changeIMGLoader, delay, miLoader ); //have to give an instance of `mi_loader` in parameter. Here it’s the object itself.
-         *         //the parameter is needed in this case to avoid the using of `window` root object when use the reference `this` in `changeIMGLoader` function.
-         */
-        this.changeIMGLoader = function (loader) {
-
-            //ld = loader or this **object itself** 
-            var ld = (loader instanceof iJS.mi_loader) ? loader : this;
-
-            if (ld.imgDir && ld.imgLength && ld.imgGlobalName)
-                if (ld.imgIndex < ld.imgLength) {
-                    ld.imgPath = ld.imgDir + "/" + ld.imgGlobalName + ld.imgIndex + "." + ld.imgFormat;
-                    ld.imgIndex++;
-                } else {
-                    ld.imgIndex = 0;
-                }
+        if (ld.imgDir && ld.imgLength && ld.imgGlobalName)
+            if (ld.imgIndex < ld.imgLength) {
+                ld.imgPath = ld.imgDir + "/" + ld.imgGlobalName + ld.imgIndex + "." + ld.imgFormat;
+                ld.imgIndex++;
+            } else {
+                ld.imgIndex = 0;
+            }
 
 
-            if (ld.imgContainer)
-                ld.imgContainer.src = ld.imgPath;
-        }
+        if (ld.imgContainer)
+            ld.imgContainer.src = ld.imgPath;
+    }
 
-        /**
-         * Allow to start animation by replacing images sucessively according to a given time interval.
-         * @function startLoading
-         * @memberof iJS.mi_loader
-         * @param {number} timeInterval interval of time to change images. By default it’s `150ms`.
-         */
-        this.startLoading = function (timeInterval) {
+    /**
+     * Allow to start animation by replacing images sucessively according to a given time interval.
+     * @function startLoading
+     * @memberof iJS.mi_loader
+     * @param {number} timeInterval interval of time to change images. By default it’s `150ms`.
+     */
+    this.startLoading = function (timeInterval) {
 
-            if (this.loaderID) //first stop current animation
-                this.stopLoading();
+        if (this.loaderID) //first stop current animation
+            this.stopLoading();
 
-            if (iJS.isNumber(timeInterval))
-                this.loaderID = setInterval(this.changeIMGLoader, timeInterval, this)
+        if (iJS.isNumber(timeInterval))
+            this.loaderID = setInterval(this.changeIMGLoader, timeInterval, this)
             else {
                 this.loaderID = setInterval(this.changeIMGLoader, 150, this);
             }
 
-        }
-
-        /**
-         * Allow to stop animation or images changing.
-         * The animation will stop immediatly or after a given time.
-         * @function stopLoading
-         * @memberof iJS.mi_loader
-         * @param {number} time time to stop animation.
-         */
-        this.stopLoading = function (time) {
-            
-            if (iJS.isNumber(time)) {
-                setTimeout(function (loader) {
-                    if (loader instanceof iJS.mi_loader) {
-                        clearInterval(loader.loaderID);
-                        loader.imgIndex = 0;
-                        loader.loaderID = 0;
-                        loader.changeIMGLoader();
-                    }
-                }, time, this);
-            } else {
-                clearInterval(this.loaderID);
-                this.imgIndex = 0;
-                this.loaderID = 0;
-                this.changeIMGLoader();
-            }
-        }
     }
 
-};
+    /**
+     * Allow to stop animation or images changing.
+     * The animation will stop immediatly or after a given time.
+     * @function stopLoading
+     * @memberof iJS.mi_loader
+     * @param {number} time time to stop animation.
+     */
+    this.stopLoading = function (time) {
+
+        if (iJS.isNumber(time)) {
+            setTimeout(function (loader) {
+                if (loader instanceof iJS.mi_loader) {
+                    clearInterval(loader.loaderID);
+                    loader.imgIndex = 0;
+                    loader.loaderID = 0;
+                    loader.changeIMGLoader();
+                }
+            }, time, this);
+        } else {
+            clearInterval(this.loaderID);
+            this.imgIndex = 0;
+            this.loaderID = 0;
+            this.changeIMGLoader();
+        }
+    }
+}
 
 
 
