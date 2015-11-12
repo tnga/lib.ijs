@@ -4,17 +4,166 @@
         <TITLE>iJS test</TITLE>
         <STYLE>
             i {color: dimgray;}
+            p, h4 {text-align: center;}
             body {font-size: 0.9em; font-family: "Andale Mono", monospace, sans-serif;}
+            
+            #animate-box-test {
+                background: #f60;
+                border-radius: 15px;
+                box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25);
+                width: 250px;
+                height: 200px;
+                min-width: 160px;
+                min-height: 160px;
+                margin: 20px auto ;
+                will-change: transform;
+                cursor: pointer;
+                /*visibility: hidden; /**/
+            }
         </STYLE>
 
-        <SCRIPT type="text/javascript" src="../i.js" ></SCRIPT>
+        <!--<SCRIPT type="text/javascript" src="node_modules/web-animations-js/web-animations.min.js" ></SCRIPT>-->
+        <SCRIPT type="text/javascript" src="../partials/i_core.js" ></SCRIPT>
+        <SCRIPT type="text/javascript" src="../partials/i_animation.js" ></SCRIPT>
+        <LINK href="animate.css" rel="stylesheet" />
 
     </HEAD>
 
     <BODY>
 
-        <P style="text-align: center;">
-            <IMG id="img-loader" src="./images/img_load0.png" alt="images loader test" />
+        <P >
+            <IMG style="height: 200px;" id="img-loader" src="./images/img_load0.png" alt="images loader test" />
+            <H4>mi-loader test</H4>
+        </P> 
+        
+        <P>
+            <div id="animate-box-test" class="animated infinit slideOutDow">
+                <div id="box"><br /> ___click or check!</div>
+            </div>
+
+                <select id="animate-option" style=" display: block; margin: auto;">
+                    <optgroup label="Attention Seekers">
+                        <option value="bounce">bounce</option>
+                        <option value="flash">flash</option>
+                        <option value="pulse">pulse</option>
+                        <option value="rubberband">rubberband</option>
+                        <option value="shake">shake</option>
+                        <option value="swing">swing</option>
+                        <option value="tada">tada</option>
+                        <option value="wobble">wobble</option>
+                    </optgroup>
+
+                    <optgroup label="Bouncing Entrances">
+                        <option value="bounce-in">bounce-in</option>
+                        <option value="bounce-in-down">bounce-in-down</option>
+                        <option value="bounce-in-left">bounce-in-left</option>
+                        <option value="bounce-in-right">bounce-in-right</option>
+                        <option value="bounce-in-up">bounce-in-up</option>
+                    </optgroup>
+
+                    <optgroup label="Bouncing Exits">
+                        <option value="bounce-out">bounce-out</option>
+                        <option value="bounce-out-down">bounce-out-down</option>
+                        <option value="bounce-out-left">bounce-out-left</option>
+                        <option value="bounce-out-right">bounce-out-right</option>
+                        <option value="bounce-out-up">bounce-out-up</option>
+                    </optgroup>
+
+                    <optgroup label="Fading Entrances">
+                        <option value="fade-in">fade-in</option>
+                        <option value="fade-in-down">fade-in-down</option>
+                        <option value="fade-in-down-big">fade-in-down-big</option>
+                        <option value="fade-in-left">fade-in-left</option>
+                        <option value="fade-in-left-big">fade-in-left-big</option>
+                        <option value="fade-in-right">fade-in-right</option>
+                        <option value="fade-in-right-big">fade-in-right-big</option>
+                        <option value="fade-in-up">fade-in-up</option>
+                        <option value="fade-in-up-big">fade-in-up-big</option>
+                    </optgroup>
+
+                    <optgroup label="Fading Exits">
+                        <option value="fade-out">fade-out</option>
+                        <option value="fade-out-down">fade-out-down</option>
+                        <option value="fade-out-down-big">fade-out-down-big</option>
+                        <option value="fade-out-left">fade-out-left</option>
+                        <option value="fade-out-left-big">fade-out-left-big</option>
+                        <option value="fade-out-right">fade-out-right</option>
+                        <option value="fade-out-right-big">fade-out-right-big</option>
+                        <option value="fade-out-up">fade-out-up</option>
+                        <option value="fade-out-up-big">fade-out-up-big</option>
+                    </optgroup>
+
+                    <optgroup label="Flippers">
+                        <option value="flip">flip</option>
+                        <option value="flip-in-x">flip-in-x</option>
+                        <option value="flip-in-y">flip-in-y</option>
+                        <option value="flip-out-x">flip-out-x</option>
+                        <option value="flip-out-y">flip-out-y</option>
+                    </optgroup>
+
+                    <optgroup label="Lightspeed">
+                        <option value="lightspeed-in-right">lightspeed-in-right</option>
+                        <option value="lightspeed-out-right">lightspeed-out-right</option>
+                        <option value="lightspeed-in-left">lightspeed-in-left</option>
+                        <option value="lightspeed-out-left">lightspeed-out-left</option>
+                    </optgroup>
+
+                    <optgroup label="Rotating Entrances">
+                        <option value="rotate-in">rotate-in</option>
+                        <option value="rotate-in-down-left">rotate-in-down-left</option>
+                        <option value="rotate-in-down-right">rotate-in-down-right</option>
+                        <option value="rotate-in-up-left">rotate-in-up-left</option>
+                        <option value="rotate-in-up-right">rotate-in-up-right</option>
+                    </optgroup>
+
+                    <optgroup label="Rotating Exits">
+                        <option value="rotate-out">rotate-out</option>
+                        <option value="rotate-out-down-left">rotate-out-down-left</option>
+                        <option value="rotate-out-down-right">rotate-out-down-right</option>
+                        <option value="rotate-out-up-left">rotate-out-up-left</option>
+                        <option value="rotate-out-up-right">rotate-out-up-right</option>
+                    </optgroup>
+
+                    <optgroup label="Specials">
+                        <option value="roll-in">roll-in</option>
+                        <option value="roll-out">roll-out</option>
+                        <!--<option value="hinge">hinge</option>-->
+                        <!--<option value="jello">jello</option>-->
+                    </optgroup>
+                    
+                    <optgroup label="Zoom Entrances">
+                        <option value="zoom-in">zoom-in</option>
+                        <option value="zoom-in-down">zoom-in-down</option>
+                        <option value="zoom-in-left">zoom-in-left</option>
+                        <option value="zoom-in-right">zoom-in-right</option>
+                        <option value="zoom-in-up">zoom-in-up</option>
+                    </optgroup>
+
+                    <optgroup label="Zoom Exits">
+                        <option value="zoom-out">zoom-out</option>
+                        <option value="zoom-out-down">zoom-out-down</option>
+                        <option value="zoom-out-left">zoom-out-left</option>
+                        <option value="zoom-out-right">zoom-out-right</option>
+                        <option value="zoom-out-up">zoom-out-up</option>
+                    </optgroup>
+                    
+                    <optgroup label="Slide Entrances">
+                        <option value="slide-in-down">slide-in-down</option>
+                        <option value="slide-in-left">slide-in-left</option>
+                        <option value="slide-in-right">slide-in-right</option>
+                        <option value="slide-in-up">slide-in-up</option>
+                    </optgroup> 
+
+                    <optgroup label="Slide Exits">
+                        <option value="slide-out-down">slide-out-down</option>
+                        <option value="slide-out-left">slide-out-left</option>
+                        <option value="slide-out-right">slide-out-right</option>
+                        <option value="slide-out-up">slide-out-up</option>
+                    </optgroup>
+
+                </select>
+            
+            <H4>animate features test (snap to <A href="http://daneden.github.io/animate.css/">animate.css</A>)</H4>
         </P>
 
         <SCRIPT>
@@ -24,11 +173,31 @@
             iloader.startLoading(250) ;
             //iloader.startLoading() ;// default time interval 150
             //iloader.stopLoading(10000) ;
+            
+            document.getElementById("animate-box-test").onclick = function(){
+                
+                iJS.animate(this, "bounce", 1) ;
+            }
+            
+            // a user must write this function from scratch and can use the others
+            function moveBox() {
+                var optionSelected = document.getElementById("animate-option").value;
+                var elt = document.getElementById('animate-box-test');
+                var iterations = 1;
+                var duration = 900;
+                iJS.animate(elt, optionSelected, iterations, duration) ;
+            }
+
+            window.addEventListener('load', function() {
+                document.getElementById('animate-option').addEventListener('change', moveBox);
+                document.getElementById('animate-box-test').addEventListener('click', moveBox);
+            });
+
 
             alert("test end - iJS - version: "+iJS.version);
         </SCRIPT>
 
 
-        <P><U>development test of <STRONG>iJS</STRONG></U></P>
+        <P style="text-align: left;"><U>development test of <STRONG>iJS</STRONG></U></P>
     </BODY>
 </HTML>

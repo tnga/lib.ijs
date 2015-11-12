@@ -103,6 +103,718 @@
 
     
 
+    <h4 class="name" id="animate"><span class="type-signature"></span>animate<span class="signature">(elt, anime, iterations, time)</span><span class="type-signature"> &rarr; {AnimationPlayer}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Animate an element by using predifined animations styles.
+Provide support of popuplar <a href="https://github.com/daneden/animate.css">animate.css</a> features.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>elt</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Element to animate.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>anime</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Animations styles.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>iterations</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Number of animation's iteration. 1 by default, -1 for infinite animation.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Duration of the animation. 900ms by default.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_animation.js.html">i_animation.js</a>, <a href="i_animation.js.html#line136">line 136</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    An object that can help to control considered animation. 
+                           See <a href="https://github.com/web-animations">web-animations.js</a> API for more details.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">AnimationPlayer</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>//Select the elements to animate and enjoy!
+    var elt = document.querySelector("#notification") ;
+    iJS.animate(elt, "shake") ;
+    //it return an AnimationPlayer object: see **web-animations.js** API for more details.
+    //animation iteration and duration can also be indicated.
+    var vivifyElt = iJS.animate(elt, "bounce", 3, 500) ;
+    vivifyElt.onfinish = function(e) {
+        //doSomething ...;
+    }
+    // less than 1500ms later...changed mind!
+    vivifyElt.cancel();</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getPageXY"><span class="type-signature"></span>getPageXY<span class="signature">(arg)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Get the coordonnate of an element relative to window.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a `HTMLElement` or a `id` of an element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line2068">line 2068</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    coordonnate `{x:x, y:y}`
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var eltScrollPos = iJS.getPageXY( HTMLElt ) ;
+         alert( eltScrollPos.x ) ;
+         alert( eltScrollPos.y ) ;</code></pre>
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getTextContent"><span class="type-signature"></span>getTextContent<span class="signature">(arg)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Get the `textContent` of an element without worry about browser’s support.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Element to get the text content</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line2031">line 2031</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    the text content, empty string if can not be got or `null` if the element is not a *HTMLElement*.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getXY"><span class="type-signature"></span>getXY<span class="signature">(arg)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Get the coordonnate of an element relative to document.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a `HTMLElement` or a `id` of an element</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line2042">line 2042</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    coordonnate `{x:x, y:y}`
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>var eltPos = iJS.getXY( HTMLElt ) ;
+         alert( eltPos.x ) ;
+         alert( eltPos.y ) ;</code></pre>
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id="isArray"><span class="type-signature"></span>isArray<span class="signature">(arg)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
@@ -203,7 +915,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line75">line 75</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1872">line 1872</a>
     </li></ul></dd>
     
 
@@ -356,7 +1068,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line53">line 53</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1850">line 1850</a>
     </li></ul></dd>
     
 
@@ -510,7 +1222,160 @@ ie: if an object is not `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line142">line 142</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1961">line 1961</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true if it is, false if it isn’t.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isElement"><span class="type-signature"></span>isElement<span class="signature">(arg)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Let you know if a variable is type of Element or not.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">all</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">argument of test.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1883">line 1883</a>
     </li></ul></dd>
     
 
@@ -663,7 +1528,7 @@ ie: if an object is not `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line86">line 86</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1894">line 1894</a>
     </li></ul></dd>
     
 
@@ -816,7 +1681,160 @@ ie: if an object is not `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line97">line 97</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1905">line 1905</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    true if it is, false if it isn’t.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isHTMLInputElement"><span class="type-signature"></span>isHTMLInputElement<span class="signature">(arg)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Let you know if a variable is type of HTMLInputElement or not.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">all</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">argument of test.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1927">line 1927</a>
     </li></ul></dd>
     
 
@@ -969,7 +1987,7 @@ ie: if an object is not `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line108">line 108</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1916">line 1916</a>
     </li></ul></dd>
     
 
@@ -1122,7 +2140,7 @@ ie: if an object is not `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line42">line 42</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1839">line 1839</a>
     </li></ul></dd>
     
 
@@ -1275,7 +2293,7 @@ ie: if an object is not `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line119">line 119</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1938">line 1938</a>
     </li></ul></dd>
     
 
@@ -1429,7 +2447,7 @@ ie: if an object is `null` or `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line130">line 130</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1949">line 1949</a>
     </li></ul></dd>
     
 
@@ -1582,7 +2600,7 @@ ie: if an object is `null` or `undefined`.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line64">line 64</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1861">line 1861</a>
     </li></ul></dd>
     
 
@@ -1736,7 +2754,7 @@ ie: if an object is not defined.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line154">line 154</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1973">line 1973</a>
     </li></ul></dd>
     
 
@@ -1840,7 +2858,7 @@ ie: if an object is not defined.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="i.js.html">i.js</a>, <a href="i.js.html#line166">line 166</a>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line2100">line 2100</a>
     </li></ul></dd>
     
 
@@ -1889,6 +2907,313 @@ ie: if an object is not defined.
 
 
         
+            
+
+    
+
+    <h4 class="name" id="setTextContent"><span class="type-signature"></span>setTextContent<span class="signature">(arg, text)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Set the `textContent` of an element without worry about browser’s support.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Element to set the text’s content</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Text that will be used</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line2015">line 2015</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="stringClear"><span class="type-signature"></span>stringClear<span class="signature">(arg)</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    clear a string by deleting space at the beginning and at the end.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a string to clear</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="i_core.js.html">i_core.js</a>, <a href="i_core.js.html#line1985">line 1985</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    null or the formatted string
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     
@@ -1904,13 +3229,13 @@ ie: if an object is not defined.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.Gettext.html">Gettext</a></li><li><a href="iJS.Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isHTMLLinkElement">isHTMLLinkElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.Gettext.html">Gettext</a></li><li><a href="iJS.Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#animate">animate</a></li><li><a href="global.html#getPageXY">getPageXY</a></li><li><a href="global.html#getTextContent">getTextContent</a></li><li><a href="global.html#getXY">getXY</a></li><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isElement">isElement</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isHTMLInputElement">isHTMLInputElement</a></li><li><a href="global.html#isHTMLLinkElement">isHTMLLinkElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li><li><a href="global.html#setTextContent">setTextContent</a></li><li><a href="global.html#stringClear">stringClear</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Aug 30 2015 01:11:26 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Thu Nov 12 2015 22:32:38 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>

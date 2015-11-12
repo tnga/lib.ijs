@@ -50,14 +50,48 @@
 However it can be use for any JavaScript projects.</p>
 <p>The goal is not to build another big library like Jquery, Mootools, AngularJS, ..., but to complete them.
 The script is written in pure JavaScript, so it’s independent and can be easily associated to any previous libraries. </p>
-<h2>What’s there?</h2><h4>Internationalization</h4><p>Actually the main feature of the library is the Javascript implementation of GNU Gettext API.<br><a href="http://tnga.github.io/extra.js-ijs/docs/iJS.Gettext.html">This implementation of GNU Gettext</a>, providing internationalization support for JavaScript. 
+<p>##What’s there?</p>
+<p>####Internationalization
+Actually the main feature of the library is the Javascript implementation of GNU Gettext API.<br><a href="http://tnga.github.io/extra.js-ijs/docs/iJS.Gettext.html">This implementation of GNU Gettext</a>, providing internationalization support for JavaScript. 
 It differs from existing JavaScript implementations in that it will support all current Gettext features 
 (ex. plural and context support), and will also support loading language catalogs from .mo, .po, 
 or preprocessed json files (<em>converter included</em>).</p>
-<p>In this case the &quot;i&quot; in <strong>iJS</strong> can be considered as <strong>i</strong>nternalization.</p>
-<h4>Animation</h4><p>Not yet powerfull, but will grow up soon. <a href="http://tnga.github.io/extra.js-ijs/docs/iJS.mi_loader.html">Documentation</a> is a friends to see what are provided. </p>
-<h4>Some simple functionalities</h4><p>See the <a href="http://tnga.github.io/extra.js-ijs/docs/">documentation</a> for more informations about all the library’s features.</p>
-<h2>Installation</h2><p>There are two possible ways:</p>
+<p>In this case the &quot;i&quot; in <strong>iJS</strong> can be considered as <strong>i</strong>nternalization.
+The following is an simple usage example: </p>
+<pre class="prettyprint source"><code>//set the locale in which the messages will be translated
+iJS.i18n.setlocale(&quot;fr_FR.utf8&quot;) ;
+//add domain where to find messages data
+iJS.i18n.bindtextdomain(&quot;domain_po&quot;, &quot;./path_to_locale&quot;, &quot;po&quot;) ;
+//Always do this after a `setlocale` or a `bindtextdomain` call.
+iJS.i18n.try_load_lang() ; //will load and parse messages data from the setting catalog.
+//now print your messages
+alert( iJS.i18n.gettext(&quot;messages to be translated&quot;) ) ;
+//or use the easy way to print your messages
+alert( iJS._(&quot;another way to get translated messages&quot;) ) ;</code></pre><p><a href="http://tnga.github.io/extra.js-ijs/docs/iJS.Gettext.html">Documentation</a> is a friend to see what are provided.</p>
+<p>####Animation
+Animations features, are building in top of the <a href="https://github.com/web-animations">web-animation-js</a> project.
+There is a lot of predefined animations styles that are easy to use.
+One of mains functionalities that are provided here is the support of <a href="">animate.css</a> features. The following is an simple usage example:</p>
+<pre class="prettyprint source"><code> //Select the elements to animate and enjoy!
+ var elt = document.querySelector(&quot;#notification&quot;) ;
+ iJS.animate(elt, &quot;shake&quot;) ;
+ //it return an AnimationPlayer object
+ //animation iteration and duration can also be indicated.
+ var vivifyElt = iJS.animate(elt, &quot;bounce&quot;, 3, 500) ;
+ vivifyElt.onfinish = function(e) {
+     //doSomething ...;
+ }
+ // less than 1500ms later...changed mind!
+ vivifyElt.cancel();</code></pre><p>Take a look of associated <a href="http://tnga.github.io/extra.js-ijs/docs/global.html#animate">documentation here</a> </p>
+<p>Other example to better make a loader with images without use gif animation:</p>
+<pre class="prettyprint source"><code>var iloader = new iJS.mi_loader(&quot;img-loader&quot;, &quot;./images&quot;, 3, &quot;img_load&quot;) ;
+iloader.startLoading(250) ; // default time interval 150
+iloader.stopLoading(10000) ; //do not execute this for infinite animation</code></pre><p>Take a look of associated <a href="http://tnga.github.io/extra.js-ijs/docs/global.html#mi_loader">documentation here</a>.</p>
+<p>Even if in this step of development, powerful thing can be done with it, more functionalities have to be added. So it will continuous to grow up.</p>
+<p>####simples tools
+See the <a href="http://tnga.github.io/extra.js-ijs/docs/">documentation</a> for more informations about all the library’s features.</p>
+<p>##Installation
+There are two possible ways:</p>
 <ol>
 <li>Directly include it in your project via the official link where you will sure to have the latest version.<br><a href="http://tnga.github.io/extra.js-ijs/i.min.latest.js">Here is the link</a></li>
 <li><a href="https://github.com/tnga/extra.js-ijs/archive/master.zip">Download the code</a> and follow instructions.<ul>
@@ -66,7 +100,15 @@ or preprocessed json files (<em>converter included</em>).</p>
 </ul>
 </li>
 </ol>
-<h2>The LGPL version 3</h2><p>Copyright (c) (April-&gt;August)-2015 <a href="mailto:devtnga@gmail.com">Tindo Ngoufo Arsel</a></p>
+<p>##Contribution
+To contribute, note that all the development features are done in <code>scr/</code> directory.
+Functionalities are grouped depending of what is added. 
+When new group feature's file is created, it have to be specified in <code>i-js-build</code> script.</p>
+<p><code>i-js-build</code> script have to be use to build the library for browser side usage. 
+Take it a look for more informations.</p>
+<p>Also note that <a href="">nodejs</a> have to be installed and also <a href="">npm</a> library's associated dependencies.</p>
+<p>##The LGPL version 3</p>
+<p>Copyright (c) (April-&gt;August)-2015 <a href="mailto:devtnga@gmail.com">Tindo Ngoufo Arsel</a></p>
 <p>See <a href="https://github.com/tnga/extra.js-ijs/blob/master/LICENSE.md">LICENSE.md</a> for more details.</p></article>
     </section>
 
@@ -78,13 +120,13 @@ or preprocessed json files (<em>converter included</em>).</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.Gettext.html">Gettext</a></li><li><a href="iJS.Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isHTMLLinkElement">isHTMLLinkElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="iJS.Gettext.html">Gettext</a></li><li><a href="iJS.Gettext.Strargs.html">Strargs</a></li><li><a href="iJS.mi_loader.html">mi_loader</a></li></ul><h3>Namespaces</h3><ul><li><a href="iJS.html">iJS</a></li></ul><h3>Global</h3><ul><li><a href="global.html#animate">animate</a></li><li><a href="global.html#getPageXY">getPageXY</a></li><li><a href="global.html#getTextContent">getTextContent</a></li><li><a href="global.html#getXY">getXY</a></li><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isDefined">isDefined</a></li><li><a href="global.html#isElement">isElement</a></li><li><a href="global.html#isHTMLElement">isHTMLElement</a></li><li><a href="global.html#isHTMLImageElement">isHTMLImageElement</a></li><li><a href="global.html#isHTMLInputElement">isHTMLInputElement</a></li><li><a href="global.html#isHTMLLinkElement">isHTMLLinkElement</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isSet">isSet</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#newHTTPRequest">newHTTPRequest</a></li><li><a href="global.html#setTextContent">setTextContent</a></li><li><a href="global.html#stringClear">stringClear</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sun Aug 30 2015 01:11:27 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Thu Nov 12 2015 22:32:38 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>
