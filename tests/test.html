@@ -1,0 +1,54 @@
+<HTML>
+    <HEAD>
+        <META charset="utf-8" />
+        <TITLE>iJS test</TITLE>
+        <STYLE>
+            i {color: dimgray;}
+            body {font-size: 0.9em; font-family: "Andale Mono", monospace, sans-serif;}
+        </STYLE>
+        
+        <SCRIPT type="text/javascript" src="../i.js" ></SCRIPT>
+        
+    </HEAD>
+    
+    <BODY>
+        
+        <SCRIPT>
+            //alert (iJS);
+            var xhr = iJS.newHTTPRequest(),
+                str = "jjjj";
+
+            document.writeln ("<BR/><i> xhr = iJS.newHTTPRequest() </i> : "+xhr);
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isBoolean(true) </i> : "+iJS.isBoolean(true));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isString( str ) </i> : "+iJS.isString( str ));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isNumber('int') </i> : "+iJS.isNumber('int'));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isArray(null) </i> : "+iJS.isArray(null));
+            document.writeln ("<BR/><i> iJS.isArray([]) </i> : "+iJS.isArray([]));
+            document.writeln ("<BR/><i> iJS.isArray( new Array() ) </i> : "+iJS.isArray( new Array() ));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isHTMLElement( document.createElement(\"p\") ) </i> : "+iJS.isHTMLElement( document.createElement("p") ));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isHTMLImageElement( document.createElement(\"img\") ) </i> : "+iJS.isHTMLImageElement( document.createElement("img") ));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isSet( xhr ) </i> : "+iJS.isSet( xhr ));
+            document.writeln ("<BR/><i> iJS.isSet(\"\") </i> : "+iJS.isSet(""));
+            document.writeln ("<BR/><i> iJS.isSet(null) </i> : "+iJS.isSet(null));
+            document.writeln ("<BR/><i> iJS.isSet(undefined) </i> : "+iJS.isSet(undefined));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isUndefined( str[5] ) </i> : "+iJS.isUndefined( str[5] ));
+            document.writeln ("<BR/><i> iJS.isUndefined(\"\") </i> : "+iJS.isUndefined(""));
+            document.writeln ("<BR/>");
+            document.writeln ("<BR/><i> iJS.isDefined( str[5] ) </i> : "+iJS.isDefined( str[5] ));
+            document.writeln ("<BR/><i> iJS.isDefined(\"\") </i> : "+iJS.isDefined(""));
+
+            alert("test end - iJS - version: "+iJS.version);
+        </SCRIPT>
+        
+        
+        <P><U>development test of <STRONG>iJS</STRONG></U></P>
+    </BODY>
+</HTML>

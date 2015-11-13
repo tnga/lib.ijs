@@ -1,0 +1,53 @@
+<HTML>
+    <HEAD>
+        <META charset="utf-8" />
+        <TITLE>iJS test</TITLE>
+        <STYLE>
+            i {color: dimgray;}
+            body {font-size: 0.9em; font-family: "Andale Mono", monospace, sans-serif;}
+        </STYLE>
+
+        <SCRIPT type="text/javascript" src="../partials/i_core.js" ></SCRIPT>
+        <SCRIPT type="text/javascript" src="../partials/i_gettext.js" ></SCRIPT>
+
+    </HEAD>
+
+    <BODY>
+
+        <SCRIPT>
+            //Use `iJS.i18n`
+            iJS.i18n.setlocale("en_US.UTF8");
+            iJS.i18n.bindtextdomain("test", "local", "po");
+            iJS.i18n.try_load_lang();
+
+            document.writeln ("<BR/>");
+            document.writeln ("<i><b>french-></b> Bonjour le monde </i><b>: english-> </b> "+iJS._("Bonjour le monde") );
+            document.writeln ("<BR/>");
+            document.writeln ("<i><b>french-></b> Faire d’un rêve une réalité... </i><b>: english-> </b> "+iJS._("Faire d’un rêve une réalité...") );
+            document.writeln ("<BR/>");
+            document.writeln ("<i><b>french-></b> Faire un don! </i><b>: english-> </b> "+iJS._("Faire un don!") );
+            document.writeln ("<BR/>");
+
+            //Use your own object
+            var gt = new iJS.Gettext();
+
+            gt.bindtextdomain("test", "local", "po");
+            gt.setlocale("it_IT.UTF8");
+            gt.try_load_lang();
+
+            document.writeln ("<BR/>");
+            document.writeln ("<i><b>french-></b> opération annulée </i><b>: italian-> </b> "+gt.gettext("opération annulée") );
+            document.writeln ("<BR/>");
+            document.writeln ("<i><b>french-></b> Faire d’un rêve une réalité... </i><b>: italian-> </b> "+gt.gettext("Faire d’un rêve une réalité...") );
+            document.writeln ("<BR/>");
+            document.writeln ("<i><b>french-></b> faire un don </i><b>: italian-> </b> "+gt.gettext("Faire un don!") );
+            document.writeln ("<BR/>");
+
+
+            alert("test end - iJS - version: "+iJS.version);
+        </SCRIPT>
+
+
+        <P><U>development test of <STRONG>iJS</STRONG></U></P>
+    </BODY>
+</HTML>
