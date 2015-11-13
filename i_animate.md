@@ -8,7 +8,7 @@ Here are animation style that can be use with `iJS.animate` method (wink to [ani
 * `swing`
 * `tada`
 * `wobble`
-* `jello` //*not yet disponible*
+* `jello` //*not yet available*
 * `bounce-in`
 * `bounce-in-down`
 * `bounce-in-left`
@@ -42,10 +42,10 @@ Here are animation style that can be use with `iJS.animate` method (wink to [ani
 * `flip-in-y`
 * `flip-out-x`
 * `flip-out-y`
-* `lightspeed-in` //*not yet disponible*
+* `lightspeed-in` //*not yet available*
 * `lightspeed-in-right`
 * `lightspeed-in-left`
-* `lightspeed-out` //*not yet disponible*
+* `lightspeed-out` //*not yet available*
 * `lightspeed-out-right`
 * `lightspeed-out-left`
 * `rotate-in`
@@ -58,7 +58,7 @@ Here are animation style that can be use with `iJS.animate` method (wink to [ani
 * `rotate-out-down-right`
 * `rotate-out-up-left`
 * `rotate-out-up-right`
-* `hinge` //*not yet disponible*
+* `hinge` //*not yet available*
 * `roll-in`
 * `roll-out`
 * `zoom-in`
