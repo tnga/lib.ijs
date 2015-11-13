@@ -52,7 +52,7 @@ However it can be use for any JavaScript projects.</p>
 The script is written in pure JavaScript, so it’s independent and can be easily associated to any previous libraries. </p>
 <p>##What’s there?</p>
 <p>####Internationalization
-Actually the main feature of the library is the Javascript implementation of GNU Gettext API.<br><a href="http://tnga.github.io/extra.js-ijs/docs/iJS.Gettext.html">This implementation of GNU Gettext</a>, providing internationalization support for JavaScript. 
+Actually the main feature of the library is the Javascript implementation of GNU Gettext API.<br><a href="http://tnga.github.io/lib.ijs/docs/iJS.Gettext.html">This implementation of GNU Gettext</a>, providing internationalization support for JavaScript. 
 It differs from existing JavaScript implementations in that it will support all current Gettext features 
 (ex. plural and context support), and will also support loading language catalogs from .mo, .po, 
 or preprocessed json files (<em>converter included</em>).</p>
@@ -67,11 +67,11 @@ iJS.i18n.try_load_lang() ; //will load and parse messages data from the setting 
 //now print your messages
 alert( iJS.i18n.gettext(&quot;messages to be translated&quot;) ) ;
 //or use the easy way to print your messages
-alert( iJS._(&quot;another way to get translated messages&quot;) ) ;</code></pre><p><a href="http://tnga.github.io/extra.js-ijs/docs/iJS.Gettext.html">Documentation</a> is a friend to see what are provided.</p>
+alert( iJS._(&quot;another way to get translated messages&quot;) ) ;</code></pre><p><a href="http://tnga.github.io/lib.ijs/docs/iJS.Gettext.html">Documentation</a> is a friend to see what are provided.</p>
 <p>####Animation
 Animations features, are building in top of the <a href="https://github.com/web-animations">web-animation-js</a> project.
 There is a lot of predefined animations styles that are easy to use.
-One of mains functionalities that are provided here is the support of <a href="">animate.css</a> features. The following is an simple usage example:</p>
+One of mains functionalities that are provided here is the support of <a href="https://daneden.github.io/animate.css/">animate.css</a> features. The following is an simple usage example:</p>
 <pre class="prettyprint source"><code> //Select the elements to animate and enjoy!
  var elt = document.querySelector(&quot;#notification&quot;) ;
  iJS.animate(elt, &quot;shake&quot;) ;
@@ -82,19 +82,35 @@ One of mains functionalities that are provided here is the support of <a href=""
      //doSomething ...;
  }
  // less than 1500ms later...changed mind!
- vivifyElt.cancel();</code></pre><p>Take a look of associated <a href="http://tnga.github.io/extra.js-ijs/docs/global.html#animate">documentation here</a> </p>
+ vivifyElt.cancel();</code></pre><p>Read <a href="https://github.com/tnga/lib.ijs/blob/master/i_animate.md">i_animate.md</a> to see available animations styles.
+Take a look of associated <a href="http://tnga.github.io/lib.ijs/docs/global.html#animate">documentation here</a> </p>
 <p>Other example to better make a loader with images without use gif animation:</p>
 <pre class="prettyprint source"><code>var iloader = new iJS.mi_loader(&quot;img-loader&quot;, &quot;./images&quot;, 3, &quot;img_load&quot;) ;
 iloader.startLoading(250) ; // default time interval 150
-iloader.stopLoading(10000) ; //do not execute this for infinite animation</code></pre><p>Take a look of associated <a href="http://tnga.github.io/extra.js-ijs/docs/global.html#mi_loader">documentation here</a>.</p>
+iloader.stopLoading(10000) ; //do not execute this for infinite animation</code></pre><p>Take a look of associated <a href="http://tnga.github.io/lib.ijs/docs/iJS.mi_loader.html">documentation here</a>.</p>
 <p>Even if in this step of development, powerful thing can be done with it, more functionalities have to be added. So it will continuous to grow up.</p>
 <p>####simples tools
-See the <a href="http://tnga.github.io/extra.js-ijs/docs/">documentation</a> for more informations about all the library’s features.</p>
+See the <a href="http://tnga.github.io/lib.ijs/docs/">documentation</a> for more informations about all the library’s features.</p>
 <p>##Installation
-There are two possible ways:</p>
+There are three possibles ways. 
+Note that, you can also partially use the library by firstly include the core script and then include the target features script (gettext, animation, ...).</p>
 <ol>
-<li>Directly include it in your project via the official link where you will sure to have the latest version.<br><a href="http://tnga.github.io/extra.js-ijs/i.min.latest.js">Here is the link</a></li>
-<li><a href="https://github.com/tnga/extra.js-ijs/archive/master.zip">Download the code</a> and follow instructions.<ul>
+<li><p>The recommended way to install <strong>iJS</strong> is through <strong>Bower</strong>. To install <a href="https://github.com/bower/bower">Bower</a>, see the <a href="http://bower.io/">Bower web site</a>.</p>
+<p>Bower removes the hassle of dependency management when developing or consuming elements. When you install a component, Bower makes sure any dependencies are installed as well. So in the root of your project, just do:</p>
+<pre class="prettyprint source"><code>$ bower install ijs</code></pre><p>Bower adds a <code>bower_components/</code> folder in your root's project where the libraries will be installed.</p>
+<p>When a new version of <strong>iJS</strong> is available, run bower update in your app directory to update your copy:</p>
+<pre class="prettyprint source"><code>$ bower update</code></pre><p> Therefore, you use the library by include it to your project. Commonly:</p>
+<pre class="prettyprint source"><code>&lt;script src=&quot;bower_components/ijs/i.min.js&quot;>&lt;/script></code></pre></li>
+<li><p>Directly include it in your project via the official link where you will sure to have the latest version. <a href="http://tnga.github.io/lib.ijs/i.min.js">Here is the link</a>.</p>
+<p>For partials usage of features, use the link bellow:</p>
+<ul>
+<li>ijs - core : <a href="http://tnga.github.io/lib.ijs/partials/i_core.min.js">-&gt; link</a>.</li>
+<li>ijs - animation : <a href="http://tnga.github.io/lib.ijs/partials/i_animation.min.js">-&gt; link</a>.</li>
+<li>ijs - gettext : <a href="http://tnga.github.io/lib.ijs/partials/i_gettext.min.js">-&gt; link</a>.</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/tnga/lib.ijs/archive/master.zip">Download the code</a> and follow instructions.</p>
+<ul>
 <li>The minify code is sufficient to include it to your project.</li>
 <li>Read the documentation for more information.</li>
 </ul>
@@ -106,10 +122,10 @@ Functionalities are grouped depending of what is added.
 When new group feature's file is created, it have to be specified in <code>i-js-build</code> script.</p>
 <p><code>i-js-build</code> script have to be use to build the library for browser side usage. 
 Take it a look for more informations.</p>
-<p>Also note that <a href="">nodejs</a> have to be installed and also <a href="">npm</a> library's associated dependencies.</p>
+<p>Also note that <a href="https://nodejs.org">nodejs</a> have to be installed and also <a href="https://npmjs.com">npm</a> library's associated dependencies.</p>
 <p>##The LGPL version 3</p>
 <p>Copyright (c) (April-&gt;August)-2015 <a href="mailto:devtnga@gmail.com">Tindo Ngoufo Arsel</a></p>
-<p>See <a href="https://github.com/tnga/extra.js-ijs/blob/master/LICENSE.md">LICENSE.md</a> for more details.</p></article>
+<p>See <a href="https://github.com/tnga/lib.ijs/blob/master/LICENSE.md">LICENSE.md</a> for more details.</p></article>
     </section>
 
 
@@ -126,7 +142,7 @@ Take it a look for more informations.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Thu Nov 12 2015 22:32:38 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Fri Nov 13 2015 10:58:10 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>
