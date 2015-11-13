@@ -8,9 +8,10 @@ However it can be use for any JavaScript projects.
 The goal is not to build another big library like Jquery, Mootools, AngularJS, ..., but to complete them.
 The script is written in pure JavaScript, so it’s independent and can be easily associated to any previous libraries. 
 
-##What’s there?
+## What’s there?
 
-####Internationalization
+#### Internationalization
+
 Actually the main feature of the library is the Javascript implementation of GNU Gettext API.   
 [This implementation of GNU Gettext](http://tnga.github.io/lib.ijs/docs/iJS.Gettext.html), providing internationalization support for JavaScript. 
 It differs from existing JavaScript implementations in that it will support all current Gettext features 
@@ -33,7 +34,8 @@ The following is an simple usage example:
     
 [Documentation]( http://tnga.github.io/lib.ijs/docs/iJS.Gettext.html) is a friend to see what are provided.
 
-####Animation
+#### Animation
+
 Animations features, are building in top of the [web-animation-js](https://github.com/web-animations) project.
 There is a lot of predefined animations styles that are easy to use.
 One of mains functionalities that are provided here is the support of [animate.css](https://daneden.github.io/animate.css/) features. The following is an simple usage example:
@@ -63,10 +65,12 @@ Take a look of associated [documentation here]( http://tnga.github.io/lib.ijs/do
 
 Even if in this step of development, powerful thing can be done with it, more functionalities have to be added. So it will continuous to grow up.
 
-####simples tools
+#### Simples tools
+
 See the [documentation](http://tnga.github.io/lib.ijs/docs/) for more informations about all the library’s features.
 
-##Installation
+## Installation
+
 There are three possibles ways. 
 Note that, you can also partially use the library by firstly include the core script and then include the target features script (gettext, animation, ...).
 
@@ -97,7 +101,8 @@ Note that, you can also partially use the library by firstly include the core sc
   - The minify code is sufficient to include it to your project.
   - Read the documentation for more information.
   
-##Contribution
+## Contribution
+
 To contribute, note that all the development features are done in `scr/` directory.
 Functionalities are grouped depending of what is added. 
 When new group feature's file is created, it have to be specified in `i-js-build` script.
@@ -107,9 +112,9 @@ Take it a look for more informations.
 
 Also note that [nodejs](https://nodejs.org) have to be installed and also [npm](https://npmjs.com) library's associated dependencies.
 
-##The LGPL version 3
+## LICENSE
 
-Copyright (c) (April->August)-2015 [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
+Copyright (c) (April->November)-2015 [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com).
 
-See [LICENSE.md](https://github.com/tnga/lib.ijs/blob/master/LICENSE.md) for more details.
+The LGPL version 2.1 or later. See [LICENSE.md](https://github.com/tnga/lib.ijs/blob/master/LICENSE.md) for more details.
 

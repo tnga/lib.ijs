@@ -140,6 +140,7 @@ iJS.i18n = new iJS.Gettext() ;
 /**
  * Easily translate your messages when use `Gettext` functionalities.<BR/>
  * Same as you call `iJS.i18n.gettext()`. See documentation of associated terms for more informations.
+ * @global
  * @param   {String} msgid  message to be translated
  * @returns {String} translated message if is found or `msgid` if not.
  * @example 

@@ -1803,9 +1803,9 @@ module.exports = isArray || function (val) {
  * This library is firstly build for UMI web’s projects and for pure JavaScript development.
  * However it can be use for any JavaScript projects.
  * 
- * @license LGPL v3.0
+ * @license LGPL v2.1 or later
  * @author  [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
- * @version 0.55_15.11 
+ * @version 0.99.0_15.11 
 */
 
 
@@ -1834,7 +1834,7 @@ iJS = {
     /**
      *@property {string} version Inform about the version of library that is use.
      */
-    version: "0.55_15.11",
+    version: "0.99.0_15.11 ",
     
     /**
      * Let you know if a value or a variable is type of Number or not.
