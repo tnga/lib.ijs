@@ -133,7 +133,7 @@ iJS.mi_loader = function (imgContainer, imgDir, imgLength, imgGlobalName, imgFor
  *     vivifyElt.cancel();
  * @param   {Element}         elt        Element to animate.
  * @param   {String}          anime      Animations styles.
- * @param   {Number}          iterations Number of animation's iteration. 1 by default, -1 for infinite animation.
+ * @param   {Number}          iterations Number of animation's iteration. 1 by default, -1 or "Infinity" for infinite animation.
  * @param   {Number}          time       Duration of the animation. 900ms by default.
  * @returns {AnimationPlayer} An object that can help to control considered animation. 
  *                            See <a href="https://github.com/web-animations">web-animations.js</a> API for more details.
@@ -152,7 +152,8 @@ iJS.animate = function (elt, anime, iterations, time) {
     }
     
     if (!iJS.isNumber( time )) time = 900 ;
-    if (!iJS.isNumber( iterations )) iterations = 1 ; //@TODO allow infinite itérations value for infinite animation.
+    if (!iJS.isNumber( iterations ) && iterations !== "Infinity") iterations = 1 ; 
+    else if ( iterations == -1) iterations = "Infinity" ;
     if (!iJS.isString( anime )) anime = "_default" ;
     
     var keyframes = [] ,
