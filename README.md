@@ -114,7 +114,7 @@ Also note that [nodejs](https://nodejs.org) have to be installed and also [npm](
 
 ## LICENSE
 
-Copyright (c) (April->November)-2015 [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com).
+Copyright (c) (April->November) - 2015 [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com).
 
 The LGPL version 2.1 or later. See [LICENSE.md](https://github.com/tnga/lib.ijs/blob/master/LICENSE.md) for more details.
 

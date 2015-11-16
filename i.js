@@ -1931,6 +1931,8 @@ iJS.mi_loader = function (imgContainer, imgDir, imgLength, imgGlobalName, imgFor
 /**
  * Animate an element by using predifined animations styles.
  * Provide support of popuplar <a href="https://github.com/daneden/animate.css">animate.css</a> features.
+ * Some animations styles have two way to be selected by its name; for example, `bounceInUp` like in *animate.css* 
+ * can also be indicated with `bounce-in-up`, ...
  * @function animate
  * @example //Select the elements to animate and enjoy!
  *     var elt = document.querySelector("#notification") ;
@@ -1988,6 +1990,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;
         
+        case "bounceIn":
         case "bounce-in":
             elt.style.visibility = 'visible';
              keyframes = [
@@ -2002,6 +2005,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;
         
+        case "bounceOut":
         case "bounce-out":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2015,6 +2019,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;
         
+        case "bounceInDown":
         case "bounce-in-down":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2028,6 +2033,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;
             
+        case "bounceOutDown":
         case "bounce-out-down":
             elt.style.visibility = 'hidden';
             var transitingTimingFunction = elt.style['transition-timing-function'];
@@ -2042,6 +2048,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;   
             
+        case "bounceInUp":
         case "bounce-in-up":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2054,6 +2061,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
             
+        case "bounceOutUp":
         case "bounce-out-up":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2067,6 +2075,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
             
+        case "bounceInLeft":
         case "bounce-in-left":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2080,6 +2089,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;     
             
+        case "bounceOutLeft":
         case "bounce-out-left":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2093,6 +2103,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;    
             
+        case "bounceInRight":
         case "bounce-in-right":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2106,6 +2117,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;   
             
+        case "bounceOutRight":
         case "bounce-out-right":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2119,6 +2131,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;    
             
+        case "fadeIn":
         case "fade-in":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2129,6 +2142,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOut":
         case "fade-out":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2139,6 +2153,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInDown":
         case "fade-in-down":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2149,6 +2164,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOutDown":
         case "fade-out-down":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2159,6 +2175,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;    
 
+        case "fadeOutUp":
         case "fade-out-up":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2169,6 +2186,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOutUpBig":
         case "fade-out-up-big":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2179,6 +2197,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInUp":
         case "fade-in-up":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2189,6 +2208,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInDownBig":
         case "fade-in-down-big":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2199,6 +2219,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOutDownBig":
         case "fade-out-down-big":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2209,6 +2230,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInUpBig":
         case "fade-in-up-big":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2219,6 +2241,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInRightBig":
         case "fade-in-right-big":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2229,6 +2252,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOutLeftBig":
         case "fade-out-left-big":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2239,6 +2263,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInLeft":
         case "fade-in-left":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2249,6 +2274,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInLeftBig":
         case "fade-in-left-big":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2259,6 +2285,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeInRight":
         case "fade-in-right":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2269,6 +2296,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOutLeft":
         case "fade-out-left":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2279,6 +2307,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOutRight":
         case "fade-out-right":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2289,6 +2318,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "fadeOutRightBig":
         case "fade-out-right-big":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2323,6 +2353,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;
             
+        case "flipInX":
         case "flip-in-x":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2336,6 +2367,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;  
                   
+        case "flipOutX":
         case "flip-out-x":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2347,6 +2379,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;  
                   
+        case "flipInY":
         case "flip-in-y":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2360,6 +2393,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;  
                   
+        case "flipOutY":
         case "flip-out-y":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2405,6 +2439,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             break; 
         //*/
             
+        case "lightSpeedInRight":
         case "lightspeed-in-right":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2417,6 +2452,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "lightSpeedOutRight":
         case "lightspeed-out-right":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2427,6 +2463,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "lightSpeedInLeft":
         case "lightspeed-in-left":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2439,6 +2476,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "lightSpeedOutLeft":
         case "lightspeed-out-left":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2459,6 +2497,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
                       
+        case "rollIn":
         case "roll-in":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2469,6 +2508,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rollOut":
         case "roll-out":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2479,6 +2519,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
             
+        case "rotateIn":
         case "rotate-in":
             elt.style.visibility = 'visible';
             var transformOrigin = elt.style['transform-origin'];
@@ -2490,6 +2531,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateInDownLeft":
         case "rotate-in-down-left":
             elt.style.visibility = 'visible';
             var transformOrigin = elt.style['transform-origin'];
@@ -2501,6 +2543,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateInDownRight":
         case "rotate-in-down-right":
             elt.style.visibility = 'visible';
             var transformOrigin = elt.style['transform-origin'];
@@ -2512,6 +2555,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateInUpLeft":
         case "rotate-in-up-left":
             elt.style.visibility = 'visible';
             var transformOrigin = elt.style['transform-origin'];
@@ -2523,6 +2567,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateInUpRight":
         case "rotate-in-up-right":
             elt.style.visibility = 'visible';
             var transformOrigin = elt.style['transform-origin'];
@@ -2534,6 +2579,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateOutDownLeft":
         case "rotate-out-down-left":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2545,6 +2591,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateOutDownRight":
         case "rotate-out-down-right":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2556,6 +2603,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateOutUpLeft":
         case "rotate-out-up-left":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2567,6 +2615,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateOutUpRight":
         case "rotate-out-up-right":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2578,6 +2627,7 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break;  
 
+        case "rotateOut":
         case "rotate-out":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2621,6 +2671,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;   
             
+        case "slideInDown":
         case "slide-in-down":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2631,6 +2682,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
         
+        case "slideInLeft":
         case "slide-in-left":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2641,6 +2693,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
             
+        case "slideInRight":
         case "slide-in-right":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2651,6 +2704,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
              
+        case "slideInUp":
         case "slide-in-up":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2661,6 +2715,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
                  
+        case "slideOutDown":
         case "slide-out-down":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2671,6 +2726,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
         
+        case "slideOutLeft":
         case "slide-out-left":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2681,6 +2737,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
             
+        case "slideOutRight":
         case "slide-out-right":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2691,6 +2748,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
              
+        case "slideOutUp":
         case "slide-out-up":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2745,6 +2803,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;  
                                              
+        case "zoomIn":
         case "zoom-in":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2755,6 +2814,7 @@ iJS.animate = function (elt, anime, iterations, time) {
              
             break;  
                                                  
+        case "zoomOutDown":
         case "zoom-out-down":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2767,6 +2827,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
                                                  
+        case "zoomOutUp":
         case "zoom-out-up":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2779,6 +2840,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
                                                  
+        case "zoomOutRight":
         case "zoom-out-right":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2791,6 +2853,7 @@ iJS.animate = function (elt, anime, iterations, time) {
               
             break;  
                                                  
+        case "zoomOutLeft":
         case "zoom-out-left":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
@@ -2803,6 +2866,7 @@ iJS.animate = function (elt, anime, iterations, time) {
              
             break;  
                                                       
+        case "zoomInDown":
         case "zoom-in-down":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2814,6 +2878,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;  
                                                       
+        case "zoomInLeft":
         case "zoom-in-left":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2825,6 +2890,7 @@ iJS.animate = function (elt, anime, iterations, time) {
            
             break;  
                                                       
+        case "zoomInRight":
         case "zoom-in-right":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2836,6 +2902,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
                                                       
+        case "zoomInUp":
         case "zoom-in-up":
             elt.style.visibility = 'visible';
             keyframes = [
@@ -2847,6 +2914,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break;  
                                                           
+        case "zoomOut":
         case "zoom-out":
             elt.style.visibility = 'hidden';
             keyframes = [
@@ -2859,8 +2927,8 @@ iJS.animate = function (elt, anime, iterations, time) {
             
         default:
             keyframes = [
-                {opacity: '0', offset: 0},
-                {opacity: '1', offset: 1}
+                {opacity: '0', visibility: 'visible', offset: 0},
+                {opacity: '1', visibility: 'visible', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
             

@@ -1,4 +1,6 @@
-Here are animation style that can be use with `iJS.animate` method (wink to [animate.css](https://daneden.github.io/animate.css/)):
+Here are animation's styles that can be use with `iJS.animate` method (wink to [animate.css](https://daneden.github.io/animate.css/)).
+Note that library have it own way to name an animation, but *animate.css* like animation's name is supported.
+For example, `bounce-in-up` can also be indicated with `bounceInUp`, `lightspeed-in` with `lightSpeedIn`, ...:
 
 * `bounce`
 * `flash`
