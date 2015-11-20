@@ -2405,109 +2405,55 @@ iJS.animate = function (elt, anime, iterations, time) {
             timing = {duration: time, iterations: iterations};
             
             break; 
-            
-            case "overHinge":
-            case "overhinge":
-                var transformOrigin = elt.style['transform-origin'];
-                keyframes = [
-                    {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
-                    {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.1}, 
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.3}, 
-                    {transform: 'rotate3d(0, 0, 1, 160deg)', transformOrigin: 'top left', offset: 0.4}, 
-                    {transform: 'rotate3d(0, 0, 1, 120deg)', transformOrigin: 'top left', offset: 0.6},
-                    {transform: 'rotate3d(0, 0, 1, 320deg)', transformOrigin: 'top left', offset: 0.7}, 
-                    {transform: 'rotate3d(0, 0, 1, 240deg)', transformOrigin: 'top left', offset: 0.8},
-                    {transform: 'rotate3d(0, 0, 1, 360deg)', transformOrigin: 'top left', visibility: 'visible', offset: 1}
-                    //{transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', offset: 1}
-                ];
-                timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
+        
+        case "hinge":
+            var transformOrigin = elt.style['transform-origin'];
+            keyframes = [
+                {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
+                {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.2}, 
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.4}, 
+                {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.6},
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.8},
+                {transform: 'rotate3d(0, 0, 1, 10deg)', transformOrigin: 'top left', visibility: 'visible', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
 
             break; 
-                   
-            case "overHingeIn":
-            case "overhinge-in":
-                elt.style.visibility = 'visible';
-                var transformOrigin = elt.style['transform-origin'];
-                keyframes = [
-                    {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 0}, 
-                    {transform: 'translate3d(0, 500px, 0)', transformOrigin: 'top left', opacity: '0.4', visibility: 'visible', offset: 0.1}, 
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.3}, 
-                    {transform: 'rotate3d(0, 0, 1, 160deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.4}, 
-                    {transform: 'rotate3d(0, 0, 1, 120deg)', transformOrigin: 'top left', opacity: '0.1', offset: 0.6},
-                    {transform: 'rotate3d(0, 0, 1, 320deg)', transformOrigin: 'top left', offset: 0.7}, 
-                    {transform: 'rotate3d(0, 0, 1, 240deg)', transformOrigin: 'top left', offset: 0.8},
-                    {transform: 'rotate3d(0, 0, 1, 360deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 1}
-                ];
-                timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
+
+        case "hingeIn":
+        case "hinge-in":
+            elt.style.visibility = 'visible';
+            var transformOrigin = elt.style['transform-origin'];
+            keyframes = [
+                {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 0}, 
+                {transform: 'translate3d(0, 500px, 0)', transformOrigin: 'top left', opacity: '0.4', visibility: 'visible', offset: 0.1}, 
+                {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.2}, 
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.4}, 
+                {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', opacity: '1', offset: 0.6},
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.8},
+                {transform: 'rotate3d(0, 0, 1, 10deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
 
             break; 
-            
-        case "overHingeOut":
-        case "overhinge-out":
+
+        case "hingeOut":
+        case "hinge-out":
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 0}, 
-                {transform: 'rotate3d(0, 0, 1, -80deg)', transformOrigin: 'top left', offset: 0.1}, 
-                {transform: 'rotate3d(0, 0, 1, -60deg)', transformOrigin: 'top left', offset: 0.3}, 
-                {transform: 'rotate3d(0, 0, 1, -160deg)', transformOrigin: 'top left', offset: 0.4}, 
-                {transform: 'rotate3d(0, 0, 1, -120deg)', transformOrigin: 'top left', offset: 0.6},
-                {transform: 'rotate3d(0, 0, 1, -320deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.7}, 
-                {transform: 'rotate3d(0, 0, 1, -240deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.8},
+                {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.2}, 
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.4}, 
+                {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.6},
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.8},
                 {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 1}
             ];
             timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
 
             break; 
-                    
-            case "hinge":
-                var transformOrigin = elt.style['transform-origin'];
-                keyframes = [
-                    {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
-                    {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.2}, 
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.4}, 
-                    {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.6},
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.8},
-                    {transform: 'rotate3d(0, 0, 1, 10deg)', transformOrigin: 'top left', visibility: 'visible', offset: 1}
-                ];
-                timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
-
-            break; 
-                      
-            case "hingeIn":
-            case "hinge-in":
-                elt.style.visibility = 'visible';
-                var transformOrigin = elt.style['transform-origin'];
-                keyframes = [
-                    {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 0}, 
-                    {transform: 'translate3d(0, 500px, 0)', transformOrigin: 'top left', opacity: '0.4', visibility: 'visible', offset: 0.1}, 
-                    {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.2}, 
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.4}, 
-                    {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', opacity: '1', offset: 0.6},
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.8},
-                    {transform: 'rotate3d(0, 0, 1, 10deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 1}
-                ];
-                timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
-
-            break; 
             
-            case "hingeOut":
-            case "hinge-out":
-                elt.style.visibility = 'hidden';
-                var transformOrigin = elt.style['transform-origin'];
-                keyframes = [
-                    {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 0}, 
-                    {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.2}, 
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.4}, 
-                    {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.6},
-                    {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.8},
-                    {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 1}
-                ];
-                timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
-
-            break; 
-            
-        case "jello": //@TODO implementation derrivate animations.
+        case "jello":
             var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'skewX(0deg) skewY(0deg)', visibility: 'visible', offset: 0}, 
@@ -2608,7 +2554,61 @@ iJS.animate = function (elt, anime, iterations, time) {
             ];
             timing = {duration: time, iterations: iterations};
 
-            break;  
+            break;
+            
+        case "overHinge":
+        case "overhinge":
+            var transformOrigin = elt.style['transform-origin'];
+            keyframes = [
+                {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
+                {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.1}, 
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', offset: 0.3}, 
+                {transform: 'rotate3d(0, 0, 1, 160deg)', transformOrigin: 'top left', offset: 0.4}, 
+                {transform: 'rotate3d(0, 0, 1, 120deg)', transformOrigin: 'top left', offset: 0.6},
+                {transform: 'rotate3d(0, 0, 1, 320deg)', transformOrigin: 'top left', offset: 0.7}, 
+                {transform: 'rotate3d(0, 0, 1, 240deg)', transformOrigin: 'top left', offset: 0.8},
+                {transform: 'rotate3d(0, 0, 1, 360deg)', transformOrigin: 'top left', visibility: 'visible', offset: 1}
+                //{transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
+
+            break; 
+
+        case "overHingeIn":
+        case "overhinge-in":
+            elt.style.visibility = 'visible';
+            var transformOrigin = elt.style['transform-origin'];
+            keyframes = [
+                {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 0}, 
+                {transform: 'translate3d(0, 500px, 0)', transformOrigin: 'top left', opacity: '0.4', visibility: 'visible', offset: 0.1}, 
+                {transform: 'rotate3d(0, 0, 1, 60deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.3}, 
+                {transform: 'rotate3d(0, 0, 1, 160deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.4}, 
+                {transform: 'rotate3d(0, 0, 1, 120deg)', transformOrigin: 'top left', opacity: '0.1', offset: 0.6},
+                {transform: 'rotate3d(0, 0, 1, 320deg)', transformOrigin: 'top left', offset: 0.7}, 
+                {transform: 'rotate3d(0, 0, 1, 240deg)', transformOrigin: 'top left', offset: 0.8},
+                {transform: 'rotate3d(0, 0, 1, 360deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
+
+            break; 
+
+        case "overHingeOut":
+        case "overhinge-out":
+            elt.style.visibility = 'hidden';
+            var transformOrigin = elt.style['transform-origin'];
+            keyframes = [
+                {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 0}, 
+                {transform: 'rotate3d(0, 0, 1, -80deg)', transformOrigin: 'top left', offset: 0.1}, 
+                {transform: 'rotate3d(0, 0, 1, -60deg)', transformOrigin: 'top left', offset: 0.3}, 
+                {transform: 'rotate3d(0, 0, 1, -160deg)', transformOrigin: 'top left', offset: 0.4}, 
+                {transform: 'rotate3d(0, 0, 1, -120deg)', transformOrigin: 'top left', offset: 0.6},
+                {transform: 'rotate3d(0, 0, 1, -320deg)', transformOrigin: 'top left', opacity: '0.8', offset: 0.7}, 
+                {transform: 'rotate3d(0, 0, 1, -240deg)', transformOrigin: 'top left', opacity: '0.6', offset: 0.8},
+                {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
+
+            break; 
                             
         case "pulse":
             keyframes = [
