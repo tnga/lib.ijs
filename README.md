@@ -20,47 +20,47 @@ or preprocessed json files (*converter included*).
 
 In this case the "i" in **iJS** can be considered as **i**nternalization.
 The following is an simple usage example: 
-
-    //set the locale in which the messages will be translated
-    iJS.i18n.setlocale("fr_FR.utf8") ;
-    //add domain where to find messages data
-    iJS.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ;
-    //Always do this after a `setlocale` or a `bindtextdomain` call.
-    iJS.i18n.try_load_lang() ; //will load and parse messages data from the setting catalog.
-    //now print your messages
-    alert( iJS.i18n.gettext("messages to be translated") ) ;
-    //or use the easy way to print your messages
-    alert( iJS._("another way to get translated messages") ) ;
-    
+```js
+//set the locale in which the messages will be translated
+iJS.i18n.setlocale("fr_FR.utf8") ;
+//add domain where to find messages data
+iJS.i18n.bindtextdomain("domain_po", "./path_to_locale", "po") ;
+//Always do this after a `setlocale` or a `bindtextdomain` call.
+iJS.i18n.try_load_lang() ; //will load and parse messages data from the setting catalog.
+//now print your messages
+alert( iJS.i18n.gettext("messages to be translated") ) ;
+//or use the easy way to print your messages
+alert( iJS._("another way to get translated messages") ) ; 
+```    
 [Documentation]( http://tnga.github.io/lib.ijs/docs/iJS.Gettext.html) is a friend to see what are provided.
 
 #### Animation
 
 Animations features, are building in top of the [web-animation-js](https://github.com/web-animations) project.
 There is a lot of predefined animations styles that are easy to use.
-One of mains functionalities that are provided here is the support of [animate.css](https://daneden.github.io/animate.css/) features. The following is an simple usage example:
-
-     //Select the elements to animate and enjoy!
-     var elt = document.querySelector("#notification") ;
-     iJS.animate(elt, "shake") ;
-     //it return an AnimationPlayer object
-     //animation iteration and duration can also be indicated.
-     var vivifyElt = iJS.animate(elt, "bounce", 3, 500) ;
-     vivifyElt.onfinish = function(e) {
-         //doSomething ...;
-     }
-     // less than 1500ms later...changed mind!
-     vivifyElt.cancel();
-
+One of mains functionalities that are provided here is the support of [animate.css](https://daneden.github.io/animate.css/) features. The following is a simple usage example:
+```js
+//Select the elements to animate and enjoy!
+var elt = document.querySelector("#notification") ;
+iJS.animate(elt, "shake") ;
+//it return an AnimationPlayer object
+//animation iteration and duration can also be indicated.
+var vivifyElt = iJS.animate(elt, "bounce", 3, 500) ;
+vivifyElt.onfinish = function(e) {
+//doSomething ...;
+}
+// less than 1500ms later...changed mind!
+vivifyElt.cancel(); 
+```
 Read [i_animate.md](https://github.com/tnga/lib.ijs/blob/master/i_animate.md) to see available animations styles.
 Take a look of associated [documentation here]( http://tnga.github.io/lib.ijs/docs/global.html#animate) 
 
 Other example to better make a loader with images without use gif animation:
-
-    var iloader = new iJS.mi_loader("img-loader", "./images", 3, "img_load") ;
-    iloader.startLoading(250) ; // default time interval 150
-    iloader.stopLoading(10000) ; //do not execute this for infinite animation
-    
+```js
+var iloader = new iJS.mi_loader("img-loader", "./images", 3, "img_load") ;
+iloader.startLoading(250) ; // default time interval 150
+iloader.stopLoading(10000) ; //do not execute this for infinite animation  
+```    
 Take a look of associated [documentation here]( http://tnga.github.io/lib.ijs/docs/iJS.mi_loader.html).
 
 Even if in this step of development, powerful thing can be done with it, more functionalities have to be added. So it will continuous to grow up.
@@ -77,17 +77,19 @@ Note that, you can also partially use the library by firstly include the core sc
 1. The recommended way to install **iJS** is through **Bower**. To install [Bower](https://github.com/bower/bower), see the [Bower web site](http://bower.io/).
 
    Bower removes the hassle of dependency management when developing or consuming elements. When you install a component, Bower makes sure any dependencies are installed as well. So in the root of your project, just do:
-   
-       $ bower install ijs
-   
+   ```sh
+    $ bower install ijs
+   ```
    Bower adds a `bower_components/` folder in your root's project where the libraries will be installed.
    
    When a new version of **iJS** is available, run bower update in your app directory to update your copy:
-   
-       $ bower update
-       
+   ```sh
+    $ bower update
+   ```   
     Therefore, you use the library by include it to your project. Commonly:
-       <script src="bower_components/ijs/i.min.js"></script>
+    ```html
+    <script src="bower_components/ijs/i.min.js"></script>
+    ```   
 
 2. Directly include it in your project via the official link where you will sure to have the latest version. [Here is the link](http://tnga.github.io/lib.ijs/i.min.js).
 
