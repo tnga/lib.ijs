@@ -1467,7 +1467,7 @@ function utf8ToBytes (string, units) {
       }
 
       // valid surrogate pair
-      codePoint = leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00 | 0x10000
+      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
     } else if (leadSurrogate) {
       // valid bmp char, but last char was a lead
       if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
@@ -1805,7 +1805,7 @@ module.exports = isArray || function (val) {
  * 
  * @license LGPL v2.1 or later
  * @author  [Tindo Ngoufo Arsel](mailto:devtnga@gmail.com)
- * @version 0.99.3_15.11 
+ * @version 0.99.7_15.11 
 */
 
 
@@ -1834,7 +1834,7 @@ iJS = {
     /**
      *@property {string} version Inform about the version of library that is use.
      */
-    version: "0.99.3_15.11 ",
+    version: "0.99.7_15.11 ",
     
     /**
      * Let you know if a value or a variable is type of Number or not.
