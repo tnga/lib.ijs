@@ -1269,7 +1269,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             break;  
             
         default:
-            //console.log('iJS-animate: unknow animation "'+anime+'"')
+            console.warn('iJS-animate: unknown animation "'+anime+'"') ;
             keyframes = [
                 {opacity: '0', visibility: 'visible', offset: 0},
                 {opacity: '1', visibility: 'visible', offset: 1}
