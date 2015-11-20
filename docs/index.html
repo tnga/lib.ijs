@@ -56,7 +56,7 @@ It differs from existing JavaScript implementations in that it will support all 
 or preprocessed json files (<em>converter included</em>).</p>
 <p>In this case the &quot;i&quot; in <strong>iJS</strong> can be considered as <strong>i</strong>nternalization.
 The following is an simple usage example: </p>
-<pre class="prettyprint source"><code>//set the locale in which the messages will be translated
+<pre class="prettyprint source lang-js"><code>//set the locale in which the messages will be translated
 iJS.i18n.setlocale(&quot;fr_FR.utf8&quot;) ;
 //add domain where to find messages data
 iJS.i18n.bindtextdomain(&quot;domain_po&quot;, &quot;./path_to_locale&quot;, &quot;po&quot;) ;
@@ -68,21 +68,21 @@ alert( iJS.i18n.gettext(&quot;messages to be translated&quot;) ) ;
 alert( iJS._(&quot;another way to get translated messages&quot;) ) ;</code></pre><p><a href="http://tnga.github.io/lib.ijs/docs/iJS.Gettext.html">Documentation</a> is a friend to see what are provided.</p>
 <h4>Animation</h4><p>Animations features, are building in top of the <a href="https://github.com/web-animations">web-animation-js</a> project.
 There is a lot of predefined animations styles that are easy to use.
-One of mains functionalities that are provided here is the support of <a href="https://daneden.github.io/animate.css/">animate.css</a> features. The following is an simple usage example:</p>
-<pre class="prettyprint source"><code> //Select the elements to animate and enjoy!
- var elt = document.querySelector(&quot;#notification&quot;) ;
- iJS.animate(elt, &quot;shake&quot;) ;
- //it return an AnimationPlayer object
- //animation iteration and duration can also be indicated.
- var vivifyElt = iJS.animate(elt, &quot;bounce&quot;, 3, 500) ;
- vivifyElt.onfinish = function(e) {
-     //doSomething ...;
- }
- // less than 1500ms later...changed mind!
- vivifyElt.cancel();</code></pre><p>Read <a href="https://github.com/tnga/lib.ijs/blob/master/i_animate.md">i_animate.md</a> to see available animations styles.
+One of mains functionalities that are provided here is the support of <a href="https://daneden.github.io/animate.css/">animate.css</a> features. The following is a simple usage example:</p>
+<pre class="prettyprint source lang-js"><code>//Select the elements to animate and enjoy!
+var elt = document.querySelector(&quot;#notification&quot;) ;
+iJS.animate(elt, &quot;shake&quot;) ;
+//it return an AnimationPlayer object
+//animation iteration and duration can also be indicated.
+var vivifyElt = iJS.animate(elt, &quot;bounce&quot;, 3, 500) ;
+vivifyElt.onfinish = function(e) {
+//doSomething ...;
+}
+// less than 1500ms later...changed mind!
+vivifyElt.cancel();</code></pre><p>Read <a href="https://github.com/tnga/lib.ijs/blob/master/i_animate.md">i_animate.md</a> to see available animations styles.
 Take a look of associated <a href="http://tnga.github.io/lib.ijs/docs/global.html#animate">documentation here</a> </p>
 <p>Other example to better make a loader with images without use gif animation:</p>
-<pre class="prettyprint source"><code>var iloader = new iJS.mi_loader(&quot;img-loader&quot;, &quot;./images&quot;, 3, &quot;img_load&quot;) ;
+<pre class="prettyprint source lang-js"><code>var iloader = new iJS.mi_loader(&quot;img-loader&quot;, &quot;./images&quot;, 3, &quot;img_load&quot;) ;
 iloader.startLoading(250) ; // default time interval 150
 iloader.stopLoading(10000) ; //do not execute this for infinite animation</code></pre><p>Take a look of associated <a href="http://tnga.github.io/lib.ijs/docs/iJS.mi_loader.html">documentation here</a>.</p>
 <p>Even if in this step of development, powerful thing can be done with it, more functionalities have to be added. So it will continuous to grow up.</p>
@@ -92,10 +92,10 @@ Note that, you can also partially use the library by firstly include the core sc
 <ol>
 <li><p>The recommended way to install <strong>iJS</strong> is through <strong>Bower</strong>. To install <a href="https://github.com/bower/bower">Bower</a>, see the <a href="http://bower.io/">Bower web site</a>.</p>
 <p>Bower removes the hassle of dependency management when developing or consuming elements. When you install a component, Bower makes sure any dependencies are installed as well. So in the root of your project, just do:</p>
-<pre class="prettyprint source"><code>$ bower install ijs</code></pre><p>Bower adds a <code>bower_components/</code> folder in your root's project where the libraries will be installed.</p>
+<pre class="prettyprint source lang-sh"><code> $ bower install ijs</code></pre><p>Bower adds a <code>bower_components/</code> folder in your root's project where the libraries will be installed.</p>
 <p>When a new version of <strong>iJS</strong> is available, run bower update in your app directory to update your copy:</p>
-<pre class="prettyprint source"><code>$ bower update</code></pre><p> Therefore, you use the library by include it to your project. Commonly:</p>
-<pre class="prettyprint source"><code>&lt;script src=&quot;bower_components/ijs/i.min.js&quot;>&lt;/script></code></pre></li>
+<pre class="prettyprint source lang-sh"><code> $ bower update</code></pre><p> Therefore, you use the library by include it to your project. Commonly:</p>
+<pre class="prettyprint source lang-html"><code> &lt;script src=&quot;bower_components/ijs/i.min.js&quot;>&lt;/script></code></pre></li>
 <li><p>Directly include it in your project via the official link where you will sure to have the latest version. <a href="http://tnga.github.io/lib.ijs/i.min.js">Here is the link</a>.</p>
 <p>For partials usage of features, use the link bellow:</p>
 <ul>
@@ -135,7 +135,7 @@ Take it a look for more informations.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Mon Nov 16 2015 07:40:21 GMT+0100 (WAT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Fri Nov 20 2015 20:59:32 GMT+0100 (WAT)
 </footer>
 
 <script> prettyPrint(); </script>
