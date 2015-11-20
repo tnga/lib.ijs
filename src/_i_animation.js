@@ -642,7 +642,7 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "jello":
             var transformOrigin = elt.style['transform-origin'];
             keyframes = [
-                {transform: 'skewX(0deg) skewY(0deg)', visibility: 'visible', offset: 0}, 
+                {transform: 'skewX(0deg) skewY(0deg)', visibility: 'visible', transformOrigin: 'center', offset: 0}, 
                 {transform: 'skewX(-12.5deg) skewY(-12.5deg)', offset: 0.2}, 
                 {transform: 'skewX(6.2deg) skewY(6.2deg)', offset: 0.3},
                 {transform: 'skewX(-3.1deg) skewY(-3.1deg)', offset: 0.4}, 
@@ -650,7 +650,7 @@ iJS.animate = function (elt, anime, iterations, time) {
                 {transform: 'skewX(-0.78deg) skewY(-0.78deg)', offset: 0.6}, 
                 {transform: 'skewX(0.39deg) skewY(0.39deg)', offset: 0.7}, 
                 {transform: 'skewX(-0.19deg) skewY(-0.19deg)', offset: 0.8}, 
-                {transform: 'skewX(0deg) skewY(0deg)', visibility: 'visible', offset: 1}
+                {transform: 'skewX(0deg) skewY(0deg)', visibility: 'visible', transformOrigin: 'center', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
 
@@ -661,7 +661,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'visible';
             var transformOrigin = elt.style['transform-origin'];
             keyframes = [
-                {transform: 'skewX(0deg) skewY(0deg)', opacity: '0', visibility: 'hidden', offset: 0}, 
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'center', offset: 0}, 
                 {transform: 'skewX(-12.5deg) skewY(-12.5deg)', opacity: '0.2', visibility: 'visible', offset: 0.2}, 
                 {transform: 'skewX(6.2deg) skewY(6.2deg)', opacity: '0.4', offset: 0.3},
                 {transform: 'skewX(-3.1deg) skewY(-3.1deg)', opacity: '0.6', offset: 0.4}, 
@@ -669,7 +669,7 @@ iJS.animate = function (elt, anime, iterations, time) {
                 {transform: 'skewX(-0.78deg) skewY(-0.78deg)', opacity: '1', offset: 0.6}, 
                 {transform: 'skewX(0.39deg) skewY(0.39deg)', offset: 0.7}, 
                 {transform: 'skewX(-0.19deg) skewY(-0.19deg)', offset: 0.8}, 
-                {transform: 'skewX(0deg) skewY(0deg)', opacity: '1', visibility: 'visible', offset: 1}
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '1', visibility: 'visible', transformOrigin: 'center', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
 
@@ -680,7 +680,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'hidden';
             var transformOrigin = elt.style['transform-origin'];
             keyframes = [
-                {transform: 'skewX(0deg) skewY(0deg)', opacity: '1', visibility: 'visible', offset: 0}, 
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '1', visibility: 'visible', transformOrigin: 'center', offset: 0}, 
                 {transform: 'skewX(12.5deg) skewY(12.5deg)', opacity: '0.8', offset: 0.2}, 
                 {transform: 'skewX(-6.2deg) skewY(-6.2deg)', opacity: '0.7', offset: 0.3},
                 {transform: 'skewX(3.1deg) skewY(3.1deg)', opacity: '0.6', offset: 0.4}, 
@@ -688,7 +688,7 @@ iJS.animate = function (elt, anime, iterations, time) {
                 {transform: 'skewX(0.78deg) skewY(0.78deg)', opacity: '0.4', offset: 0.6}, 
                 {transform: 'skewX(-0.39deg) skewY(-0.39deg)', opacity: '0.3', offset: 0.7}, 
                 {transform: 'skewX(0.19deg) skewY(0.19deg)', opacity: '0.2', offset: 0.8}, 
-                {transform: 'skewX(0deg) skewY(0deg)', opacity: '0', visibility: 'hidden', offset: 1}
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'center', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
 
@@ -1068,6 +1068,21 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
         
+        case "squiggle":
+            keyframes = [
+                {transform: 'scaleX(0.7) scaleY(0) translate(0,-100%)', opacity: '0', visibility: 'visible', offset: 0}, 
+                {transform: 'scaleX(1.5) scaleY(1) translate(0,0%)', opacity: '0.3', offset: 0.1}, 
+                {transform: 'scaleX(0.8) scaleY(1) translate(0%,-20%)', opacity: '0.6', offset: 0.2}, 
+                {transform: 'scaleX(1.3) scaleY(1) translate(0%,0%)', opacity: '0.7', offset: 0.35}, 
+                {transform: 'scaleX(0.9) scaleY(1) translate(0%,-5%)', opacity: '0.8', offset: 0.5}, 
+                {transform: 'scaleX(1.1) scaleY(1) translate(0%,0%)', opacity: '0.9', offset: 0.7},
+                {transform: 'scaleX(1) scaleY(1) translate(0%,0%)', opacity: '1', offset: 0.9},
+                {transform: 'inherit', opacity: '1', visibility: 'visible', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations, easing: 'ease-in'};
+            
+            break;   
+                    
         case "swing":
             keyframes = [
                 {transform: 'translate(0%)', visibility: 'visible', offset: 0}, 
@@ -1235,6 +1250,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             break;  
             
         default:
+            //console.log('iJS-animate: unknow animation "'+anime+'"')
             keyframes = [
                 {opacity: '0', visibility: 'visible', offset: 0},
                 {opacity: '1', visibility: 'visible', offset: 1}
