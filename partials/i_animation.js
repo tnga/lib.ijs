@@ -728,6 +728,44 @@ iJS.animate = function (elt, anime, iterations, time) {
             timing = {duration: time, iterations: iterations};
 
             break; 
+                        
+        case "jelloIn":
+        case "jello-in":
+            elt.style.visibility = 'visible';
+            var transformOrigin = elt.style['transform-origin'];
+            keyframes = [
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '0', visibility: 'hidden', offset: 0}, 
+                {transform: 'skewX(-12.5deg) skewY(-12.5deg)', opacity: '0.2', visibility: 'visible', offset: 0.2}, 
+                {transform: 'skewX(6.2deg) skewY(6.2deg)', opacity: '0.4', offset: 0.3},
+                {transform: 'skewX(-3.1deg) skewY(-3.1deg)', opacity: '0.6', offset: 0.4}, 
+                {transform: 'skewX(1.5deg) skewY(1.5deg)', opacity: '0.8', offset: 0.5}, 
+                {transform: 'skewX(-0.78deg) skewY(-0.78deg)', opacity: '1', offset: 0.6}, 
+                {transform: 'skewX(0.39deg) skewY(0.39deg)', offset: 0.7}, 
+                {transform: 'skewX(-0.19deg) skewY(-0.19deg)', offset: 0.8}, 
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '1', visibility: 'visible', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations};
+
+            break; 
+            
+        case "jelloOut":
+        case "jello-out":
+            elt.style.visibility = 'hidden';
+            var transformOrigin = elt.style['transform-origin'];
+            keyframes = [
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '1', visibility: 'visible', offset: 0}, 
+                {transform: 'skewX(12.5deg) skewY(12.5deg)', opacity: '0.8', offset: 0.2}, 
+                {transform: 'skewX(-6.2deg) skewY(-6.2deg)', opacity: '0.7', offset: 0.3},
+                {transform: 'skewX(3.1deg) skewY(3.1deg)', opacity: '0.6', offset: 0.4}, 
+                {transform: 'skewX(-1.5deg) skewY(-1.5deg)', opacity: '0.5', offset: 0.5}, 
+                {transform: 'skewX(0.78deg) skewY(0.78deg)', opacity: '0.4', offset: 0.6}, 
+                {transform: 'skewX(-0.39deg) skewY(-0.39deg)', opacity: '0.3', offset: 0.7}, 
+                {transform: 'skewX(0.19deg) skewY(0.19deg)', opacity: '0.2', offset: 0.8}, 
+                {transform: 'skewX(0deg) skewY(0deg)', opacity: '0', visibility: 'hidden', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations};
+
+            break; 
             
         case "lightSpeedInRight":
         case "lightspeed-in-right":
