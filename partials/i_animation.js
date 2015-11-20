@@ -713,6 +713,42 @@ iJS.animate = function (elt, anime, iterations, time) {
 
             break; 
             
+        case "lightSpeed":
+        case "lightspeed":
+            keyframes = [
+                {transform: 'skewX(-30deg)', visibility: 'visible', offset: 0}, 
+                {transform: 'skewX(20deg)', offset: 0.6}, 
+                {transform: 'skewX(-5deg)', offset: 0.8}, 
+                {transform: 'none', visibility: 'visible', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations};
+
+            break;  
+              
+        case "lightSpeedIn":
+        case "lightspeed-in":
+            elt.style.visibility = 'visible';
+            keyframes = [
+                {transform: 'skewX(-30deg)', opacity: '0', visibility: 'hidden', offset: 0}, 
+                {transform: 'skewX(20deg)', opacity: '1', visibility: 'visible', offset: 0.6}, 
+                {transform: 'skewX(-5deg)', opacity: '1', visibility: 'visible', offset: 0.8}, 
+                {transform: 'none', opacity: '1 ', visibility: 'visible', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations};
+
+            break;  
+        
+        case "lightSpeedOut":
+        case "lightspeed-out":
+            elt.style.visibility = 'hidden';
+            keyframes = [
+                {transform: 'none', opacity: '1 ', visibility: 'visible', offset: 0}, 
+                {transform: 'skewX(30deg)', opacity: '0', visibility: 'hidden', offset: 1}
+            ];
+            timing = {duration: time, iterations: iterations};
+
+            break;  
+
         case "lightSpeedInRight":
         case "lightspeed-in-right":
             elt.style.visibility = 'visible';
@@ -725,7 +761,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             timing = {duration: time, iterations: iterations};
 
             break;  
-
+      
         case "lightSpeedOutRight":
         case "lightspeed-out-right":
             elt.style.visibility = 'hidden';
@@ -1270,6 +1306,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
         default:
             console.warn('iJS-animate: unknown animation "'+anime+'"') ;
+            
             keyframes = [
                 {opacity: '0', visibility: 'visible', offset: 0},
                 {opacity: '1', visibility: 'visible', offset: 1}
