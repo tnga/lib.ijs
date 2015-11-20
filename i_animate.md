@@ -47,10 +47,11 @@ For example, `bounce-in-up` can also be indicated with `bounceInUp`, `lightspeed
 * `flip-in-y`
 * `flip-out-x`
 * `flip-out-y`
-* `lightspeed-in` //*not yet available*
+* `lightspeed`
+* `lightspeed-in`
 * `lightspeed-in-right`
 * `lightspeed-in-left`
-* `lightspeed-out` //*not yet available*
+* `lightspeed-out`
 * `lightspeed-out-right`
 * `lightspeed-out-left`
 * `rotate-in`
