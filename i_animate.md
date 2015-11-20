@@ -10,7 +10,10 @@ For example, `bounce-in-up` can also be indicated with `bounceInUp`, `lightspeed
 * `swing`
 * `tada`
 * `wobble`
-* `jello` //*not yet available*
+* `squiggle`
+* `jello`  
+* `jello-in`    
+* `jello-out`
 * `bounce-in`
 * `bounce-in-down`
 * `bounce-in-left`
@@ -60,7 +63,12 @@ For example, `bounce-in-up` can also be indicated with `bounceInUp`, `lightspeed
 * `rotate-out-down-right`
 * `rotate-out-up-left`
 * `rotate-out-up-right`
-* `hinge` //*not yet available*
+* `hinge`
+* `hinge-in`
+* `hinge-out`
+* `overhinge`
+* `overhinge-in`
+* `overhinge-out`
 * `roll-in`
 * `roll-out`
 * `zoom-in`
