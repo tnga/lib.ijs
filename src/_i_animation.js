@@ -592,7 +592,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
         
-        case "hinge":
+        case "hinge": //@TODO remove not needed variable declaration like transfomOrigin
             var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
