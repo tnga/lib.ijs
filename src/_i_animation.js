@@ -593,7 +593,6 @@ iJS.animate = function (elt, anime, iterations, time) {
             break; 
         
         case "hinge": //@TODO remove not needed variable declaration like transfomOrigin
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
                 {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.2}, 
@@ -609,7 +608,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "hingeIn":
         case "hinge-in":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 0}, 
                 {transform: 'translate3d(0, 500px, 0)', transformOrigin: 'top left', opacity: '0.4', visibility: 'visible', offset: 0.1}, 
@@ -626,7 +624,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "hingeOut":
         case "hinge-out":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 0}, 
                 {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.2}, 
@@ -640,7 +637,6 @@ iJS.animate = function (elt, anime, iterations, time) {
             break; 
             
         case "jello":
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'skewX(0deg) skewY(0deg)', visibility: 'visible', transformOrigin: 'center', offset: 0}, 
                 {transform: 'skewX(-12.5deg) skewY(-12.5deg)', offset: 0.2}, 
@@ -659,7 +655,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "jelloIn":
         case "jello-in":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'skewX(0deg) skewY(0deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'center', offset: 0}, 
                 {transform: 'skewX(-12.5deg) skewY(-12.5deg)', opacity: '0.2', visibility: 'visible', offset: 0.2}, 
@@ -678,7 +673,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "jelloOut":
         case "jello-out":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'skewX(0deg) skewY(0deg)', opacity: '1', visibility: 'visible', transformOrigin: 'center', offset: 0}, 
                 {transform: 'skewX(12.5deg) skewY(12.5deg)', opacity: '0.8', offset: 0.2}, 
@@ -780,7 +774,6 @@ iJS.animate = function (elt, anime, iterations, time) {
             
         case "overHinge":
         case "overhinge":
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
                 {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.1}, 
@@ -799,7 +792,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "overHingeIn":
         case "overhinge-in":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', opacity: '0', visibility: 'hidden', offset: 0}, 
                 {transform: 'translate3d(0, 500px, 0)', transformOrigin: 'top left', opacity: '0.4', visibility: 'visible', offset: 0.1}, 
@@ -817,7 +809,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "overHingeOut":
         case "overhinge-out":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', opacity: '1', visibility: 'visible', offset: 0}, 
                 {transform: 'rotate3d(0, 0, 1, -80deg)', transformOrigin: 'top left', offset: 0.1}, 
@@ -867,7 +858,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateIn":
         case "rotate-in":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, -200deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'center', offset: 0}, 
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'center', offset: 1}
@@ -879,7 +869,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateInDownLeft":
         case "rotate-in-down-left":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, -45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'left bottom', offset: 0}, 
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'left bottom', offset: 1}
@@ -891,7 +880,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateInDownRight":
         case "rotate-in-down-right":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'right bottom', offset: 0}, 
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'right bottom', offset: 1}
@@ -903,7 +891,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateInUpLeft":
         case "rotate-in-up-left":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'left bottom', offset: 0}, 
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'left bottom', offset: 1}
@@ -915,7 +902,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateInUpRight":
         case "rotate-in-up-right":
             elt.style.visibility = 'visible';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, -45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'right bottom', offset: 0}, 
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'right bottom', offset: 1}
@@ -927,7 +913,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateOutDownLeft":
         case "rotate-out-down-left":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'left bottom', offset: 0},
                 {transform: 'rotate3d(0, 0, 1, 45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'left bottom', offset: 1}
@@ -939,7 +924,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateOutDownRight":
         case "rotate-out-down-right":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'right bottom', offset: 0},
                 {transform: 'rotate3d(0, 0, 1, -45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'right bottom', offset: 1}
@@ -951,7 +935,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateOutUpLeft":
         case "rotate-out-up-left":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'left bottom', offset: 0},
                 {transform: 'rotate3d(0, 0, 1, -45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'left bottom', offset: 1}
@@ -963,7 +946,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateOutUpRight":
         case "rotate-out-up-right":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'right bottom', offset: 0},
                 {transform: 'rotate3d(0, 0, 1, 45deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'right bottom', offset: 1}
@@ -975,7 +957,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "rotateOut":
         case "rotate-out":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'center', offset: 0}, 
                 {transform: 'rotate3d(0, 0, 1, 200deg)', opacity: '0', visibility: 'hidden', transformOrigin: 'center', offset: 1}
@@ -1177,7 +1158,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "zoomOutDown":
         case "zoom-out-down":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'center bottom', offset: 0}, 
                 {transform: 'scale3d(.475, .475, .475) translate3d(0, -60px, 0)', opacity: '1', visibility: 'visible',  transformOrigin: 'center bottom', offset: 0.4},
@@ -1190,7 +1170,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "zoomOutUp":
         case "zoom-out-up":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'center bottom', offset: 0}, 
                 {transform: 'scale3d(.475, .475, .475) translate3d(0, 60px, 0)', opacity: '1', visibility: 'visible',  transformOrigin: 'center bottom', offset: 0.4},
@@ -1203,7 +1182,7 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "zoomOutRight":
         case "zoom-out-right":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
+
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'right center', offset: 0}, 
                 {transform: 'scale3d(.475, .475, .475) translate3d(-42px, 0, 0)', opacity: '1', visibility: 'visible',  transformOrigin: 'right center', offset: 0.4},
@@ -1216,7 +1195,6 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "zoomOutLeft":
         case "zoom-out-left":
             elt.style.visibility = 'hidden';
-            var transformOrigin = elt.style['transform-origin'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', transformOrigin: 'left center', offset: 0}, 
                 {transform: 'scale3d(.475, .475, .475) translate3d(42px, 0, 0)', opacity: '1',  transformOrigin: 'left center', offset: 0.4},
