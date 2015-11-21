@@ -182,9 +182,9 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'visible';
              keyframes = [
                  {transform: 'scale3d(.3, .3, .3)', opacity: '0', visibility: 'hidden', offset: 0}, 
-                {transform: 'scale3d(1.1, 1.1, 1.1)', offset: 0.2},
+                 {transform: 'scale3d(1.1, 1.1, 1.1)', visibility: 'visible', offset: 0.2},
                 {transform: 'scale3d(.9, .9, .9)', offset: 0.4},
-                 {transform: 'scale3d(1.03, 1.03, 1.03)', opacity: '1', visibility: 'visible', offset: 0.6},
+                 {transform: 'scale3d(1.03, 1.03, 1.03)', opacity: '1', offset: 0.6},
                 {transform: 'scale3d(.97, .97, .97)', offset: 0.8},
                  {transform: 'scale3d(1, 1, 1)', opacity: '1', visibility: 'visible', offset: 1}
              ];
@@ -197,9 +197,9 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'hidden';
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', offset: 0},
-                {transform: 'scale3d(.9, .9, .9)', opacity: '1', visibility: 'visible', offset: 0.2},
-                {transform: 'scale3d(1.1, 1.1, 1.1)', opacity: '1', visibility: 'visible', offset: 0.5},
-                {transform: 'scale3d(1.1, 1.1, 1.1)', opacity: '1', visibility: 'visible', offset: 0.55},
+                {transform: 'scale3d(.9, .9, .9)', opacity: '1', offset: 0.2},
+                {transform: 'scale3d(1.1, 1.1, 1.1)', offset: 0.5},
+                {transform: 'scale3d(1.1, 1.1, 1.1)', offset: 0.55},
                 {transform: 'scale3d(.3, .3, .3)', opacity: '0', visibility: 'hidden', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
@@ -223,12 +223,11 @@ iJS.animate = function (elt, anime, iterations, time) {
         case "bounceOutDown":
         case "bounce-out-down":
             elt.style.visibility = 'hidden';
-            var transitingTimingFunction = elt.style['transition-timing-function'];
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', offset: 0},
-                {transform: 'translate3d(0, 50px, 0)', opacity: '1', visibility: 'visible', offset: 0.2},
-                {transform: 'translate3d(0, -20px, 0)', opacity: '1', visibility: 'visible', offset: 0.4},
-                {transform: 'translate3d(0, -20px, 0)', opacity: '1', visibility: 'visible', offset: 0.45},
+                {transform: 'translate3d(0, 50px, 0)', opacity: '1', offset: 0.2},
+                {transform: 'translate3d(0, -20px, 0)', offset: 0.4},
+                {transform: 'translate3d(0, -20px, 0)', offset: 0.45},
                 {transform: 'translate3d(0, 2000px, 0)', opacity: '0', visibility: 'hidden', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
@@ -253,9 +252,9 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'hidden';
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', offset: 0},
-                {transform: 'translate3d(0, 50px, 0)', opacity: '1', visibility: 'visible', offset: 0.2},
-                {transform: 'translate3d(0, 20px, 0)', opacity: '1', visibility: 'visible', offset: 0.4},
-                {transform: 'translate3d(0, 20px, 0)', opacity: '1', visibility: 'visible', offset: 0.45},
+                {transform: 'translate3d(0, 50px, 0)', opacity: '1', offset: 0.2},
+                {transform: 'translate3d(0, 20px, 0)', offset: 0.4},
+                {transform: 'translate3d(0, 20px, 0)', offset: 0.45},
                 {transform: 'translate3d(0, -2000px, 0)', opacity: '0', visibility: 'hidden', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
@@ -281,9 +280,9 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'hidden';
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', offset: 0},
-                {transform: 'translate3d(100px, 0, 0)', opacity: '1', visibility: 'visible', offset: 0.2},
-                {transform: 'translate3d(-20px, 0, 0)', opacity: '1', visibility: 'visible', offset: 0.4},
-                {transform: 'translate3d(-20px, 0, 0)', opacity: '1', visibility: 'visible', offset: 0.45},
+                {transform: 'translate3d(100px, 0, 0)', opacity: '1', offset: 0.2},
+                {transform: 'translate3d(-20px, 0, 0)', offset: 0.4},
+                {transform: 'translate3d(-20px, 0, 0)', offset: 0.45},
                 {transform: 'translate3d(-2000px, 0, 0)', opacity: '0', visibility: 'hidden', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
@@ -309,9 +308,9 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'hidden';
             keyframes = [
                 {transform: 'none', opacity: '1', visibility: 'visible', offset: 0},
-                {transform: 'translate3d(100px, 0, 0)', opacity: '1', visibility: 'visible', offset: 0.2},
-                {transform: 'translate3d(-20px, 0, 0)', opacity: '1', visibility: 'visible', offset: 0.4},
-                {transform: 'translate3d(-20px, 0, 0)', opacity: '1', visibility: 'visible', offset: 0.45},
+                {transform: 'translate3d(100px, 0, 0)', opacity: '1', offset: 0.2},
+                {transform: 'translate3d(-20px, 0, 0)', offset: 0.4},
+                {transform: 'translate3d(-20px, 0, 0)', offset: 0.45},
                 {transform: 'translate3d(2000px, 0, 0)', opacity: '0', visibility: 'hidden', offset: 1}
             ];
             timing = {duration: time, iterations: iterations};
@@ -571,9 +570,9 @@ iJS.animate = function (elt, anime, iterations, time) {
             elt.style.visibility = 'visible';
             keyframes = [
                 {transform: 'perspective(400px) rotate3d(0, 1, 0, 90deg)', opacity: '0', visibility: 'hidden', offset: 0},
-                {transform: 'perspective(400px) rotate3d(0, 1, 0, -20deg)', offset: 0.4},
-                {transform: 'perspective(400px) rotate3d(0, 1, 0, 10deg)', opacity: '1', visibility: 'visible', offset: 0.6},
-                {transform: 'perspective(400px) rotate3d(0, 1, 0, -5deg)', opacity: '1', visibility: 'visible', offset: 0.8},
+                {transform: 'perspective(400px) rotate3d(0, 1, 0, -20deg)', visibility: 'visible', offset: 0.4},
+                {transform: 'perspective(400px) rotate3d(0, 1, 0, 10deg)', opacity: '1', offset: 0.6},
+                {transform: 'perspective(400px) rotate3d(0, 1, 0, -5deg)', opacity: '1', offset: 0.8},
                 {transform: 'perspective(400px)', opacity: '1', visibility: 'visible', offset: 1}
             ];
             timing = {duration: time, iterations: iterations, easing: 'ease-in'};
@@ -592,7 +591,7 @@ iJS.animate = function (elt, anime, iterations, time) {
             
             break; 
         
-        case "hinge": //@TODO remove not needed variable declaration like transfomOrigin
+        case "hinge":
             keyframes = [
                 {transform: 'rotate3d(0, 0, 1, 0deg)', transformOrigin: 'top left', visibility: 'visible', offset: 0}, 
                 {transform: 'rotate3d(0, 0, 1, 80deg)', transformOrigin: 'top left', offset: 0.2}, 
@@ -783,7 +782,6 @@ iJS.animate = function (elt, anime, iterations, time) {
                 {transform: 'rotate3d(0, 0, 1, 320deg)', transformOrigin: 'top left', offset: 0.7}, 
                 {transform: 'rotate3d(0, 0, 1, 240deg)', transformOrigin: 'top left', offset: 0.8},
                 {transform: 'rotate3d(0, 0, 1, 360deg)', transformOrigin: 'top left', visibility: 'visible', offset: 1}
-                //{transform: 'translate3d(0, 700px, 0)', transformOrigin: 'top left', offset: 1}
             ];
             timing = {duration: time, iterations: iterations, easing: 'ease-in-out'};
 
